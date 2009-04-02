@@ -1,0 +1,1 @@
+    <c:get select="$eAttribute/@name"/> = <c:get select="$eAttribute/eAttributeType/@name"/>

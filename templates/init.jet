@@ -1,0 +1,8 @@
+<%@jet imports="org.eclipse.emf.ecore.*"%>
+<c:include template="templates/license.jet"/>
+
+<%-- Call the class template for any EClass objects. --%>
+<c:iterate select="$ePackage/EClass" var="eClass">
+<c:include template="templates/class.jet" passVariables="eClass"/>
+
+</c:iterate>
