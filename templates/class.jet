@@ -1,11 +1,15 @@
+<%@jet imports="org.eclipse.emf.ecore.*"%>
 class <c:get select="$eClass/@name"/>(<c:iterate select="$eClass/eSuperTypes" var="eSuperType"><c:get select="$eSuperType/@name"/></c:iterate>):
-
+    <c:if test="count($eClass/eAnnotations) > 0">
+    """ <c:setVariable var="eAnnotated" select="$eClass"/><c:include template="templates/comment.jet" passVariables="eAnnotated"/>
+    """
+    </c:if>
 <c:if test="count($eClass/eReferences) = 0 and count($eClass/eAttributes) = 0">
     pass
 </c:if>
 <c:iterate select="$eClass/eReferences" var="eReference">
-	<c:include template="templates/reference.jet"/>
+  <c:include template="templates/reference.jet"/>
 </c:iterate>
 <c:iterate select="$eClass/eAttributes" var="eAttribute">
-	<c:include template="templates/attribute.jet"/>
+  <c:include template="templates/attribute.jet"/>
 </c:iterate>

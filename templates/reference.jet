@@ -1,3 +1,8 @@
+<%@jet imports="org.eclipse.emf.ecore.*"%>
+<c:if test="count($eReference/eAnnotations) > 0">
+    <c:setVariable var="eAnnotated" select="$eReference"/>
+    # <c:include template="templates/comment.jet" passVariables="eAnnotated"/>
+</c:if>
 <c:choose>
 <c:when test="$eReference/@many = 'false'">
     <c:get select="$eReference/@name"/> = Instance("<c:setVariable var="eSuper" select="$eReference/eReferenceType/ePackage"/><c:include template="templates/package_name.jet" passVariables="eSuper"/>.<c:get select="$eReference/eReferenceType/@name"/>.<c:get select="$eReference/eReferenceType/@name"/>"<c:if test="$eReference/@required = 'true'">, allow_none=False</c:if>)

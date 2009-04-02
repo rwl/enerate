@@ -1,0 +1,1 @@
+<c:iterate select="$eAnnotated/eAnnotations" var="eAnnotation"><c:iterate select="$eAnnotation/details" var="detailsEntry"><c:get select="$detailsEntry/@value"/></c:iterate></c:iterate>

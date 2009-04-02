@@ -1,0 +1,18 @@
+<%@jet imports="org.eclipse.emf.ecore.*"%>
+<c:include template="templates/license.jet"/>
+
+<c:if test="count($ePackage/eAnnotations) > 0">
+""" <c:setVariable var="eAnnotated" select="$ePackage"/><c:include template="templates/comment.jet" passVariables="eAnnotated"/>
+"""
+</c:if>
+<c:iterate select="$ePackage/EEnum" var="eEnum">
+<c:setVariable var="eAnnotated" select="$eEnum"/>
+<c:get select="$eEnum/@name"/> = Enum(<c:iterate select="$eEnum/eLiterals" var="eLiteral">"<c:get select="$eLiteral/@literal"/>"</c:iterate><c:if test="count($eEnum/eAnnotations) > 0">, desc="<c:include template="templates/comment.jet" passVariables="eAnnotated"/>"</c:if>)
+</c:iterate>
+
+<%-- Call the class template for any EClass objects. --%>
+<c:iterate select="$ePackage/EClass" var="eClass">
+<c:include template="templates/class.jet" passVariables="eClass"/>
+
+
+</c:iterate>
