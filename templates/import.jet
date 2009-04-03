@@ -1,0 +1,64 @@
+<%@jet imports="org.eclipse.emf.ecore.*"%>
+<%@jet imports="java.util.*"%>
+<% ArrayList<String> imported = new ArrayList<String>(); %>
+<% ArrayList<String> traitNames = new ArrayList<String>(); %>
+<%-- Import super classes --%>
+<c:iterate select="$ePackage/EClass" var="eClass">
+  <%-- An EClass may have more than one superType. --%>
+  <c:iterate select="$eClass/eSuperTypes" var="eSuperType">
+    <c:setVariable var="eSuper" select="$eSuperType/ePackage"/>
+    <%-- Only import classes defined in other packages. --%>
+    <%-- Fixme: Use @nsPrefix aswell. --%>
+    <c:if test="string($eSuper/@name) != string($ePackage/@name)">
+<%
+EClass st = (EClass)context.getVariable("eSuperType");
+if ( !imported.contains( st.getName() ) ) {
+  imported.add( st.getName() );
+%>
+from <c:include template="templates/package_name.jet" passVariables="eSuper"/> import <c:get select="$eSuperType/@name"/>
+<%
+}
+%>
+    </c:if>
+  </c:iterate>
+</c:iterate>
+<%
+HashMap<String, String> eAttributeTraitMap = new HashMap<String, String>();
+eAttributeTraitMap.put("EString", "Str");
+eAttributeTraitMap.put("EInt", "Int");
+eAttributeTraitMap.put("EBoolean", "Bool");
+eAttributeTraitMap.put("EDate", "Date");
+eAttributeTraitMap.put("EDouble", "Float");
+eAttributeTraitMap.put("EList", "List");
+eAttributeTraitMap.put("EEnumerator", "Enum");
+eAttributeTraitMap.put("Float", "Float");
+eAttributeTraitMap.put("ELong", "Long");
+eAttributeTraitMap.put("EMap", "Dict");
+eAttributeTraitMap.put("EShort", "Int");
+%>
+<c:iterate select="$ePackage/EClass/EAttribute" var="attr">
+<%
+    EAttribute attr = (EAttribute)context.getVariable("attr");
+    EDataType dataType = attr.getEAttributeType();
+    String attrType = dataType.getName();
+
+%><c:log>Type name [<%= attrType %>].</c:log><%
+
+    if ( eAttributeTraitMap.containsKey( attrType ) ) {
+        String traitName = eAttributeTraitMap.get( attrType );
+
+        if ( !traitNames.contains( traitName ) ) {
+            traitNames.add( traitName );
+%><c:log>Recognised data type [<%= traitName %>].</c:log><%
+        }
+    } else {
+%><c:log>Unrecognised data type [<%= attrType %>].</c:log><%
+    }
+%></c:iterate>
+
+from enthought.traits.api import <%
+Iterator traitIter = traitNames.iterator();
+while ( traitIter.hasNext() ) {
+    %><%= 5 %><%
+}
+%>
