@@ -36,10 +36,12 @@ String tn;
 
 if ( instanceTypeNameTraitMap.containsKey( dt.getInstanceTypeName() ) ) {
     tn = instanceTypeNameTraitMap.get( dt.getInstanceTypeName() );
-%><c:get select="$eDataType/@name"/> = <%= tn %>(<c:get select="string($eDataType/@defaultValue)"/><c:if test="count($eDataType/eAnnotations) > 0"><c:setVariable var="eAnnotated" select="$eDataType"/><c:if test="$eDataType/@defaultValue">, </c:if>desc="<c:include template="templates/comment.jet" passVariables="eAnnotated"/>"</c:if>)
-<%
+} else {
+    tn = "Str";
 }
-%></c:iterate>
+%><c:get select="$eDataType/@name"/> = <%= tn %>(<c:get select="string($eDataType/@defaultValue)"/><c:if test="count($eDataType/eAnnotations) > 0"><c:setVariable var="eAnnotated" select="$eDataType"/><c:if test="$eDataType/@defaultValue">, </c:if>desc="<c:include template="templates/comment.jet" passVariables="eAnnotated"/>"</c:if>)
+</c:iterate>
+
 <c:iterate select="$ePackage/EEnum" var="eEnum">
 <c:setVariable var="eAnnotated" select="$eEnum"/>
 <c:get select="$eEnum/@name"/> = Enum(<c:iterate select="count($eEnum/eLiterals)" var="eLiteralIdx">"<c:get select="$eEnum/eLiterals[$eLiteralIdx]/@literal"/>"<c:if test="$eLiteralIdx != count($eEnum/eLiterals)">, </c:if></c:iterate><c:if test="count($eEnum/eAnnotations) > 0">, desc="<c:include template="templates/comment.jet" passVariables="eAnnotated"/>"</c:if>)

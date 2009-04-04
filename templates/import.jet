@@ -37,6 +37,22 @@ from <c:include template="templates/package_name.jet" passVariables="eSuper"/> i
     </c:if>
 </c:iterate>
 
+<%-- Import HasTraits if any classes in the package have no super type. --%>
+<c:if test="count($ePackage/EClass[count(eSuperTypes) = 0]) > 0">
+<% traitNames.add( "HasTraits" ); %>
+</c:if>
+<%-- Import reference traits. --%>
+<c:if test="count($ePackage/EClass/eReferences) > 0">
+<%
+traitNames.add( "Instance" );
+traitNames.add( "List" );
+%>
+</c:if>
+
+<c:iterate select="$ePackage/EClass/eAttributes/eAttributeType" var="eAttributeType">
+<c:get select="$eAttributeType/ePackage/@name"/>
+</c:iterate>
+
 <%-- Import trait attributes. --%>
 <c:iterate select="$ePackage/EClass/eAttributes/eAttributeType/@name" var="eAttributeTypeName">
 <%-- Coerce to string. --%>
