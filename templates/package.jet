@@ -9,7 +9,7 @@
   <%-- An ePackage that has subpackages is written to a Python package. --%>
   <ws:folder path="{$ePackage/@name}">
     <ws:file template="templates/module.jet" path="__init__.py"/>
-    <%-- Call the package template for any subpackages. --%>
+    <%-- Pass the subpackages to another package template. --%>
     <c:iterate select="$ePackage/eSubpackages" var="ePackage">
       <c:include template="templates/package.jet"/>
     </c:iterate>

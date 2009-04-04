@@ -57,11 +57,14 @@ if ( eAttributeTraitMap.containsKey( atn ) ) {
 if ( !traitNames.contains( tn ) && !tn.equals(" ") ) {
   traitNames.add( tn );
 }
-%></c:iterate>from traits.api import <%
-Iterator<String> i = traitNames.iterator();
-if ( i.hasNext() ) {
-    %><%= i.next() %><%
-    while ( i.hasNext() ) {
-        %>, <%= i.next() %><%
-    }
+%></c:iterate><%
+if ( traitNames.size() > 0) {
+%>from traits.api import <%
+  Iterator<String> i = traitNames.iterator();
+  if ( i.hasNext() ) {
+      %><%= i.next() %><%
+      while ( i.hasNext() ) {
+          %>, <%= i.next() %><%
+      }
+  }
 }%>
