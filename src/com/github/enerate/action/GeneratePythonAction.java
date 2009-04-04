@@ -5,6 +5,7 @@ import java.util.HashMap;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
@@ -29,7 +30,7 @@ implements IActionDelegate {
 
       IProgressMonitor monitor = new NullProgressMonitor();
 
-      public CreateGeneratePythonAction()
+      public GeneratePythonAction()
       {
         super();
       }
@@ -56,9 +57,9 @@ implements IActionDelegate {
         {
             genModel = (GenModel)object;
 
-            Map variables = new HashMap();
-            variables.put("org.eclipse.jet.resource.project.name", 'theNameOfTheProjectContainingTheEMFResource');
-            JET2Platform.runTransformOnObject("com.github.enerate", genModel.getResource(), variables, monitor)
+            HashMap<String, String> variables = new HashMap<String, String>();
+            variables.put("org.eclipse.jet.resource.project.name", "theNameOfTheProjectContainingTheEMFResource");
+            JET2Platform.runTransformOnObject("com.github.enerate", genModel.eResource(), variables, monitor);
         }
       }
 
