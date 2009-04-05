@@ -1,5 +1,6 @@
 <%@jet imports="org.eclipse.emf.ecore.*"%>
 <%@jet imports="java.util.*"%>
+<%@jet imports="org.eclipse.jet.xpath.XPathUtil"%>
 <%
 ArrayList<String> defined = new ArrayList<String>();
 ArrayList<String> queue = new ArrayList<String>();
@@ -46,28 +47,30 @@ if ( instanceTypeNameTraitMap.containsKey( dt.getInstanceTypeName() ) ) {
 
 <c:iterate select="$ePackage/EEnum" var="eEnum">
 <c:setVariable var="eAnnotated" select="$eEnum"/>
+<c:if test="count($eEnum/eAnnotations) > 0"># <c:include template="templates/comment.jet" passVariables="eAnnotated"/></c:if>
 <c:get select="$eEnum/@name"/> = Enum(<c:iterate select="count($eEnum/eLiterals)" var="eLiteralIdx">"<c:get select="$eEnum/eLiterals[$eLiteralIdx]/@literal"/>"<c:if test="$eLiteralIdx != count($eEnum/eLiterals)">, </c:if></c:iterate><c:if test="count($eEnum/eAnnotations) > 0">, desc="<c:include template="templates/comment.jet" passVariables="eAnnotated"/>"</c:if>)
 </c:iterate>
 
 <%-- Call the class template for any EClass objects. --%>
 <c:iterate select="$ePackage/EClass" var="eClass">
-<%
-EClass ec = (EClass)context.getVariable("eClass");
-%>
-<c:choose select="count( $eClass/eSuperTypes/ePackage[@name = $ePackage/@name] )">
-  <c:when test="0">
+<% EClass ec = (EClass)context.getVariable("eClass"); %>
+  <%-- Classes with no super type or classes with super types defined in other classes may be defined in any order. --%>
+  <c:choose select="count( $eClass/eSuperTypes/ePackage[@name = $ePackage/@name] )">
+    <c:when test="0">
+      <% defined.add( ec.getName() ); %>
 <c:include template="templates/class.jet" passVariables="eClass"/>
-<%
-defined.add( ec.getName() );
-%>
 
-  </c:when>
-  <c:otherwise><%
-queue.add( ec.getName() );
-  %>
-  </c:otherwise>
-</c:choose>
+    </c:when>
+    <c:otherwise><% queue.add( ec.getName() ); %></c:otherwise>
+  </c:choose>
 </c:iterate>
+<%
+context.setVariable( "classQueue", XPathUtil.asNodeSet(queue) );
+context.setVariable( "definedClasses", XPathUtil.asNodeSet(defined) );
+%>
+<c:include template="templates/hierarchy.jet"/>
+
+<%--
 <%
 Iterator<String> i = queue.iterator();
 while ( i.hasNext() )
@@ -81,3 +84,4 @@ while ( i.hasNext() )
 <%
 }
 %>
+--%>

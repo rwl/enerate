@@ -1,5 +1,6 @@
 <%@jet imports="org.eclipse.emf.ecore.*"%>
-class <c:get select="$eClass/@name"/>(<c:iterate select="$eClass/eSuperTypes" var="eSuperType"><c:get select="$eSuperType/@name"/></c:iterate>):
+<%-- Classes with no super classes derive from HasTraits. --%>
+class <c:get select="$eClass/@name"/>(<c:choose select="count($eClass/eSuperTypes)"><c:when test="0">HasTraits</c:when><c:otherwise><c:iterate select="count($eClass/eSuperTypes)" var="eSuperTypeIdx"><c:get select="$eClass/eSuperTypes[$eSuperTypeIdx]/@name"/><c:if test="$eSuperTypeIdx != count($eClass/eSuperTypes)">, </c:if></c:iterate></c:otherwise></c:choose>):
     <c:if test="count($eClass/eAnnotations) > 0">
     """ <c:setVariable var="eAnnotated" select="$eClass"/><c:include template="templates/comment.jet" passVariables="eAnnotated"/>
     """
