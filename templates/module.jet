@@ -1,6 +1,8 @@
 <%@jet imports="org.eclipse.emf.ecore.*"%>
 <%@jet imports="java.util.*"%>
 <%
+ArrayList<String> defined = new ArrayList<String>();
+ArrayList<String> queue = new ArrayList<String>();
 HashMap<String, String> instanceTypeNameTraitMap = new HashMap<String, String>();
 instanceTypeNameTraitMap.put("boolean", "Bool");
 instanceTypeNameTraitMap.put("java.lang.Boolean", "Bool");
@@ -49,7 +51,33 @@ if ( instanceTypeNameTraitMap.containsKey( dt.getInstanceTypeName() ) ) {
 
 <%-- Call the class template for any EClass objects. --%>
 <c:iterate select="$ePackage/EClass" var="eClass">
+<%
+EClass ec = (EClass)context.getVariable("eClass");
+%>
+<c:choose select="count( $eClass/eSuperTypes/ePackage[@name = $ePackage/@name] )">
+  <c:when test="0">
+<c:include template="templates/class.jet" passVariables="eClass"/>
+<%
+defined.add( ec.getName() );
+%>
+
+  </c:when>
+  <c:otherwise><%
+queue.add( ec.getName() );
+  %>
+  </c:otherwise>
+</c:choose>
+</c:iterate>
+<%
+Iterator<String> i = queue.iterator();
+while ( i.hasNext() )
+{
+  context.setVariable("eClassName", i.next());
+
+      %>
+<c:setVariable var="eClass" select="$ePackage/EClass[@name = $eClassName]"/>
 <c:include template="templates/class.jet" passVariables="eClass"/>
 
-
-</c:iterate>
+<%
+}
+%>

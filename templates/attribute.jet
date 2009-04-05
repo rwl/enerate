@@ -1,5 +1,5 @@
-    <c:if test="count($eAttribute/eAnnotations) > 0">
-      <c:setVariable var="eAnnotated" select="$eAttribute"/>
-      # <c:include template="templates/comment.jet" passVariables="eAnnotated"/>
-    </c:if>
+<c:if test="count($eAttribute/eAnnotations) > 0">
+<c:setVariable var="eAnnotated" select="$eAttribute"/>
+    # <c:include template="templates/comment.jet" passVariables="eAnnotated"/>
+</c:if>
     <c:get select="$eAttribute/@name"/> = <c:get select="$eAttribute/eAttributeType/@name"/>
