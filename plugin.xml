@@ -19,8 +19,16 @@
       </transform>
    </extension>
    <extension point="org.eclipse.ui.popupMenus">
-     <objectContribution id="com.github.enerate.editor.GeneratePython" objectClass="org.eclipse.emf.codegen.ecore.genmodel.GenModel">
-       <action id="com.github.enerate.editor.GeneratePythonAction" label="Generate Python" menubarPath="additions" class="com.github.enerate.action.GeneratePythonAction" enablesFor="1">
+     <objectContribution
+          id="com.github.enerate.editor.GeneratePython"
+          objectClass="org.eclipse.emf.codegen.ecore.genmodel.GenModel">
+       <action
+            id="com.github.enerate.editor.GeneratePythonAction"
+            label="Generate Pyt&amp;hon"
+            icon="icons/enerate.png"
+            menubarPath="additions"
+            class="com.github.enerate.action.GeneratePythonAction"
+            enablesFor="1">
        </action>
      </objectContribution>
    </extension>
