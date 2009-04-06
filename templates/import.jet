@@ -131,6 +131,7 @@ if ( traitNames.size() > 0) {
   }
 }%>
 <c:userRegion>
-# <<< imports <c:initialCode> </c:initialCode>
+# <<< imports
+<c:initialCode></c:initialCode>
 # >>> imports
 </c:userRegion>

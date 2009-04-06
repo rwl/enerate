@@ -25,14 +25,23 @@ instanceTypeNameTraitMap.put("short", "Int");
 instanceTypeNameTraitMap.put("java.lang.Short", "Int");
 instanceTypeNameTraitMap.put("java.lang.String", "Str");
 %>
+#------------------------------------------------------------------------------
 <c:include template="templates/license.jet"/>
+#------------------------------------------------------------------------------
 
 <c:if test="count($ePackage/eAnnotations) > 0">
 """ <c:setVariable var="eAnnotated" select="$ePackage"/><c:include template="templates/comment.jet" passVariables="eAnnotated"/>
 """
 </c:if>
+#------------------------------------------------------------------------------
+#  Imports:
+#------------------------------------------------------------------------------
+
 <c:include template="templates/import.jet"/>
 
+#------------------------------------------------------------------------------
+#  Trait definitions:
+#------------------------------------------------------------------------------
 <c:iterate select="$ePackage/EDataType" var="eDataType"><%
 EDataType dt = (EDataType)context.getVariable("eDataType");
 String tn;
@@ -85,3 +94,5 @@ while ( i.hasNext() )
 }
 %>
 --%>
+
+# EOF -------------------------------------------------------------------------
