@@ -18,7 +18,8 @@ class <c:get select="$eClass/@name"/>(<c:choose select="count($eClass/eSuperType
 
 </c:iterate>
 <c:userRegion>
-    # <<< <c:get select="lowercaseFirst($eClass/@name)"/><c:initialCode></c:initialCode>
+    # <<< <c:get select="lowercaseFirst($eClass/@name)"/>
+<c:initialCode></c:initialCode>
     # >>> <c:get select="lowercaseFirst($eClass/@name)"/>
 </c:userRegion>
 
