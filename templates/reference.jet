@@ -5,13 +5,13 @@
 </c:if>
 <c:choose>
 <c:when test="$eReference/@many = 'false'">
-    <c:get select="$eReference/@name"/> = Instance("<c:setVariable var="eSuper" select="$eReference/eReferenceType/ePackage"/><c:include template="templates/package_name.jet" passVariables="eSuper"/>.<c:get select="$eReference/eReferenceType/@name"/>.<c:get select="$eReference/eReferenceType/@name"/>"<c:if test="$eReference/@required = 'true'">, allow_none=False</c:if>)
+    <c:get select="$eReference/@name"/> = Instance("<c:setVariable var="eSuper" select="$eReference/eReferenceType/ePackage"/><c:include template="templates/package_name.jet" passVariables="eSuper"/>.<c:get select="$eReference/eReferenceType/@name"/>"<c:if test="$eReference/@required = 'true'">, allow_none=False</c:if>)
 </c:when>
 
 <c:when test="$eReference/@many='true' and boolean($eReference/@associated) != 'true' or $eReference/@associated = '0'">
-    <c:get select="$eReference/@name"/> = List(Instance("<c:setVariable var="eSuper" select="$eReference/eReferenceType/ePackage"/><c:include template="templates/package_name.jet" passVariables="eSuper"/>.<c:get select="$eReference/eReferenceType/@name"/>.<c:get select="$eReference/eReferenceType/@name"/>"))
+    <c:get select="$eReference/@name"/> = List(Instance("<c:setVariable var="eSuper" select="$eReference/eReferenceType/ePackage"/><c:include template="templates/package_name.jet" passVariables="eSuper"/>.<c:get select="$eReference/eReferenceType/@name"/>"))
 </c:when>
 <c:when test="$eReference/@many='true' and $eReference/@associated = '1'">
-    <c:get select="$eReference/@name)"/> = List(Instance("<c:setVariable var="eSuper" select="$eReference/eReferenceType/ePackage"/><c:include template="templates/package_name.jet" passVariables="eSuper"/>.<c:get select="$eReference/eReferenceType/@name"/>.<c:get select="$eReference/eReferenceType/@name"/>"))
+    <c:get select="$eReference/@name)"/> = List(Instance("<c:setVariable var="eSuper" select="$eReference/eReferenceType/ePackage"/><c:include template="templates/package_name.jet" passVariables="eSuper"/>.<c:get select="$eReference/eReferenceType/@name"/>"))
 </c:when>
 </c:choose>
