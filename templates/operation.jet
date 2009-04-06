@@ -1,0 +1,16 @@
+<c:userRegion>
+    # @begin
+    <c:initialCode unmodifiedMarker="@generated">
+    <c:if test="$eOperation/eGenericType/eClassifier = $eOperation/eContainingClass">
+    @classmethod
+    </c:if>
+    def <c:get select="$eOperation/@name"/>(self<c:iterate select="$eOperation/eParameters" var="eParameter">, <c:get select="$eParameter/@name"/></c:iterate>):
+        """ <c:if test="count($eOperation/eAnnotations) > 0"><c:setVariable var="eAnnotated" select="$eOperation"/>
+        <c:include template="templates/comment.jet" passVariables="eAnnotated"/>
+
+            </c:if>@generated
+        """
+        pass
+    </c:initialCode>
+    # @end
+</c:userRegion>
