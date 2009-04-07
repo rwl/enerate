@@ -57,7 +57,14 @@ if ( instanceTypeNameTraitMap.containsKey( dt.getInstanceTypeName() ) ) {
 <c:iterate select="$ePackage/EEnum" var="eEnum">
 <c:setVariable var="eAnnotated" select="$eEnum"/>
 <c:if test="count($eEnum/eAnnotations) > 0"># <c:include template="templates/comment.jet" passVariables="eAnnotated"/></c:if>
+<c:choose select="count($eEnum/eLiterals)">
+<c:when test="0">
+<c:get select="$eEnum/@name"/> = Str
+</c:when>
+<c:otherwise>
 <c:get select="$eEnum/@name"/> = Enum(<c:iterate select="count($eEnum/eLiterals)" var="eLiteralIdx">"<c:get select="$eEnum/eLiterals[$eLiteralIdx]/@literal"/>"<c:if test="$eLiteralIdx != count($eEnum/eLiterals)">, </c:if></c:iterate><c:if test="count($eEnum/eAnnotations) > 0">, desc="<c:include template="templates/comment.jet" passVariables="eAnnotated"/>"</c:if>)
+</c:otherwise>
+</c:choose>
 </c:iterate>
 
 <%-- Call the class template for any EClass objects. --%>
