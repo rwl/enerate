@@ -27,11 +27,15 @@ class <c:get select="$eClass/@name"/>(<c:choose select="count($eClass/eSuperType
 </c:iterate>
 <c:userRegion>
     #--------------------------------------------------------------------------
-    #  Begin <c:get select="lowercaseFirst($eClass/@name)"/> user definitions:
+    #  Begin "<c:get select="$eClass/@name"/>" user definitions:
     #--------------------------------------------------------------------------
-<c:initialCode></c:initialCode>
+<c:initialCode unmodifiedMarker="@generated">
+
+    # @generated
+    traits_view = <c:include template="templates/view.jet"/>
+</c:initialCode>
     #--------------------------------------------------------------------------
-    #  End <c:get select="lowercaseFirst($eClass/@name)"/> user definitions:
+    #  End "<c:get select="$eClass/@name"/>" user definitions:
     #--------------------------------------------------------------------------
 </c:userRegion>
 <c:iterate select="$eClass/eOperations" var="eOperation">

@@ -132,6 +132,8 @@ if ( traitNames.size() > 0) {
 }%>
 <c:userRegion>
 # <<< imports
-<c:initialCode></c:initialCode>
+<c:initialCode unmodifiedMarker="@generated">
+# @generated
+from enthought.traits.ui.api import View, Group, Item, HGroup, VGroup, Tabbed, VGrid</c:initialCode>
 # >>> imports
 </c:userRegion>
