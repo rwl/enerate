@@ -76,6 +76,7 @@ from <c:include template="templates/package_name.jet" passVariables="eSuper"/> i
 <%
 traitNames.add( "Instance" );
 traitNames.add( "List" );
+traitNames.add( "Property" );
 %>
 </c:if>
 <%-- Import traits used by any custom traits. --%>
@@ -134,6 +135,6 @@ if ( traitNames.size() > 0) {
 # <<< imports
 <c:initialCode unmodifiedMarker="@generated">
 # @generated
-from enthought.traits.ui.api import View, Group, Item, HGroup, VGroup, Tabbed, VGrid</c:initialCode>
+from enthought.traits.ui.api import View, Group, Item, HGroup, VGroup, Tabbed, VGrid, InstanceEditor</c:initialCode>
 # >>> imports
 </c:userRegion>

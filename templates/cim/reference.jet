@@ -1,0 +1,10 @@
+    _<c:get select="$eReference/eReferenceType/@name"/>s = Property( List(Instance("CIM.Root")) )
+
+    def _get__<c:get select="$eReference/eReferenceType/@name"/>s(self):
+        """ Property getter.
+        """
+        if self.ContainedBy is not None:
+            return [element for element in self.ContainedBy.Contains \
+                if isinstance(element, <c:get select="$eReference/@name"/>)]
+        else:
+            return []
