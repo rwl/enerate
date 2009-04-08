@@ -6,10 +6,10 @@
 <c:choose>
 <c:when test="$eReference/@many = 'false'">
     <c:get select="$eReference/@name"/> = Instance("<c:setVariable var="eSuper" select="$eReference/eReferenceType/ePackage"/><c:include template="templates/package_name.jet" passVariables="eSuper"/>.<c:get select="$eReference/eReferenceType/@name"/>"<c:if test="$eReference/@required = 'true'">, allow_none=False</c:if><c:if test="count($eReference/eAnnotations) > 0">,
-        desc="<c:include template="templates/comment.jet"/>"</c:if><c:if test="$eReference/@transient">,
+        desc="<c:include template="templates/comment.jet"/>"</c:if><c:if test="boolean($eReference/@transient) = 'true'">,
         transient=True</c:if><c:if test="$eReference/eOpposite">,
         opposite="<c:get select="$eReference/eOpposite/@name"/>"</c:if>,
-        editor=InstanceEditor(name="_<c:get select="$eReference/eReferenceType/@name"/>s"))
+        editor=InstanceEditor(name="_<c:get select="lower-case($eReference/eReferenceType/@name)"/>s"))
 
     <c:include template="templates/cim/reference.jet"/>
 </c:when>

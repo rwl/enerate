@@ -1,10 +1,11 @@
-    _<c:get select="$eReference/eReferenceType/@name"/>s = Property( List(Instance("CIM.Root")) )
-
-    def _get__<c:get select="$eReference/eReferenceType/@name"/>s(self):
+    def _get_<c:get select="lower-case($eReference/eReferenceType/@name)"/>s(self):
         """ Property getter.
         """
         if self.ContainedBy is not None:
-            return [element for element in self.ContainedBy.Contains \
-                if isinstance(element, <c:get select="$eReference/@name"/>)]
+            return [e for e in self.ContainedBy.Contains \
+                if "%s.%s" % (e.__module__, e.__class__.__name__) == \
+                    "<c:include template="templates/package_name.jet"/>.<c:get select="$eReference/eReferenceType/@name"/>" ]
         else:
             return []
+
+    _<c:get select="lower-case($eReference/eReferenceType/@name)"/>s = Property(fget=_get_<c:get select="lower-case($eReference/eReferenceType/@name)"/>s)
