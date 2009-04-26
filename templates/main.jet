@@ -9,7 +9,11 @@ the results as model annotations via c:set tag
 <%@jet imports="org.eclipse.emf.ecore.*"%>
 
 <c:setVariable var="ePackage" select="/contents"/>
+<c:setVariable var="eClasses" select="$ePackage//EClass"/>
 
 <ws:project name="{$org.eclipse.jet.resource.project.name}">
   <c:include template="templates/package.jet"/>
+
+  <ws:file template="templates/adapter.jet" path="{$ePackage/@name}Adapter.py"/>
+
 </ws:project>
