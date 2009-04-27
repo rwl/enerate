@@ -1,0 +1,144 @@
+#------------------------------------------------------------------------------
+<c:include template="templates/license.jet"/>
+#------------------------------------------------------------------------------
+
+""" Defines TreeNodes interface for the model.
+"""
+
+#------------------------------------------------------------------------------
+#  Imports:
+#------------------------------------------------------------------------------
+
+from enthought.traits.api \
+    import HasTraits, Str, Property, Instance
+
+from enthought.traits.ui.api \
+    import View, Item, Group, TreeEditor, TreeNode
+
+from enthought.traits.ui.menu \
+    import Action, Menu
+
+<c:setVariable var="eSuper" select="$ePackage"/>
+from <c:include template="templates/package_name.jet" passVariables="eSuper"/> import *
+<c:iterate select="$ePackage//EPackage" var="eSuper">
+from <c:include template="templates/package_name.jet" passVariables="eSuper"/> import *
+</c:iterate>
+
+#------------------------------------------------------------------------------
+#  Constants:
+#------------------------------------------------------------------------------
+
+IMAGE_PATH = ""
+
+<c:iterate select="$eClasses" var="eClass">
+#------------------------------------------------------------------------------
+#  "<c:get select="$eClass/@name"/>TreeNode" class:
+#------------------------------------------------------------------------------
+
+class <c:get select="$eClass/@name"/>TreeNode(TreeNode):
+    """ Defines a tree node for a <c:get select="$eClass/@name"/>.
+    """
+
+    #--------------------------------------------------------------------------
+    #  "TreeNode" interface:
+    #--------------------------------------------------------------------------
+
+    # Name of trait containing children (if '', the node is a leaf).
+#    children = Str("Substations")
+
+    # Name of a trait containing a label.
+    label = Str("name")
+
+    tooltip = Str("=<c:setVariable var="eAnnotated" select="$eClass"/><c:include template="templates/comment.jet" passVariables="eAnnotated"/>.")
+
+    # Name to use for a new instance.
+    name = Str("<c:get select="$eClass/@name"/>")
+
+    # List of object classes than can be added or copied.
+    add = [<c:iterate select="$eClass/eReferences[@many = 'true']" var="eReference"><c:get select="$eReference/eReferenceType/@name"/>, </c:iterate>]
+
+    # List of object classes that can be moved.
+    move = [<c:iterate select="$eClass/eReferences[@many = 'true']" var="eReference"><c:get select="$eReference/eReferenceType/@name"/>, </c:iterate>]
+
+    # List of object classes and/or interfaces that the node applies to.
+    node_for = [<c:get select="$eClass/@name"/>]
+
+    # Function for handling double-clicking an object
+    on_dclick = lambda obj: obj.edit_traits(kind="livemodal")
+
+
+    def allows_children ( self, object ):
+        """ Returns whether this object can have children.
+        """
+        return <c:choose select="count( $eClass/eReferences )">
+        <c:when test="0">False</c:when>
+        <c:otherwise>True</c:otherwise>
+        </c:choose>
+
+
+    def get_children ( self, object ):
+        """ Gets the object's children.
+        """
+        children = []
+        <c:iterate select="$eClass/eReferences[@many = 'true']" var="eReference">
+        children.extend( getattr(object, "<c:get select="$eReference/eReferenceType/@name"/>") )
+        </c:iterate>
+
+        <c:iterate select="$eClass/eReferences[@many = 'false']" var="eReference">
+#        children.extend( getattr(object, "<c:get select="$eReference/eReferenceType/@name"/>") )
+        </c:iterate>
+        return children
+
+
+    def append_child ( self, object, child ):
+        """ Appends a child to the object's children.
+        """
+        raise NotImplmentedError
+</c:iterate>
+
+#------------------------------------------------------------------------------
+#  <c:get select="$ePackage/@name"/> Tree Editor:
+#------------------------------------------------------------------------------
+
+<c:get select="lower-case($ePackage/@name)"/>_tree_editor = TreeEditor(
+    nodes = [
+        <c:iterate select="$eClasses" var="eClass">
+        <c:get select="$eClass/@name"/>TreeNode(),
+        </c:iterate>
+    ],
+    editable=True
+)
+
+#------------------------------------------------------------------------------
+#  "ViewModel" class:
+#------------------------------------------------------------------------------
+
+class ViewModel(HasTraits):
+
+    # The root of the model tree:
+    root = Instance( GeographicalRegion, () )
+
+    # The traits view to display:
+    view = View(
+        Item('root',
+            editor=<c:get select="lower-case($ePackage/@name)"/>_tree_editor,
+            show_label=False),
+        width     = 0.33,
+        height    = 0.50,
+        resizable = True,
+        buttons   = ["OK", "Cancel"],
+        id = "<c:get select="$ePackage/@name"/>.<c:get select="$ePackage/@name"/>TreeEditor"
+    )
+
+#------------------------------------------------------------------------------
+#  "main" function:
+#------------------------------------------------------------------------------
+
+def main():
+    view_model = ViewModel()
+    view_model.configure_traits()
+
+if __name__ == "__main__":
+    main()
+
+# EOF -------------------------------------------------------------------------
