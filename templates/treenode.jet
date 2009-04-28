@@ -34,8 +34,13 @@ from <c:include template="templates/package_name.jet" passVariables="eSuper"/> i
 #------------------------------------------------------------------------------
 #  Constants:
 #------------------------------------------------------------------------------
-
-IMAGE_PATH = ""
+<c:userRegion>
+# <<< constants
+<c:initialCode unmodifiedMarker="@generated">
+# @generated
+IMAGE_PATH = ""</c:initialCode>
+# >>> constants
+</c:userRegion>
 
 <c:iterate select="$eClasses" var="eClass">
 #------------------------------------------------------------------------------
@@ -70,9 +75,37 @@ class <c:get select="$eClass/@name"/>TreeNode(TreeNode):
     # List of object classes and/or interfaces that the node applies to.
     node_for = [<c:get select="$eClass/@name"/>]
 
-    # Function for handling double-clicking an object
+    # Function for handling double-clicking an object.
 #    on_dclick = lambda obj: obj.edit_traits(kind="livemodal")
 
+    # Resource path used to locate the node icon.
+    icon_path = Str(IMAGE_PATH)
+
+<c:userRegion>
+    #--------------------------------------------------------------------------
+    #  Begin "<c:get select="$eClass/@name"/>TreeNode" user definitions:
+    #--------------------------------------------------------------------------
+<c:initialCode unmodifiedMarker="@generated">
+
+    # @generated
+  <c:choose select="count( $eClass/eReferences[@many = 'true'] )">
+    <c:when test="0">
+    # Name of leaf item icon.
+    icon_item = Str( '<item>' )
+    </c:when>
+     <c:otherwise>
+    # Name of group item icon.
+    icon_group = Str( '<group>' )
+
+    # Name of opened group item icon.
+    icon_open = Str( '<open>' )
+     </c:otherwise>
+    </c:choose>
+</c:initialCode>
+    #--------------------------------------------------------------------------
+    #  End "<c:get select="$eClass/@name"/>TreeNode" user definitions:
+    #--------------------------------------------------------------------------
+</c:userRegion>
 
     def allows_children ( self, object ):
         """ Returns whether this object can have children.
@@ -92,7 +125,7 @@ class <c:get select="$eClass/@name"/>TreeNode(TreeNode):
         </c:iterate>
 
         <c:iterate select="$eClass/eReferences[@many = 'false']" var="eReference">
-#        children.extend( getattr(object, "<c:get select="$eReference/@name"/>") )
+        children.append( getattr(object, "<c:get select="$eReference/@name"/>") )
         </c:iterate>
         return children
 
