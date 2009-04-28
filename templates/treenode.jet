@@ -1,3 +1,10 @@
+<%@jet imports="org.eclipse.emf.ecore.*"%>
+<%@jet imports="java.util.*"%>
+<%@jet imports="org.eclipse.jet.xpath.XPathUtil"%>
+<%
+ArrayList<String> nodes = new ArrayList<String>();
+ArrayList<String> queue = new ArrayList<String>();
+%>
 #------------------------------------------------------------------------------
 <c:include template="templates/license.jet"/>
 #------------------------------------------------------------------------------
@@ -49,7 +56,7 @@ class <c:get select="$eClass/@name"/>TreeNode(TreeNode):
     # Name of a trait containing a label.
     label = Str("name")
 
-    tooltip = Str("=<c:setVariable var="eAnnotated" select="$eClass"/><c:include template="templates/comment.jet" passVariables="eAnnotated"/>.")
+    tooltip = Str("=<c:setVariable var="eAnnotated" select="$eClass"/><c:include template="templates/comment.jet" passVariables="eAnnotated"/>")
 
     # Name to use for a new instance.
     name = Str("<c:get select="$eClass/@name"/>")
@@ -64,7 +71,7 @@ class <c:get select="$eClass/@name"/>TreeNode(TreeNode):
     node_for = [<c:get select="$eClass/@name"/>]
 
     # Function for handling double-clicking an object
-    on_dclick = lambda obj: obj.edit_traits(kind="livemodal")
+#    on_dclick = lambda obj: obj.edit_traits(kind="livemodal")
 
 
     def allows_children ( self, object ):
@@ -81,11 +88,11 @@ class <c:get select="$eClass/@name"/>TreeNode(TreeNode):
         """
         children = []
         <c:iterate select="$eClass/eReferences[@many = 'true']" var="eReference">
-        children.extend( getattr(object, "<c:get select="$eReference/eReferenceType/@name"/>") )
+        children.extend( getattr(object, "<c:get select="$eReference/@name"/>") )
         </c:iterate>
 
         <c:iterate select="$eClass/eReferences[@many = 'false']" var="eReference">
-#        children.extend( getattr(object, "<c:get select="$eReference/eReferenceType/@name"/>") )
+#        children.extend( getattr(object, "<c:get select="$eReference/@name"/>") )
         </c:iterate>
         return children
 
@@ -94,51 +101,51 @@ class <c:get select="$eClass/@name"/>TreeNode(TreeNode):
         """ Appends a child to the object's children.
         """
         raise NotImplmentedError
+
+
+    def dclick ( self, object ):
+        """ Handles an object being double-clicked.
+        """
+        if object is not None:
+            object.edit_traits(kind="livemodal")
+            return None
+
+        return True
 </c:iterate>
+
+#------------------------------------------------------------------------------
+#  Tree node list:
+#------------------------------------------------------------------------------
+
+<c:iterate select="$eClasses" var="eClass">
+<% EClass ec = (EClass)context.getVariable("eClass"); %>
+  <%-- Classes with no super type should be defined last. --%>
+  <c:choose select="count( $eClass/eSuperTypes )">
+    <c:when test="0">
+      <% nodes.add( ec.getName() ); %>
+    </c:when>
+    <c:otherwise>
+      <% queue.add( ec.getName() ); %>
+    </c:otherwise>
+  </c:choose>
+</c:iterate>
+<%
+context.setVariable( "nodeQueue", XPathUtil.asNodeSet(queue) );
+context.setVariable( "definedNodes", XPathUtil.asNodeSet(nodes) );
+%>
+<c:include template="templates/queue.jet"/>
+
+tree_nodes = [
+    <c:iterate select="$definedNodes" var="treeNode">
+    <c:get select="$treeNode"/>TreeNode(),
+    </c:iterate>
+]
+tree_nodes.reverse()
 
 #------------------------------------------------------------------------------
 #  <c:get select="$ePackage/@name"/> Tree Editor:
 #------------------------------------------------------------------------------
 
-<c:get select="lower-case($ePackage/@name)"/>_tree_editor = TreeEditor(
-    nodes = [
-        <c:iterate select="$eClasses" var="eClass">
-        <c:get select="$eClass/@name"/>TreeNode(),
-        </c:iterate>
-    ],
-    editable=True
-)
-
-#------------------------------------------------------------------------------
-#  "ViewModel" class:
-#------------------------------------------------------------------------------
-
-class ViewModel(HasTraits):
-
-    # The root of the model tree:
-    root = Instance( GeographicalRegion, () )
-
-    # The traits view to display:
-    view = View(
-        Item('root',
-            editor=<c:get select="lower-case($ePackage/@name)"/>_tree_editor,
-            show_label=False),
-        width     = 0.33,
-        height    = 0.50,
-        resizable = True,
-        buttons   = ["OK", "Cancel"],
-        id = "<c:get select="$ePackage/@name"/>.<c:get select="$ePackage/@name"/>TreeEditor"
-    )
-
-#------------------------------------------------------------------------------
-#  "main" function:
-#------------------------------------------------------------------------------
-
-def main():
-    view_model = ViewModel()
-    view_model.configure_traits()
-
-if __name__ == "__main__":
-    main()
+<c:get select="lower-case($ePackage/@name)"/>_tree_editor = TreeEditor(nodes=tree_nodes, editable=True)
 
 # EOF -------------------------------------------------------------------------
