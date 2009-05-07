@@ -16,4 +16,6 @@ the results as model annotations via c:set tag
 
   <ws:file template="templates/treenode.jet" path="{$ePackage/@name}TreeEditor.py"/>
 
+  <ws:file template="templates/treeeditor.jet" path="{$ePackage/@name}TreeNodeEditor.py"/>
+
 </ws:project>
