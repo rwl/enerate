@@ -9,7 +9,7 @@ ArrayList<String> queue = new ArrayList<String>();
 <c:include template="templates/license.jet"/>
 #------------------------------------------------------------------------------
 
-""" Defines a graph editor for the model.
+""" Defines a graph editor for <c:get select="$ePackage/@name"/>.
 """
 
 #------------------------------------------------------------------------------
@@ -25,7 +25,7 @@ from enthought.traits.ui.api \
 from enthought.traits.ui.menu \
     import Action, Menu
 
-from godot.graph_editor import GraphNode, GraphEditor
+from godot.ui.graph_editor import GraphNode, GraphEditor
 
 <c:setVariable var="eSuper" select="$ePackage"/>
 from <c:include template="templates/package_name.jet" passVariables="eSuper"/> import *
@@ -55,25 +55,26 @@ IMAGE_PATH = ""</c:initialCode>
     <c:if test="count($eClass/eAllAttributes[@name = 'name']) > 0">label="name",
     </c:if>
     tooltip="<c:include template="templates/comment.jet"/>",
-    on_dclick=lambda obj: obj.edit_traits(kind="livemodal"),
-    icon_path=IMAGE_PATH)
+    on_dclick=lambda obj: obj.edit_traits(kind="livemodal"))
 
+</c:iterate>
 #------------------------------------------------------------------------------
 #  Graph edges:
 #------------------------------------------------------------------------------
 
+<c:iterate select="$eClasses" var="eClass">
+<c:setVariable var="eAnnotated" select="$eClass"/>
 <c:iterate select="$eClass/eReferences[@many = 'true']" var="eReference">
     <c:setVariable var="eAnnotated" select="$eReference"/>
-<c:get select="$eClass/@name"/>_<c:get select="$eReference/@name"/>_GraphEdge = GraphEdge(
-    edge_for=[<c:get select="$eClass/@name"/>],
-    head_nodes=[],
-    tail_nodes=[],
-    head_label="=<c:get select="$eReference/@name"/>",
-    tooltip="<c:include template="templates/comment.jet"/>")
-</c:iterate>
+#<c:get select="$eClass/@name"/>_<c:get select="$eReference/@name"/>_GraphEdge = GraphEdge(
+#    edge_for=[<c:get select="$eClass/@name"/>],
+#    head_nodes=[],
+#    tail_nodes=[],
+#    head_label="=<c:get select="$eReference/@name"/>",
+#    tooltip="<c:include template="templates/comment.jet"/>")
 
 </c:iterate>
-
+</c:iterate>
 #------------------------------------------------------------------------------
 #  Graph node list:
 #------------------------------------------------------------------------------
@@ -101,12 +102,20 @@ graph_nodes = [
     <%-- Get the EClass. --%>
     <c:setVariable var="eNodeClass" select="$eClasses[@name = $treeNode]"/>
     <c:get select="$eNodeClass/@name"/>_GraphNode,
-    <c:iterate select="$eNodeClass/eReferences[@many = 'true']" var="eReference">
-    <c:get select="$eNodeClass/@name"/>_<c:get select="$eReference/@name"/>_GraphNode,
-    </c:iterate>
     </c:iterate>
 ]
 graph_nodes.reverse()
+
+#graph_edges = [
+    <c:iterate select="$definedNodes" var="treeNode">
+    <%-- Get the EClass. --%>
+    <c:setVariable var="eNodeClass" select="$eClasses[@name = $treeNode]"/>
+    <c:iterate select="$eNodeClass/eReferences[@many = 'true']" var="eReference">
+#    <c:get select="$eNodeClass/@name"/>_<c:get select="$eReference/@name"/>_GraphEdge,
+    </c:iterate>
+    </c:iterate>
+#]
+#graph_edges.reverse()
 
 #------------------------------------------------------------------------------
 #  <c:get select="$ePackage/@name"/> Graph Editor:
