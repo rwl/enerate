@@ -4,6 +4,7 @@ Bundle-Name: Enerate
 Bundle-SymbolicName: com.github.enerate;singleton:=true
 Bundle-Version: 1.0.0
 Bundle-Vendor: 
+ Richard W. Lincoln
 Require-Bundle: org.eclipse.jet,
  org.eclipse.emf.ecore;bundle-version="2.4.2",
  org.eclipse.emf.codegen.ecore;bundle-version="2.4.2",

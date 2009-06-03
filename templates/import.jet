@@ -1,47 +1,6 @@
 <%@jet imports="org.eclipse.emf.ecore.*"%>
 <%@jet imports="java.util.*"%>
-<%-- FIMXE: Remove duplication with the module template. --%>
-<%
-HashMap<String, String> instanceTypeNameTraitMap = new HashMap<String, String>();
-instanceTypeNameTraitMap.put("boolean", "Bool");
-instanceTypeNameTraitMap.put("java.lang.Boolean", "Bool");
-instanceTypeNameTraitMap.put("char", "Str");
-instanceTypeNameTraitMap.put("java.lang.Character", "Str");
-instanceTypeNameTraitMap.put("java.util.Date", "Date");
-instanceTypeNameTraitMap.put("double", "Float");
-instanceTypeNameTraitMap.put("java.lang.Double", "Float");
-instanceTypeNameTraitMap.put("float", "Float");
-instanceTypeNameTraitMap.put("java.lang.Float", "Float");
-instanceTypeNameTraitMap.put("int", "Int");
-instanceTypeNameTraitMap.put("java.lang.Integer", "Int");
-instanceTypeNameTraitMap.put("java.lang.Class", "Class");
-instanceTypeNameTraitMap.put("java.lang.Object", "Python");
-instanceTypeNameTraitMap.put("long", "Long");
-instanceTypeNameTraitMap.put("java.lang.Long", "Long");
-instanceTypeNameTraitMap.put("java.util.Map", "Dict");
-instanceTypeNameTraitMap.put("short", "Int");
-instanceTypeNameTraitMap.put("java.lang.Short", "Int");
-instanceTypeNameTraitMap.put("java.lang.String", "Str");
-%>
-<%
-ArrayList<String> imported = new ArrayList<String>();
-ArrayList<String> traitNames = new ArrayList<String>();
-HashMap<String, String> eAttributeTraitMap = new HashMap<String, String>();
-eAttributeTraitMap.put("EString", "Str");
-eAttributeTraitMap.put("EInt", "Int");
-eAttributeTraitMap.put("EBoolean", "Bool");
-eAttributeTraitMap.put("EDate", "Date");
-eAttributeTraitMap.put("EDouble", "Float");
-eAttributeTraitMap.put("EList", "List");
-eAttributeTraitMap.put("EEnumerator", "Enum");
-eAttributeTraitMap.put("EFloat", "Float");
-eAttributeTraitMap.put("ELong", "Long");
-eAttributeTraitMap.put("EMap", "Dict");
-eAttributeTraitMap.put("EShort", "Int");
 
-eAttributeTraitMap.put("Integer", "Int");
-eAttributeTraitMap.put("Boolean", "Bool");
-%>
 <%-- Import super classes defined in other packages. --%>
 <c:iterate select="$ePackage/EClass/eSuperTypes" var="eSuperType">
     <%-- The package in which the super class is defined. --%>
@@ -53,7 +12,7 @@ EClass st = (EClass)context.getVariable("eSuperType");
 if ( !imported.contains( st.getName() ) ) {
   imported.add( st.getName() );
 %>
-from <c:include template="templates/package_name.jet" passVariables="eSuper"/> import <c:get select="$eSuperType/@name"/>
+from <c:include template="templates/package_name.jet" passVariables="eSuper"/> import <c:get select="underscore($eSuperType/@name)"/>
 <%
 }
 %>
@@ -63,78 +22,14 @@ from <c:include template="templates/package_name.jet" passVariables="eSuper"/> i
 <c:iterate select="$ePackage/EClass/eAttributes/eAttributeType" var="eAttributeType">
 <c:if test="string($eAttributeType/ePackage/@name) != 'ecore' and string($eAttributeType/ePackage/@name) != string($ePackage/@name)">
 <c:setVariable var="eSuper" select="$eAttributeType/ePackage"/>
-from <c:include template="templates/package_name.jet" passVariables="eSuper"/> import <c:get select="$eAttributeType/@name"/>
+from <c:include template="templates/package_name.jet" passVariables="eSuper"/> import <c:get select="underscore($eAttributeType/@name)"/>
 </c:if>
 </c:iterate>
 
-<%-- Import HasTraits if any classes in the package have no super type. --%>
-<c:if test="count($ePackage/EClass[count(eSuperTypes) = 0]) > 0">
-<% traitNames.add( "HasTraits" ); %>
-</c:if>
-<%-- Import reference traits. --%>
-<c:if test="count($ePackage/EClass/eReferences) > 0">
-<%
-traitNames.add( "Instance" );
-traitNames.add( "List" );
-traitNames.add( "Property" );
-%>
-</c:if>
-<%-- Import traits used by any custom traits. --%>
-<c:iterate select="$ePackage/EDataType" var="eDataType"><%
-EDataType dt = (EDataType)context.getVariable("eDataType");
-String dtn;
-
-if ( instanceTypeNameTraitMap.containsKey( dt.getInstanceTypeName() ) ) {
-    dtn = instanceTypeNameTraitMap.get( dt.getInstanceTypeName() );
-} else {
-    dtn = "Str";
-}
-
-if ( !traitNames.contains( dtn ) ) {
-    traitNames.add( dtn );
-}
-%>
-</c:iterate>
-
-<c:if test="count($ePackage/EEnum) > 0"><%
-if ( !traitNames.contains( "Enum" ) ) {
-    traitNames.add( "Enum" );
-}%>
-</c:if>
-
-<%-- Import trait attributes. --%>
-<c:iterate select="$ePackage/EClass/eAttributes/eAttributeType/@name" var="eAttributeTypeName">
-<%-- Coerce to string. --%>
-<c:setVariable var="eAttributeTypeName" select="string($eAttributeTypeName)"/><%
-String atn = (String)context.getVariable("eAttributeTypeName");
-String tn;
-
-if ( eAttributeTraitMap.containsKey( atn ) ) {
-    tn = eAttributeTraitMap.get( atn );
-} else if ( eAttributeTraitMap.containsValue( atn ) ) {
-    tn = atn;
-} else {
-  tn = " ";
-}
-
-if ( !traitNames.contains( tn ) && !tn.equals(" ") ) {
-  traitNames.add( tn );
-}
-%></c:iterate><%
-if ( traitNames.size() > 0) {
-%>from enthought.traits.api import <%
-  Iterator<String> i = traitNames.iterator();
-  if ( i.hasNext() ) {
-      %><%= i.next() %><%
-      while ( i.hasNext() ) {
-          %>, <%= i.next() %><%
-      }
-  }
-}%>
 <c:userRegion>
 # <<< imports
 <c:initialCode unmodifiedMarker="@generated">
 # @generated
-from enthought.traits.ui.api import View, Group, Item, HGroup, VGroup, Tabbed, VGrid, InstanceEditor</c:initialCode>
+</c:initialCode>
 # >>> imports
 </c:userRegion>
