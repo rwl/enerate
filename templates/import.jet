@@ -1,6 +1,5 @@
 <%@jet imports="org.eclipse.emf.ecore.*"%>
 <%@jet imports="java.util.*"%>
-
 <%-- Import super classes defined in other packages. --%>
 <c:iterate select="$ePackage/EClass/eSuperTypes" var="eSuperType">
     <%-- The package in which the super class is defined. --%>
@@ -20,12 +19,14 @@ from <c:include template="templates/package_name.jet" passVariables="eSuper"/> i
     </c:if>
 </c:iterate>
 <%-- Import custom trait attributes that are not defined in the 'ecore' package or the template's package. --%>
+<%--
 <c:iterate select="$ePackage/EClass/eAttributes/eAttributeType" var="eAttributeType">
 <c:if test="string($eAttributeType/ePackage/@name) != 'ecore' and string($eAttributeType/ePackage/@name) != string($ePackage/@name)">
 <c:setVariable var="eSuper" select="$eAttributeType/ePackage"/>
 from <c:include template="templates/package_name.jet" passVariables="eSuper"/> import <c:get select="underscore($eAttributeType/@name)"/>
 </c:if>
 </c:iterate>
+--%>
 
 <c:userRegion>
 # <<< imports
