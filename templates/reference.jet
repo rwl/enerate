@@ -6,8 +6,6 @@
 <c:choose>
 <c:when test="$eReference/@many = 'false'">
     <c:get select="underscore($eReference/@name)"/> = None
-
-    <c:include template="templates/cim/reference.jet"/>
 </c:when>
 
 <c:when test="$eReference/@many='true' and boolean($eReference/@associated) != 'true' or $eReference/@associated = '0'">

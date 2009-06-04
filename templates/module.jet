@@ -5,25 +5,25 @@
 ArrayList<String> defined = new ArrayList<String>();
 ArrayList<String> queue = new ArrayList<String>();
 HashMap<String, String> instanceTypeNameTraitMap = new HashMap<String, String>();
-instanceTypeNameTraitMap.put("boolean", "Bool");
-instanceTypeNameTraitMap.put("java.lang.Boolean", "Bool");
-instanceTypeNameTraitMap.put("char", "Str");
-instanceTypeNameTraitMap.put("java.lang.Character", "Str");
-instanceTypeNameTraitMap.put("java.util.Date", "Date");
-instanceTypeNameTraitMap.put("double", "Float");
-instanceTypeNameTraitMap.put("java.lang.Double", "Float");
-instanceTypeNameTraitMap.put("float", "Float");
-instanceTypeNameTraitMap.put("java.lang.Float", "Float");
-instanceTypeNameTraitMap.put("int", "Int");
-instanceTypeNameTraitMap.put("java.lang.Integer", "Int");
-instanceTypeNameTraitMap.put("java.lang.Class", "Class");
-instanceTypeNameTraitMap.put("java.lang.Object", "Python");
-instanceTypeNameTraitMap.put("long", "Long");
-instanceTypeNameTraitMap.put("java.lang.Long", "Long");
-instanceTypeNameTraitMap.put("java.util.Map", "Dict");
-instanceTypeNameTraitMap.put("short", "Int");
-instanceTypeNameTraitMap.put("java.lang.Short", "Int");
-instanceTypeNameTraitMap.put("java.lang.String", "Str");
+instanceTypeNameTraitMap.put("boolean", "False");
+instanceTypeNameTraitMap.put("java.lang.Boolean", "False");
+instanceTypeNameTraitMap.put("char", "''");
+instanceTypeNameTraitMap.put("java.lang.Character", "''");
+instanceTypeNameTraitMap.put("java.util.Date", "''");
+instanceTypeNameTraitMap.put("double", "0.0");
+instanceTypeNameTraitMap.put("java.lang.Double", "0.0");
+instanceTypeNameTraitMap.put("float", "0.0");
+instanceTypeNameTraitMap.put("java.lang.Float", "0.0");
+instanceTypeNameTraitMap.put("int", "0");
+instanceTypeNameTraitMap.put("java.lang.Integer", "0");
+instanceTypeNameTraitMap.put("java.lang.Class", "None");
+instanceTypeNameTraitMap.put("java.lang.Object", "None");
+instanceTypeNameTraitMap.put("long", "0");
+instanceTypeNameTraitMap.put("java.lang.Long", "0");
+instanceTypeNameTraitMap.put("java.util.Map", "{}");
+instanceTypeNameTraitMap.put("short", "0");
+instanceTypeNameTraitMap.put("java.lang.Short", "0");
+instanceTypeNameTraitMap.put("java.lang.String", "''");
 %>
 <c:include template="templates/license.jet"/>
 
@@ -41,9 +41,11 @@ String tn;
 if ( instanceTypeNameTraitMap.containsKey( dt.getInstanceTypeName() ) ) {
     tn = instanceTypeNameTraitMap.get( dt.getInstanceTypeName() );
 } else {
-    tn = "Str";
+    tn = "''";
 }
-%><c:get select="underscore($eDataType/@name)"/> = <%= tn %>(<c:get select="underscore(string($eDataType/@defaultValue))"/><c:if test="count($eDataType/eAnnotations) > 0"><c:setVariable var="eAnnotated" select="$eDataType"/><c:if test="$eDataType/@defaultValue">, </c:if>desc="<c:include template="templates/comment.jet" passVariables="eAnnotated"/>"</c:if>)
+%>
+<c:if test="count($eDataType/eAnnotations) > 0"><c:setVariable var="eAnnotated" select="$eDataType"/># <c:include template="templates/comment.jet" passVariables="eAnnotated"/>"</c:if>
+<c:get select="underscore($eDataType/@name)"/> = <%= tn %> <%--<c:get select="underscore(string($eDataType/@defaultValue))"/><c:if test="count($eDataType/eAnnotations) > 0"><c:setVariable var="eAnnotated" select="$eDataType"/><c:if test="$eDataType/@defaultValue">, </c:if>desc="<c:include template="templates/comment.jet" passVariables="eAnnotated"/>"</c:if>)--%>
 </c:iterate>
 
 <%--

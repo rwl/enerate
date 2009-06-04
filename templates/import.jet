@@ -8,11 +8,12 @@
     <%-- Fixme: Use @nsPrefix aswell. --%>
     <c:if test="string($eSuper/@name) != string($ePackage/@name)">
 <%
+ArrayList<String> imported = new ArrayList<String>();
 EClass st = (EClass)context.getVariable("eSuperType");
 if ( !imported.contains( st.getName() ) ) {
   imported.add( st.getName() );
 %>
-from <c:include template="templates/package_name.jet" passVariables="eSuper"/> import <c:get select="underscore($eSuperType/@name)"/>
+from <c:include template="templates/package_name.jet" passVariables="eSuper"/> import <c:get select="$eSuperType/@name"/>
 <%
 }
 %>

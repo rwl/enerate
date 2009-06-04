@@ -7,7 +7,7 @@
 </c:when>
 <c:otherwise>
   <%-- An ePackage that has subpackages is written to a Python package. --%>
-  <ws:folder path="underscore($ePackage/@name)">
+  <ws:folder path="{underscore($ePackage/@name)}">
     <ws:file template="templates/module.jet" path="__init__.py"/>
     <%-- Pass the subpackages to another package template. --%>
     <c:iterate select="$ePackage/eSubpackages" var="ePackage">

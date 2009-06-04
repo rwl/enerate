@@ -22,15 +22,17 @@ eAttributeTraitMap.put("Boolean", "False");
 %>
 <c:if test="count($eAttribute/eAnnotations) > 0">
 <c:setVariable var="eAnnotated" select="$eAttribute"/>
-    # <c:include template="templates/comment.jet" passVariables="eAnnotated"/>
-</c:if><c:setVariable select="string($eAttribute/eAttributeType/@name)" var="eAttributeTypeName"/><%
+    # <c:include template="templates/comment.jet" passVariables="eAnnotated"/></c:if> <c:if test="count($eAttribute/eAttributeType/eLiterals) > 0"><c:setVariable var="eEnum" select="$eAttribute/eAttributeType"/>Values are: <c:iterate select="count($eEnum/eLiterals)" var="eLiteralIdx">"<c:get select="underscore($eEnum/eLiterals[$eLiteralIdx]/@literal)"/>"<c:if test="$eLiteralIdx != count($eEnum/eLiterals)">, </c:if></c:iterate></c:if>
+<c:setVariable select="string($eAttribute/eAttributeType/@name)" var="eAttributeTypeName"/><%
 String atn = (String)context.getVariable("eAttributeTypeName");
 // Trait name.
 String tn;
 
 if ( eAttributeTraitMap.containsKey( atn ) ) {
     tn = eAttributeTraitMap.get( atn );
-} else {
-    tn = atn;
-}
 %>    <c:get select="underscore($eAttribute/@name)"/> = <%= tn %>
+<%
+} else {%>
+    <c:get select="underscore($eAttribute/@name)"/> = '<c:get select="underscore($eAttribute/eAttributeType/eLiterals[1]/@literal)"/>'
+<%
+}%>

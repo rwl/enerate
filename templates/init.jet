@@ -1,0 +1,43 @@
+<%@jet imports="org.eclipse.emf.ecore.*"%>
+<%@jet imports="java.util.*"%>
+<%-- FIXME: Remove duplication with the 'attribute' template. --%>
+<%
+ArrayList<String> imported = new ArrayList<String>();
+ArrayList<String> traitNames = new ArrayList<String>();
+HashMap<String, String> eAttributeTraitMap = new HashMap<String, String>();
+eAttributeTraitMap.put("EString", "''");
+eAttributeTraitMap.put("EInt", "0");
+eAttributeTraitMap.put("EBoolean", "False");
+eAttributeTraitMap.put("EDate", "''");
+eAttributeTraitMap.put("EDouble", "0.0");
+eAttributeTraitMap.put("EList", "[]");
+eAttributeTraitMap.put("EEnumerator", "''");
+eAttributeTraitMap.put("EFloat", "0.0");
+eAttributeTraitMap.put("ELong", "0.0");
+eAttributeTraitMap.put("EMap", "{}");
+eAttributeTraitMap.put("EShort", "0");
+
+eAttributeTraitMap.put("Integer", "0");
+eAttributeTraitMap.put("Boolean", "False");
+%>
+    def __init__(self<c:iterate select="$eClass/eAttributes" var="eAttribute"><c:setVariable select="string($eAttribute/eAttributeType/@name)" var="eAttributeTypeName"/>
+<%
+String atn = (String)context.getVariable("eAttributeTypeName");
+String tn;
+
+if ( eAttributeTraitMap.containsKey( atn ) ) {
+    tn = eAttributeTraitMap.get( atn );
+%>, <c:get select="underscore($eAttribute/@name)"/>=<%= tn %><%
+} else {%>, <c:get select="underscore($eAttribute/@name)"/>='<c:get select="underscore($eAttribute/eAttributeType/eLiterals[1]/@literal)"/>'<%
+}%></c:iterate><c:iterate select="$eClass/eReferences" var="eReference"><c:choose>
+<c:when test="$eReference/@many = 'true'">, <c:get select="underscore($eReference/@name)"/>=[]</c:when>
+<c:otherwise>, <c:get select="underscore($eReference/@name)"/>=None</c:otherwise>
+</c:choose></c:iterate>):
+        """ Initialises a new '<c:get select="$eClass/@name"/>' instance.
+        """
+        <c:iterate select="$eClass/eAttributes" var="eAttribute">
+        self.<c:get select="underscore($eAttribute/@name)"/> = <c:get select="underscore($eAttribute/@name)"/>
+        </c:iterate>
+        <c:iterate select="$eClass/eReferences" var="eReference">
+        self.<c:get select="underscore($eReference/@name)"/> = <c:get select="underscore($eReference/@name)"/>
+        </c:iterate>
