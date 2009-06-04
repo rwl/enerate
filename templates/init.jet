@@ -32,7 +32,7 @@ if ( eAttributeTraitMap.containsKey( atn ) ) {
 }%></c:iterate><c:iterate select="$eClass/eReferences" var="eReference"><c:choose>
 <c:when test="$eReference/@many = 'true'">, <c:get select="underscore($eReference/@name)"/>=[]</c:when>
 <c:otherwise>, <c:get select="underscore($eReference/@name)"/>=None</c:otherwise>
-</c:choose></c:iterate>):
+</c:choose></c:iterate>, **kw_args):
         """ Initialises a new '<c:get select="$eClass/@name"/>' instance.
         """
         <c:iterate select="$eClass/eAttributes" var="eAttribute">
@@ -41,3 +41,5 @@ if ( eAttributeTraitMap.containsKey( atn ) ) {
         <c:iterate select="$eClass/eReferences" var="eReference">
         self.<c:get select="underscore($eReference/@name)"/> = <c:get select="underscore($eReference/@name)"/>
         </c:iterate>
+
+        super(<c:get select="$eClass/@name"/>, self).__init__(**kw_args)
