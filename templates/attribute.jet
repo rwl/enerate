@@ -19,6 +19,10 @@ eAttributeTraitMap.put("EShort", "0");
 
 eAttributeTraitMap.put("Integer", "0");
 eAttributeTraitMap.put("Boolean", "False");
+
+HashMap<String, String> pythonKeywordMap = new HashMap<String, String>();
+pythonKeywordMap.put("For", "ffor");
+pythonKeywordMap.put("Class", "klass");
 %>
 <c:if test="count($eAttribute/eAnnotations) > 0">
 <c:setVariable var="eAnnotated" select="$eAttribute"/>

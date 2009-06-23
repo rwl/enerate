@@ -14,4 +14,6 @@ the results as model annotations via c:set tag
 <ws:project name="{$org.eclipse.jet.resource.project.name}">
   <c:include template="templates/package.jet"/>
 
+<ws:file template="templates/map.jet" path="module_dict.py"/>
+
 </ws:project>
