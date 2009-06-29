@@ -1,10 +1,21 @@
 <%@jet imports="org.eclipse.emf.ecore.*"%>
+<c:choose>
+<c:when test="$eReference/@many = 'false' and $eReference/eOpposite">
+    def get_<c:get select="underscore($eReference/@name)"/>(self):
+        """ <c:if test="count($eReference/eAnnotations) > 0"><c:setVariable var="eAnnotated" select="$eReference"/><c:include template="templates/comment.jet" passVariables="eAnnotated"/></c:if>
+        """
+        return self._<c:get select="underscore($eReference/@name)"/>
+
+    def set_<c:get select="underscore($eReference/@name)"/>(self, value):
+<c:if test="$eReference/eOpposite">,
+        opposite="<c:get select="$eReference/eOpposite/@name"/>"</c:if>
+</c:when>
+
+<c:when test="$eReference/@many = 'false'">
 <c:if test="count($eReference/eAnnotations) > 0">
     <c:setVariable var="eAnnotated" select="$eReference"/>
     # <c:include template="templates/comment.jet" passVariables="eAnnotated"/>
 </c:if>
-<c:choose>
-<c:when test="$eReference/@many = 'false'">
     <c:get select="underscore($eReference/@name)"/> = None
 </c:when>
 
