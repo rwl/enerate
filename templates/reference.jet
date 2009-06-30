@@ -1,14 +1,66 @@
 <%@jet imports="org.eclipse.emf.ecore.*"%>
 <c:choose>
-<c:when test="$eReference/@many = 'false' and $eReference/eOpposite">
+<c:when test="$eReference/@many = 'false' and $eReference/eOpposite/@many = 'false'">
+    <%-- One-to-one (1..1) association. --%>
     def get_<c:get select="underscore($eReference/@name)"/>(self):
         """ <c:if test="count($eReference/eAnnotations) > 0"><c:setVariable var="eAnnotated" select="$eReference"/><c:include template="templates/comment.jet" passVariables="eAnnotated"/></c:if>
         """
         return self._<c:get select="underscore($eReference/@name)"/>
 
     def set_<c:get select="underscore($eReference/@name)"/>(self, value):
-<c:if test="$eReference/eOpposite">,
-        opposite="<c:get select="$eReference/eOpposite/@name"/>"</c:if>
+        if self._<c:get select="underscore($eReference/@name)"/> is not None:
+            <%-- Unset the old opposite reference. --%>
+            self._<c:get select="underscore($eReference/@name)"/>.<c:get select="underscore($eReference/eOpposite/@name)"/> = None
+            
+        self._<c:get select="underscore($eReference/@name)"/> = value
+        if self._<c:get select="underscore($eReference/@name)"/> is not None:
+            self._<c:get select="underscore($eReference/@name)"/>.<c:get select="underscore($eReference/eOpposite/@name)"/> = self
+            
+    <c:get select="underscore($eReference/@name)"/> = property(get_<c:get select="underscore($eReference/@name)"/>, set_<c:get select="underscore($eReference/@name)"/>)
+</c:when>
+<c:when test="$eReference/@many = 'false' and $eReference/eOpposite/@many = 'true'">
+    <%-- One-to-many (1..n) association. --%>
+    def get_<c:get select="underscore($eReference/@name)"/>(self):
+        """ <c:if test="count($eReference/eAnnotations) > 0"><c:setVariable var="eAnnotated" select="$eReference"/><c:include template="templates/comment.jet" passVariables="eAnnotated"/></c:if>
+        """
+        return self._<c:get select="underscore($eReference/@name)"/>
+
+    def set_<c:get select="underscore($eReference/@name)"/>(self, value):
+        if self._<c:get select="underscore($eReference/@name)"/> is not None:
+            <%-- Remove self from old object's list. --%>
+            filtered = [x for x in self.<c:get select="underscore($eReference/@name)"/>.<c:get select="underscore($eReference/eOpposite/@name)"/> if x != self]
+            self._<c:get select="underscore($eReference/@name)"/>.<c:get select="underscore($eReference/eOpposite/@name)"/> = filtered
+            
+        self._<c:get select="underscore($eReference/@name)"/> = value
+        if self._<c:get select="underscore($eReference/@name)"/> is not None:
+            self._<c:get select="underscore($eReference/@name)"/>.<c:get select="underscore($eReference/eOpposite/@name)"/>.append(self)
+
+    <c:get select="underscore($eReference/@name)"/> = property(get_<c:get select="underscore($eReference/@name)"/>, set_<c:get select="underscore($eReference/@name)"/>)
+</c:when>
+<c:when test="$eReference/@many = 'true' and $eReference/eOpposite/@many = 'false'">
+    <%-- Many-to-one (n..1) association. --%>
+    def get_<c:get select="underscore($eReference/@name)"/>(self):
+        """ <c:if test="count($eReference/eAnnotations) > 0"><c:setVariable var="eAnnotated" select="$eReference"/><c:include template="templates/comment.jet" passVariables="eAnnotated"/></c:if>
+        """
+        return self._<c:get select="underscore($eReference/@name)"/>
+
+    def set_<c:get select="underscore($eReference/@name)"/>(self, value):
+        for x in self._<c:get select="underscore($eReference/@name)"/>:
+            <%-- Unset the old oppopsite references. --%>
+            x._<c:get select="underscore($eReference/eOpposite/@name)"/> = None
+        for y in value:
+            y._<c:get select="underscore($eReference/eOpposite/@name)"/> = self
+        self._<c:get select="underscore($eReference/@name)"/> = value
+            
+    <c:get select="underscore($eReference/@name)"/> = property(get_<c:get select="underscore($eReference/@name)"/>, set_<c:get select="underscore($eReference/@name)"/>)
+    
+    def add_<c:get select="underscore($eReference/@name)"/>(self, value):
+        value._<c:get select="underscore($eReference/eOpposite/@name)"/> = self
+        self._<c:get select="underscore($eReference/@name)"/>.append(value)
+        
+    def remove_<c:get select="underscore($eReference/@name)"/>(self, value):
+        value._<c:get select="underscore($eReference/eOpposite/@name)"/> = None
+        self._<c:get select="underscore($eReference/@name)"/>.remove(value)
 </c:when>
 
 <c:when test="$eReference/@many = 'false'">
