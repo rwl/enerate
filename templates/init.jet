@@ -39,6 +39,14 @@ if ( eAttributeTraitMap.containsKey( atn ) ) {
         self.<c:get select="underscore($eAttribute/@name)"/> = <c:get select="underscore($eAttribute/@name)"/>
         </c:iterate>
         <c:iterate select="$eClass/eReferences" var="eReference">
+        <c:if test="$eReference/eOpposite">
+        <c:if test="$eReference/@many = 'true'">
+        self._<c:get select="underscore($eReference/@name)"/> = []
+        </c:if>
+        <c:if test="$eReference/@many = 'false'">
+        self._<c:get select="underscore($eReference/@name)"/> = None
+        </c:if>
+        </c:if>
         self.<c:get select="underscore($eReference/@name)"/> = <c:get select="underscore($eReference/@name)"/>
         </c:iterate>
 
