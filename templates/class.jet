@@ -9,14 +9,6 @@ class <c:get select="$eClass/@name"/>(<c:choose select="count($eClass/eSuperType
 <c:if test="(count($eClass/eReferences) = 0) and (count($eClass/eAttributes) = 0)">
     pass
 </c:if>
-<c:iterate select="$eClass/eAttributes" var="eAttribute">
-<c:include template="templates/attribute.jet"/>
-
-</c:iterate>
-<c:iterate select="$eClass/eReferences" var="eReference">
-<c:include template="templates/reference.jet"/>
-
-</c:iterate>
 <c:userRegion>
     # <<< <c:get select="underscore($eClass/@name)"/>
 <c:initialCode unmodifiedMarker="@generated">
@@ -25,6 +17,11 @@ class <c:get select="$eClass/@name"/>(<c:choose select="count($eClass/eSuperType
 </c:initialCode>
     # >>> <c:get select="underscore($eClass/@name)"/>
 </c:userRegion>
+        
+<c:iterate select="$eClass/eReferences" var="eReference">
+<c:include template="templates/reference.jet"/>
+
+</c:iterate>    
 <c:iterate select="$eClass/eOperations" var="eOperation">
 <c:include template="templates/operation.jet"/>
 </c:iterate>

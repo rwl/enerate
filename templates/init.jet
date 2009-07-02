@@ -36,8 +36,14 @@ if ( eAttributeTraitMap.containsKey( atn ) ) {
         """ Initialises a new '<c:get select="$eClass/@name"/>' instance.
         """
         <c:iterate select="$eClass/eAttributes" var="eAttribute">
+        <c:include template="templates/attribute.jet"/>
+        </c:iterate>
+        <%--
+        <c:iterate select="$eClass/eAttributes" var="eAttribute">
         self.<c:get select="underscore($eAttribute/@name)"/> = <c:get select="underscore($eAttribute/@name)"/>
         </c:iterate>
+        --%>
+        
         <c:iterate select="$eClass/eReferences" var="eReference">
         <c:if test="$eReference/eOpposite">
         <c:if test="$eReference/@many = 'true'">
