@@ -1,25 +1,47 @@
 <%@jet imports="org.eclipse.emf.ecore.*"%>
+<c:userRegion>
+    # <<< <c:get select="underscore($eReference/@name)"/>
+<c:initialCode unmodifiedMarker="@generated">
+    # @generated
+<c:choose>
+<c:when test="$eReference/@many = 'false' and $eReference/eOpposite/@many = 'false'">
+    <%-- One-to-one (1..1) association. --%>
+    <c:get select="underscore($eReference/@name)"/> = db.ReferenceProperty(<c:get select="$eReference/eReferenceType/@name"/>, collection_name="<c:get select="underscore($eReference/eOpposite/@name)"/>")
+
+</c:when>
+<c:when test="$eReference/@many = 'false' and $eReference/eOpposite/@many = 'true'">
+    <%-- One-to-many (1..n) association. --%>
+    <c:get select="underscore($eReference/@name)"/> = db.ReferenceProperty(<c:get select="$eReference/eReferenceType/@name"/>, collection_name="<c:get select="underscore($eReference/eOpposite/@name)"/>")
+
+</c:when>
+<c:when test="$eReference/@many = 'true' and $eReference/eOpposite/@many = 'false'">
+    <%-- Many-to-one (n..1) association. --%>
+    # The '<c:get select="underscore($eReference/@name)"/>' property has been
+    # implicitly created by the <c:get select="underscore($eReference/eOpposite/@name)"/>' property of <c:get select="$eReference/eOpposite/eContainingClass/@name"/>.
+
+</c:when>
+<c:when test="$eReference/@many = 'true' and $eReference/eOpposite/@many = 'true'">
+    <%-- Many-to-many (n..n) association. --%>
+    <c:get select="underscore($eReference/@name)"/> = db.ListProperty(db.Key)
+
+    @property
+    def <c:get select="underscore($eReference/eOpposite/@name)"/>(self):
+        return <c:get select="$eReference/eReferenceType/@name"/>.gql("WHERE <c:get select="underscore($eReference/@name)"/> = :1", self.key())
+</c:when>
+
+<%-- References without opposites. --%>
+<c:when test="$eReference/@many = 'false'">
 <c:if test="count($eReference/eAnnotations) > 0">
     <c:setVariable var="eAnnotated" select="$eReference"/>
     # <c:include template="templates/comment.jet" passVariables="eAnnotated"/>
 </c:if>
-<c:choose>
-<c:when test="$eReference/@many = 'false'">
-    <c:get select="$eReference/@name"/> = Instance("<c:setVariable var="eSuper" select="$eReference/eReferenceType/ePackage"/><c:include template="templates/package_name.jet" passVariables="eSuper"/>.<c:get select="$eReference/eReferenceType/@name"/>"<c:if test="$eReference/@required = 'true'">, allow_none=False</c:if><c:if test="count($eReference/eAnnotations) > 0">,
-        desc="<c:include template="templates/comment.jet"/>"</c:if><c:if test="boolean($eReference/@transient) = 'true'">,
-        transient=True</c:if><c:if test="$eReference/eOpposite">,
-        opposite="<c:get select="$eReference/eOpposite/@name"/>"</c:if>,
-        editor=InstanceEditor(name="_<c:get select="lower-case($eReference/eReferenceType/@name)"/>s"))
-
-    <c:include template="templates/cim/reference.jet"/>
+    <c:get select="underscore($eReference/@name)"/> = db.ReferenceProperty(<c:get select="$eReference/eReferenceType/@name"/>)
 </c:when>
 
-<c:when test="$eReference/@many='true' and boolean($eReference/@associated) != 'true' or $eReference/@associated = '0'">
-    <c:get select="$eReference/@name"/> = List(Instance("<c:setVariable var="eSuper" select="$eReference/eReferenceType/ePackage"/><c:include template="templates/package_name.jet" passVariables="eSuper"/>.<c:get select="$eReference/eReferenceType/@name"/>")<c:if test="count($eReference/eAnnotations) > 0">,
-        desc="<c:include template="templates/comment.jet"/>"</c:if>)
-</c:when>
-<c:when test="$eReference/@many='true' and $eReference/@associated = '1'">
-    <c:get select="$eReference/@name)"/> = List(Instance("<c:setVariable var="eSuper" select="$eReference/eReferenceType/ePackage"/><c:include template="templates/package_name.jet" passVariables="eSuper"/>.<c:get select="$eReference/eReferenceType/@name"/>")<c:if test="count($eReference/eAnnotations) > 0">,
-        desc="<c:include template="templates/comment.jet"/>"</c:if>)
+<c:when test="$eReference/@many='true'">
+    <c:get select="underscore($eReference/@name)"/> = db.ListProperty(db.Key)
 </c:when>
 </c:choose>
+</c:initialCode>
+    # >>> <c:get select="underscore($eReference/@name)"/>
+</c:userRegion>
