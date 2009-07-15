@@ -4,13 +4,13 @@
 #  "<c:get select="$eClass/@name"/>" class:
 #------------------------------------------------------------------------------
 
-class <c:get select="$eClass/@name"/>(<c:choose select="count($eClass/eSuperTypes)"><c:when test="0">HasTraits</c:when><c:otherwise><c:iterate select="count($eClass/eSuperTypes)" var="eSuperTypeIdx"><c:get select="$eClass/eSuperTypes[$eSuperTypeIdx]/@name"/><c:if test="$eSuperTypeIdx != count($eClass/eSuperTypes)">, </c:if></c:iterate></c:otherwise></c:choose>):
+class <c:get select="$eClass/@name"/>(<c:choose select="count($eClass/eSuperTypes)"><c:when test="0">db.Model</c:when><c:otherwise><c:iterate select="count($eClass/eSuperTypes)" var="eSuperTypeIdx"><c:get select="$eClass/eSuperTypes[$eSuperTypeIdx]/@name"/><c:if test="$eSuperTypeIdx != count($eClass/eSuperTypes)">, </c:if></c:iterate></c:otherwise></c:choose>):
     <c:if test="count($eClass/eAnnotations) > 0">
     """ <c:setVariable var="eAnnotated" select="$eClass"/><c:include template="templates/comment.jet" passVariables="eAnnotated"/>
     """
 
     #--------------------------------------------------------------------------
-    #  Trait definitions:
+    #  Property definitions:
     #--------------------------------------------------------------------------
 
     </c:if>
@@ -32,7 +32,6 @@ class <c:get select="$eClass/@name"/>(<c:choose select="count($eClass/eSuperType
 <c:initialCode unmodifiedMarker="@generated">
 
     # @generated
-    traits_view = <c:include template="templates/view.jet"/>
 </c:initialCode>
     #--------------------------------------------------------------------------
     #  End "<c:get select="$eClass/@name"/>" user definitions:
