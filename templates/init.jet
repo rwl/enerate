@@ -17,10 +17,17 @@ eAttributeTraitMap.put("ELong", "0.0");
 eAttributeTraitMap.put("EMap", "{}");
 eAttributeTraitMap.put("EShort", "0");
 
+eAttributeTraitMap.put("double", "0.0");
+eAttributeTraitMap.put("float", "0.0");
+eAttributeTraitMap.put("int", "0");
+eAttributeTraitMap.put("boolean", "False");
+eAttributeTraitMap.put("java.lang.String", "''");
+eAttributeTraitMap.put("java.util.Date", "''");
+
 eAttributeTraitMap.put("Integer", "0");
 eAttributeTraitMap.put("Boolean", "False");
 %>
-    def __init__(self<c:iterate select="$eClass/eAttributes" var="eAttribute"><c:setVariable select="string($eAttribute/eAttributeType/@name)" var="eAttributeTypeName"/>
+    def __init__(self<c:iterate select="$eClass/eAttributes" var="eAttribute"><c:setVariable select="string($eAttribute/eAttributeType/@instanceTypeName)" var="eAttributeTypeName"/>
 <%
 String atn = (String)context.getVariable("eAttributeTypeName");
 String tn;
@@ -30,7 +37,7 @@ if ( eAttributeTraitMap.containsKey( atn ) ) {
 %>, <c:get select="underscore($eAttribute/@name)"/>=<%= tn %><%
 } else {%>, <c:get select="underscore($eAttribute/@name)"/>='<c:get select="underscore($eAttribute/eAttributeType/eLiterals[1]/@literal)"/>'<%
 }%></c:iterate><c:iterate select="$eClass/eReferences" var="eReference"><c:choose>
-<c:when test="$eReference/@many = 'true'">, <c:get select="underscore($eReference/@name)"/>=[]</c:when>
+<c:when test="$eReference/@many = 'true'">, <c:get select="underscore($eReference/@name)"/>=None</c:when>
 <c:otherwise>, <c:get select="underscore($eReference/@name)"/>=None</c:otherwise>
 </c:choose></c:iterate>, **kw_args):
         """ Initialises a new '<c:get select="$eClass/@name"/>' instance.
@@ -53,7 +60,15 @@ if ( eAttributeTraitMap.containsKey( atn ) ) {
         self._<c:get select="underscore($eReference/@name)"/> = None
         </c:if>
         </c:if>
+        <c:if test="$eReference/@many = 'true'">
+        if <c:get select="underscore($eReference/@name)"/> is None:
+            self.<c:get select="underscore($eReference/@name)"/> = []
+        else:
+            self.<c:get select="underscore($eReference/@name)"/> = <c:get select="underscore($eReference/@name)"/>
+        </c:if>
+        <c:if test="$eReference/@many = 'false'">
         self.<c:get select="underscore($eReference/@name)"/> = <c:get select="underscore($eReference/@name)"/>
+        </c:if>
         </c:iterate>
 
         super(<c:get select="$eClass/@name"/>, self).__init__(**kw_args)

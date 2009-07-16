@@ -10,11 +10,11 @@ eAttributeTraitMap.put("EInt", "0");
 eAttributeTraitMap.put("EBoolean", "False");
 eAttributeTraitMap.put("EDate", "''");
 eAttributeTraitMap.put("EDouble", "0.0");
-eAttributeTraitMap.put("EList", "[]");
+eAttributeTraitMap.put("EList", "None");
 eAttributeTraitMap.put("EEnumerator", "''");
 eAttributeTraitMap.put("EFloat", "0.0");
 eAttributeTraitMap.put("ELong", "0.0");
-eAttributeTraitMap.put("EMap", "{}");
+eAttributeTraitMap.put("EMap", "None");
 eAttributeTraitMap.put("EShort", "0");
 
 eAttributeTraitMap.put("Integer", "0");
@@ -34,9 +34,9 @@ String tn;
 
 if ( eAttributeTraitMap.containsKey( atn ) ) {
     tn = eAttributeTraitMap.get( atn );
-%>        self.<c:get select="underscore($eAttribute/@name)"/> = <%= tn %>
+%>        self.<c:get select="underscore($eAttribute/@name)"/> = <c:get select="underscore($eAttribute/@name)"/>
 <%
 } else {%>
-        self.<c:get select="underscore($eAttribute/@name)"/> = '<c:get select="underscore($eAttribute/eAttributeType/eLiterals[1]/@literal)"/>'
+        self.<c:get select="underscore($eAttribute/@name)"/> = <c:get select="underscore($eAttribute/@name)"/>
 <%
 }%>

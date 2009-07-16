@@ -37,7 +37,8 @@
             
         self._<c:get select="underscore($eReference/@name)"/> = value
         if self._<c:get select="underscore($eReference/@name)"/> is not None:
-            self._<c:get select="underscore($eReference/@name)"/>._<c:get select="underscore($eReference/eOpposite/@name)"/>.append(self)
+            if self not in self._<c:get select="underscore($eReference/@name)"/>._<c:get select="underscore($eReference/eOpposite/@name)"/>:
+                self._<c:get select="underscore($eReference/@name)"/>._<c:get select="underscore($eReference/eOpposite/@name)"/>.append(self)
 
     <c:get select="underscore($eReference/@name)"/> = property(get_<c:get select="underscore($eReference/@name)"/>, set_<c:get select="underscore($eReference/@name)"/>)
 </c:when>
@@ -51,9 +52,9 @@
     def set_<c:get select="underscore($eReference/@name)"/>(self, value):
         for x in self._<c:get select="underscore($eReference/@name)"/>:
             <%-- Unset the old oppopsite references. --%>
-            x._<c:get select="underscore($eReference/eOpposite/@name)"/> = None
+            x.<c:get select="underscore($eReference/eOpposite/@name)"/> = None
         for y in value:
-            y._<c:get select="underscore($eReference/eOpposite/@name)"/> = self
+            y.<c:get select="underscore($eReference/eOpposite/@name)"/> = self
         self._<c:get select="underscore($eReference/@name)"/> = value
             
     <c:get select="underscore($eReference/@name)"/> = property(get_<c:get select="underscore($eReference/@name)"/>, set_<c:get select="underscore($eReference/@name)"/>)
@@ -61,7 +62,8 @@
     def add_<c:get select="underscore($eReference/@name)"/>(self, *<c:get select="underscore($eReference/@name)"/>):
         for obj in <c:get select="underscore($eReference/@name)"/>:
             obj._<c:get select="underscore($eReference/eOpposite/@name)"/> = self
-            self._<c:get select="underscore($eReference/@name)"/>.append(obj)
+            if obj not in self._<c:get select="underscore($eReference/@name)"/>:
+                self._<c:get select="underscore($eReference/@name)"/>.append(obj)
         
     def remove_<c:get select="underscore($eReference/@name)"/>(self, *<c:get select="underscore($eReference/@name)"/>):
         for obj in <c:get select="underscore($eReference/@name)"/>:
@@ -76,10 +78,10 @@
         return self._<c:get select="underscore($eReference/@name)"/>
 
     def set_<c:get select="underscore($eReference/@name)"/>(self, value):
-        for p in self._<c:get select="underscore($eReference/@name)"/>:
+        for p in self.<c:get select="underscore($eReference/@name)"/>:
             <%-- Unset the old oppopsite references. --%>
             filtered = [q for q in p.<c:get select="underscore($eReference/eOpposite/@name)"/> if q != self]
-            self._<c:get select="underscore($eReference/@name)"/>._<c:get select="underscore($eReference/eOpposite/@name)"/> = filtered
+            p._<c:get select="underscore($eReference/eOpposite/@name)"/> = filtered
         for r in value:
             if self not in r._<c:get select="underscore($eReference/eOpposite/@name)"/>:
                 r._<c:get select="underscore($eReference/eOpposite/@name)"/>.append(self)
@@ -112,11 +114,12 @@
     <%-- Provide 'add' and 'remove' methods for consistency. --%>
     def add_<c:get select="underscore($eReference/@name)"/>(self, *<c:get select="underscore($eReference/@name)"/>):
         for obj in <c:get select="underscore($eReference/@name)"/>:
-	        self.<c:get select="underscore($eReference/@name)"/>.append(obj)
+            if obj not in self.<c:get select="underscore($eReference/@name)"/>:
+                self.<c:get select="underscore($eReference/@name)"/>.append(obj)
         
     def remove_<c:get select="underscore($eReference/@name)"/>(self, *<c:get select="underscore($eReference/@name)"/>):
         for obj in <c:get select="underscore($eReference/@name)"/>:
-	        self.<c:get select="underscore($eReference/@name)"/>.remove(obj)
+            self.<c:get select="underscore($eReference/@name)"/>.remove(obj)
 </c:when>
 </c:choose>
 </c:initialCode>
