@@ -6,20 +6,20 @@ ArrayList<String> imported = new ArrayList<String>();
 ArrayList<String> traitNames = new ArrayList<String>();
 HashMap<String, String> eAttributeTraitMap = new HashMap<String, String>();
 
-eAttributeTraitMap.put("EString", "db.StringProperty");
-eAttributeTraitMap.put("EInt", "db.IntegerProperty");
-eAttributeTraitMap.put("EBoolean", "db.BooleanProperty");
-eAttributeTraitMap.put("EDate", "db.DateProperty");
-eAttributeTraitMap.put("EDouble", "db.FloatProperty");
-eAttributeTraitMap.put("EList", "db.ListProperty");
-eAttributeTraitMap.put("EEnumerator", "db.StringProperty");
-eAttributeTraitMap.put("EFloat", "db.FloatProperty");
-eAttributeTraitMap.put("ELong", "db.IntegerProperty");
-eAttributeTraitMap.put("EMap", "db.ListProperty");
-eAttributeTraitMap.put("EShort", "db.IntegerProperty");
+eAttributeTraitMap.put("EString", "db.StringProperty()");
+eAttributeTraitMap.put("EInt", "db.IntegerProperty()");
+eAttributeTraitMap.put("EBoolean", "db.BooleanProperty()");
+eAttributeTraitMap.put("EDate", "db.DateProperty()");
+eAttributeTraitMap.put("EDouble", "db.FloatProperty()");
+eAttributeTraitMap.put("EList", "db.ListProperty()");
+eAttributeTraitMap.put("EEnumerator", "db.StringProperty()");
+eAttributeTraitMap.put("EFloat", "db.FloatProperty()");
+eAttributeTraitMap.put("ELong", "db.IntegerProperty()");
+eAttributeTraitMap.put("EMap", "db.ListProperty()");
+eAttributeTraitMap.put("EShort", "db.IntegerProperty()");
 
-eAttributeTraitMap.put("Integer", "db.IntegerProperty");
-eAttributeTraitMap.put("Boolean", "db.BooleanProperty");
+eAttributeTraitMap.put("Integer", "db.IntegerProperty()");
+eAttributeTraitMap.put("Boolean", "db.BooleanProperty()");
 %>
 <c:if test="count($eAttribute/eAnnotations) > 0">
 <c:setVariable var="eAnnotated" select="$eAttribute"/>
@@ -34,4 +34,4 @@ if ( eAttributeTraitMap.containsKey( atn ) ) {
 } else {
     tn = atn;
 }
-%>    <c:get select="underscore($eAttribute/@name)"/> = <%= tn %>()
+%>    <c:get select="underscore($eAttribute/@name)"/> = <%= tn %>
