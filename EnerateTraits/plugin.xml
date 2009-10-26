@@ -20,14 +20,14 @@
    </extension>
    <extension point="org.eclipse.ui.popupMenus">
      <objectContribution
-          id="com.github.enerate.editor.GeneratePython"
+          id="com.github.enerate.traits.editor.GeneratePython"
           objectClass="org.eclipse.emf.codegen.ecore.genmodel.GenModel">
        <action
-            id="com.github.enerate.editor.GeneratePythonAction"
-            label="Generate Pyt&amp;hon"
+            id="com.github.enerate.traits.editor.GeneratePythonAction"
+            label="Generate T&amp;raits Code"
             icon="icons/enerate.png"
-            menubarPath="additions"
-            class="com.github.enerate.action.GeneratePythonAction"
+            menubarPath="enerate"
+            class="com.github.enerate.traits.action.GenerateTraitsAction"
             enablesFor="1">
        </action>
      </objectContribution>
