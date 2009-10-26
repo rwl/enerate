@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+         id="EnerateCustomXPathFunctions"
+         name="EnerateXPath"
+         point="org.eclipse.jet.xpathFunctions">
+      <function
+            implementation="com.github.enerate.xpath.UnderscoreFunction"
+            maxArgs="1"
+            minArgs="1"
+            name="underscore">
+      </function>
+      <function
+            implementation="com.github.enerate.xpath.AnnotationWrapFunction"
+            maxArgs="1"
+            minArgs="1"
+            name="wrap80">
+      </function>
+   </extension>
+
+</plugin>

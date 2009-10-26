@@ -1,0 +1,23 @@
+<%@jet imports="org.eclipse.emf.ecore.*"%>
+<%@jet imports="org.eclipse.jet.xpath.NodeSet"%>
+<c:iterate select="$classQueue" var="eClassName">
+  <%-- Get the EClass. --%>
+  <c:setVariable var="eClass" select="$ePackage/EClass[@name = $eClassName]"/>
+  <%-- Define the class if its first super class has been defined previously. --%>
+  <c:if test="$definedClasses[contains(., $eClass/eSuperTypes/@name)]">
+    <c:include template="templates/class.jet" passVariables="eClass"/>
+
+<%
+String cn = (String)context.getVariable("eClassName");
+NodeSet defined = (NodeSet)context.getVariable("definedClasses");
+NodeSet queue = (NodeSet)context.getVariable("classQueue");
+defined.add( cn );
+queue.remove( cn );
+context.setVariable( "definedClasses", defined );
+context.setVariable( "classQueue", queue );
+%>
+  </c:if>
+</c:iterate>
+<c:if test="count($classQueue) > 0">
+<c:include template="templates/hierarchy.jet"/>
+</c:if>

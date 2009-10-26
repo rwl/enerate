@@ -1,0 +1,126 @@
+<%@jet imports="org.eclipse.emf.ecore.*"%>
+<%@jet imports="java.util.*"%>
+<%@jet imports="org.eclipse.jet.xpath.XPathUtil"%>
+<%
+ArrayList<String> nodes = new ArrayList<String>();
+ArrayList<String> queue = new ArrayList<String>();
+%>
+#------------------------------------------------------------------------------
+<c:include template="templates/license.jet"/>
+#------------------------------------------------------------------------------
+
+""" Defines a graph editor for <c:get select="$ePackage/@name"/>.
+"""
+
+#------------------------------------------------------------------------------
+#  Imports:
+#------------------------------------------------------------------------------
+
+from enthought.traits.api \
+    import HasTraits, Str, Property, Instance
+
+from enthought.traits.ui.api \
+    import View, Item, Group
+
+from enthought.traits.ui.menu \
+    import Action, Menu
+
+from godot.ui.graph_editor import GraphNode, GraphEditor
+
+<c:setVariable var="eSuper" select="$ePackage"/>
+from <c:include template="templates/package_name.jet" passVariables="eSuper"/> import *
+<c:iterate select="$ePackage//EPackage" var="eSuper">
+from <c:include template="templates/package_name.jet" passVariables="eSuper"/> import *
+</c:iterate>
+
+#------------------------------------------------------------------------------
+#  Constants:
+#------------------------------------------------------------------------------
+<c:userRegion>
+# <<< constants
+<c:initialCode unmodifiedMarker="@generated">
+# @generated
+IMAGE_PATH = ""</c:initialCode>
+# >>> constants
+</c:userRegion>
+
+#------------------------------------------------------------------------------
+#  Graph nodes:
+#------------------------------------------------------------------------------
+
+<c:iterate select="$eClasses" var="eClass">
+<c:setVariable var="eAnnotated" select="$eClass"/>
+<c:get select="$eClass/@name"/>_GraphNode = GraphNode(
+    node_for=[<c:get select="$eClass/@name"/>],
+    <c:if test="count($eClass/eAllAttributes[@name = 'name']) > 0">label="name",
+    </c:if>
+    tooltip="<c:include template="templates/comment.jet"/>",
+    on_dclick=lambda obj: obj.edit_traits(kind="livemodal"))
+
+</c:iterate>
+#------------------------------------------------------------------------------
+#  Graph edges:
+#------------------------------------------------------------------------------
+
+<c:iterate select="$eClasses" var="eClass">
+<c:setVariable var="eAnnotated" select="$eClass"/>
+<c:iterate select="$eClass/eReferences[@many = 'true']" var="eReference">
+    <c:setVariable var="eAnnotated" select="$eReference"/>
+#<c:get select="$eClass/@name"/>_<c:get select="$eReference/@name"/>_GraphEdge = GraphEdge(
+#    edge_for=[<c:get select="$eClass/@name"/>],
+#    head_nodes=[],
+#    tail_nodes=[],
+#    head_label="=<c:get select="$eReference/@name"/>",
+#    tooltip="<c:include template="templates/comment.jet"/>")
+
+</c:iterate>
+</c:iterate>
+#------------------------------------------------------------------------------
+#  Graph node list:
+#------------------------------------------------------------------------------
+
+<c:iterate select="$eClasses" var="eClass">
+<% EClass ec = (EClass)context.getVariable("eClass"); %>
+  <%-- Classes with no super type should be defined last. --%>
+  <c:choose select="count( $eClass/eSuperTypes )">
+    <c:when test="0">
+      <% nodes.add( ec.getName() ); %>
+    </c:when>
+    <c:otherwise>
+      <% queue.add( ec.getName() ); %>
+    </c:otherwise>
+  </c:choose>
+</c:iterate>
+<%
+context.setVariable( "nodeQueue", XPathUtil.asNodeSet(queue) );
+context.setVariable( "definedNodes", XPathUtil.asNodeSet(nodes) );
+%>
+<c:include template="templates/queue.jet"/>
+
+graph_nodes = [
+    <c:iterate select="$definedNodes" var="treeNode">
+    <%-- Get the EClass. --%>
+    <c:setVariable var="eNodeClass" select="$eClasses[@name = $treeNode]"/>
+    <c:get select="$eNodeClass/@name"/>_GraphNode,
+    </c:iterate>
+]
+graph_nodes.reverse()
+
+#graph_edges = [
+    <c:iterate select="$definedNodes" var="treeNode">
+    <%-- Get the EClass. --%>
+    <c:setVariable var="eNodeClass" select="$eClasses[@name = $treeNode]"/>
+    <c:iterate select="$eNodeClass/eReferences[@many = 'true']" var="eReference">
+#    <c:get select="$eNodeClass/@name"/>_<c:get select="$eReference/@name"/>_GraphEdge,
+    </c:iterate>
+    </c:iterate>
+#]
+#graph_edges.reverse()
+
+#------------------------------------------------------------------------------
+#  <c:get select="$ePackage/@name"/> Graph Editor:
+#------------------------------------------------------------------------------
+
+<c:get select="$ePackage/@name"/>GraphEditor = GraphEditor(nodes=graph_nodes)
+
+# EOF -------------------------------------------------------------------------

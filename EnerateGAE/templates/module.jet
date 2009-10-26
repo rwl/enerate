@@ -1,0 +1,98 @@
+<%@jet imports="org.eclipse.emf.ecore.*"%>
+<%@jet imports="java.util.*"%>
+<%@jet imports="org.eclipse.jet.xpath.XPathUtil"%>
+<%
+ArrayList<String> defined = new ArrayList<String>();
+ArrayList<String> queue = new ArrayList<String>();
+HashMap<String, String> instanceTypeNameTraitMap = new HashMap<String, String>();
+
+instanceTypeNameTraitMap.put("boolean", "db.BooleanProperty");
+instanceTypeNameTraitMap.put("java.lang.Boolean", "db.BooleanProperty");
+instanceTypeNameTraitMap.put("char", "db.StringProperty");
+instanceTypeNameTraitMap.put("java.lang.Character", "db.StringProperty");
+instanceTypeNameTraitMap.put("java.util.Date", "db.DateProperty");
+instanceTypeNameTraitMap.put("double", "db.FloatProperty");
+instanceTypeNameTraitMap.put("java.lang.Double", "db.FloatProperty");
+instanceTypeNameTraitMap.put("float", "db.FloatProperty");
+instanceTypeNameTraitMap.put("java.lang.Float", "db.FloatProperty");
+instanceTypeNameTraitMap.put("int", "db.IntegerProperty");
+instanceTypeNameTraitMap.put("java.lang.Integer", "db.IntegerProperty");
+instanceTypeNameTraitMap.put("java.lang.Class", "db.ReferenceProperty");
+instanceTypeNameTraitMap.put("java.lang.Object", "db.ReferenceProperty");
+instanceTypeNameTraitMap.put("long", "db.IntegerProperty");
+instanceTypeNameTraitMap.put("java.lang.Long", "db.IntegerProperty");
+instanceTypeNameTraitMap.put("java.util.Map", "db.ListProperty");
+instanceTypeNameTraitMap.put("short", "db.IntegerProperty");
+instanceTypeNameTraitMap.put("java.lang.Short", "db.IntegerProperty");
+instanceTypeNameTraitMap.put("java.lang.String", "db.StringProperty");
+%>
+<c:include template="templates/license.jet"/>
+
+<c:if test="count($ePackage/eAnnotations) > 0">
+""" <c:setVariable var="eAnnotated" select="$ePackage"/><c:include template="templates/comment.jet" passVariables="eAnnotated"/>
+"""
+</c:if>
+
+<c:include template="templates/import.jet"/>
+<c:iterate select="$ePackage/EDataType" var="eDataType"><%
+EDataType dt = (EDataType)context.getVariable("eDataType");
+String tn;
+
+if ( instanceTypeNameTraitMap.containsKey( dt.getInstanceTypeName() ) ) {
+    tn = instanceTypeNameTraitMap.get( dt.getInstanceTypeName() );
+} else {
+    tn = "db.StringProperty";
+}
+%><c:if test="count($eDataType/eAnnotations) > 0"><c:setVariable var="eAnnotated" select="$eDataType"/># <c:include template="templates/comment.jet" passVariables="eAnnotated"/>"</c:if>
+<c:get select="$eDataType/@name"/> = <%= tn %>(<c:get select="string($eDataType/@defaultValue)"/>)
+</c:iterate>
+<c:iterate select="$ePackage/EEnum" var="eEnum">
+<c:setVariable var="eAnnotated" select="$eEnum"/>
+<c:if test="count($eEnum/eAnnotations) > 0"># <c:include template="templates/comment.jet" passVariables="eAnnotated"/></c:if>
+<c:choose select="count($eEnum/eLiterals)">
+<c:when test="0">
+<c:get select="$eEnum/@name"/> = db.StringProperty()
+</c:when>
+<c:otherwise>
+<c:get select="$eEnum/@name"/> = db.StringProperty(choices=(<c:iterate select="count($eEnum/eLiterals)" var="eLiteralIdx">"<c:get select="underscore($eEnum/eLiterals[$eLiteralIdx]/@literal)"/>"<c:if test="$eLiteralIdx != count($eEnum/eLiterals)">, </c:if></c:iterate>))
+</c:otherwise>
+</c:choose>
+</c:iterate>
+
+ns_prefix = "<c:get select="$ePackage/@nsPrefix"/>"
+ns_uri = "<c:get select="$ePackage/@nsURI"/>"
+
+<%-- Call the class template for any EClass objects. --%>
+<c:iterate select="$ePackage/EClass" var="eClass">
+<% EClass ec = (EClass)context.getVariable("eClass"); %>
+  <%-- Classes with no super type or classes with super types defined in other classes may be defined in any order. --%>
+  <c:choose select="count( $eClass/eSuperTypes/ePackage[@name = $ePackage/@name] )">
+    <c:when test="0">
+      <% defined.add( ec.getName() ); %>
+<c:include template="templates/class.jet" passVariables="eClass"/>
+
+    </c:when>
+    <c:otherwise><% queue.add( ec.getName() ); %></c:otherwise>
+  </c:choose>
+</c:iterate>
+<%
+context.setVariable( "classQueue", XPathUtil.asNodeSet(queue) );
+context.setVariable( "definedClasses", XPathUtil.asNodeSet(defined) );
+%>
+<c:include template="templates/hierarchy.jet"/>
+
+<%--
+<%
+Iterator<String> i = queue.iterator();
+while ( i.hasNext() )
+{
+  context.setVariable("eClassName", i.next());
+
+      %>
+<c:setVariable var="eClass" select="$ePackage/EClass[@name = $eClassName]"/>
+<c:include template="templates/class.jet" passVariables="eClass"/>
+
+<%
+}
+%>
+--%>

@@ -1,0 +1,11 @@
+    def _get_<c:get select="lower-case($eReference/eReferenceType/@name)"/>s(self):
+        """ Property getter.
+        """
+        if self.Parent is not None:
+            return [e for e in self.Parent.Elements \
+                if "%s.%s" % (e.__module__, e.__class__.__name__) == \
+                    "<c:include template="templates/package_name.jet"/>.<c:get select="$eReference/eReferenceType/@name"/>" ]
+        else:
+            return []
+
+    _<c:get select="lower-case($eReference/eReferenceType/@name)"/>s = Property(fget=_get_<c:get select="lower-case($eReference/eReferenceType/@name)"/>s)

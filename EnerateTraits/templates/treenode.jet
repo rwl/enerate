@@ -1,0 +1,184 @@
+<%@jet imports="org.eclipse.emf.ecore.*"%>
+<%@jet imports="java.util.*"%>
+<%@jet imports="org.eclipse.jet.xpath.XPathUtil"%>
+<%
+ArrayList<String> nodes = new ArrayList<String>();
+ArrayList<String> queue = new ArrayList<String>();
+%>
+#------------------------------------------------------------------------------
+<c:include template="templates/license.jet"/>
+#------------------------------------------------------------------------------
+
+""" Defines TreeNodes interface for the model.
+"""
+
+#------------------------------------------------------------------------------
+#  Imports:
+#------------------------------------------------------------------------------
+
+from enthought.traits.api \
+    import HasTraits, Str, Property, Instance
+
+from enthought.traits.ui.api \
+    import View, Item, Group, TreeEditor, TreeNode
+
+from enthought.traits.ui.menu \
+    import Action, Menu
+
+<c:setVariable var="eSuper" select="$ePackage"/>
+from <c:include template="templates/package_name.jet" passVariables="eSuper"/> import *
+<c:iterate select="$ePackage//EPackage" var="eSuper">
+from <c:include template="templates/package_name.jet" passVariables="eSuper"/> import *
+</c:iterate>
+
+#------------------------------------------------------------------------------
+#  Constants:
+#------------------------------------------------------------------------------
+<c:userRegion>
+# <<< constants
+<c:initialCode unmodifiedMarker="@generated">
+# @generated
+IMAGE_PATH = ""</c:initialCode>
+# >>> constants
+</c:userRegion>
+
+<c:iterate select="$eClasses" var="eClass">
+#------------------------------------------------------------------------------
+#  "<c:get select="$eClass/@name"/>TreeNode" class:
+#------------------------------------------------------------------------------
+
+class <c:get select="$eClass/@name"/>TreeNode(TreeNode):
+    """ Defines a tree node for a <c:get select="$eClass/@name"/>.
+    """
+
+    #--------------------------------------------------------------------------
+    #  "TreeNode" interface:
+    #--------------------------------------------------------------------------
+
+    # Name of trait containing children (if '', the node is a leaf).
+#    children = Str("Substations")
+
+    # Name of a trait containing a label.
+    label = Str("name")
+
+    tooltip = Str("=<c:setVariable var="eAnnotated" select="$eClass"/><c:include template="templates/comment.jet" passVariables="eAnnotated"/>")
+
+    # Name to use for a new instance.
+    name = Str("<c:get select="$eClass/@name"/>")
+
+    # List of object classes than can be added or copied.
+    add = [<c:iterate select="$eClass/eReferences[@many = 'true']" var="eReference"><c:get select="$eReference/eReferenceType/@name"/>, </c:iterate>]
+
+    # List of object classes that can be moved.
+    move = [<c:iterate select="$eClass/eReferences[@many = 'true']" var="eReference"><c:get select="$eReference/eReferenceType/@name"/>, </c:iterate>]
+
+    # List of object classes and/or interfaces that the node applies to.
+    node_for = [<c:get select="$eClass/@name"/>]
+
+    # Function for handling double-clicking an object.
+#    on_dclick = lambda obj: obj.edit_traits(kind="livemodal")
+
+    # Resource path used to locate the node icon.
+    icon_path = Str(IMAGE_PATH)
+
+<c:userRegion>
+    #--------------------------------------------------------------------------
+    #  Begin "<c:get select="$eClass/@name"/>TreeNode" user definitions:
+    #--------------------------------------------------------------------------
+<c:initialCode unmodifiedMarker="@generated">
+
+    # @generated
+  <c:choose select="count( $eClass/eReferences[@many = 'true'] )">
+    <c:when test="0">
+    # Name of leaf item icon.
+    icon_item = Str( '<item>' )
+    </c:when>
+     <c:otherwise>
+    # Name of group item icon.
+    icon_group = Str( '<group>' )
+
+    # Name of opened group item icon.
+    icon_open = Str( '<open>' )
+     </c:otherwise>
+    </c:choose>
+</c:initialCode>
+    #--------------------------------------------------------------------------
+    #  End "<c:get select="$eClass/@name"/>TreeNode" user definitions:
+    #--------------------------------------------------------------------------
+</c:userRegion>
+
+    def allows_children ( self, object ):
+        """ Returns whether this object can have children.
+        """
+        return <c:choose select="count( $eClass/eReferences )">
+        <c:when test="0">False</c:when>
+        <c:otherwise>True</c:otherwise>
+        </c:choose>
+
+
+    def get_children ( self, object ):
+        """ Gets the object's children.
+        """
+        children = []
+        <c:iterate select="$eClass/eReferences[@many = 'true']" var="eReference">
+        children.extend( getattr(object, "<c:get select="$eReference/@name"/>") )
+        </c:iterate>
+
+        <c:iterate select="$eClass/eReferences[@many = 'false']" var="eReference">
+        children.append( getattr(object, "<c:get select="$eReference/@name"/>") )
+        </c:iterate>
+        return children
+
+
+    def append_child ( self, object, child ):
+        """ Appends a child to the object's children.
+        """
+        raise NotImplmentedError
+
+
+    def dclick ( self, object ):
+        """ Handles an object being double-clicked.
+        """
+        if object is not None:
+            object.edit_traits(kind="livemodal")
+            return None
+
+        return True
+</c:iterate>
+
+#------------------------------------------------------------------------------
+#  Tree node list:
+#------------------------------------------------------------------------------
+
+<c:iterate select="$eClasses" var="eClass">
+<% EClass ec = (EClass)context.getVariable("eClass"); %>
+  <%-- Classes with no super type should be defined last. --%>
+  <c:choose select="count( $eClass/eSuperTypes )">
+    <c:when test="0">
+      <% nodes.add( ec.getName() ); %>
+    </c:when>
+    <c:otherwise>
+      <% queue.add( ec.getName() ); %>
+    </c:otherwise>
+  </c:choose>
+</c:iterate>
+<%
+context.setVariable( "nodeQueue", XPathUtil.asNodeSet(queue) );
+context.setVariable( "definedNodes", XPathUtil.asNodeSet(nodes) );
+%>
+<c:include template="templates/queue.jet"/>
+
+tree_nodes = [
+    <c:iterate select="$definedNodes" var="treeNode">
+    <c:get select="$treeNode"/>TreeNode(),
+    </c:iterate>
+]
+tree_nodes.reverse()
+
+#------------------------------------------------------------------------------
+#  <c:get select="$ePackage/@name"/> Tree Editor:
+#------------------------------------------------------------------------------
+
+<c:get select="lower-case($ePackage/@name)"/>_tree_editor = TreeEditor(nodes=tree_nodes, editable=True)
+
+# EOF -------------------------------------------------------------------------

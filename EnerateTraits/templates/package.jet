@@ -1,0 +1,18 @@
+<%@taglib prefix="ws" id="org.eclipse.jet.workspaceTags" %>
+<%@jet imports="org.eclipse.emf.ecore.*"%>
+<c:choose>
+<c:when test="count($ePackage/eSubpackages) = 0">
+  <%-- ePackages that have no subpackages are written to a Python module. --%>
+  <ws:file template="templates/module.jet" path="{$ePackage/@name}.py"/>
+</c:when>
+<c:otherwise>
+  <%-- An ePackage that has subpackages is written to a Python package. --%>
+  <ws:folder path="{$ePackage/@name}">
+    <ws:file template="templates/module.jet" path="__init__.py"/>
+    <%-- Pass the subpackages to another package template. --%>
+    <c:iterate select="$ePackage/eSubpackages" var="ePackage">
+      <c:include template="templates/package.jet"/>
+    </c:iterate>
+  </ws:folder>
+</c:otherwise>
+</c:choose>
