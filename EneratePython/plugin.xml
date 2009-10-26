@@ -20,16 +20,25 @@
    </extension>
    <extension point="org.eclipse.ui.popupMenus">
      <objectContribution
-          id="com.github.enerate.python.editor.GeneratePython"
-          objectClass="org.eclipse.emf.codegen.ecore.genmodel.GenModel">
-       <action
-            id="com.github.enerate.python.editor.GeneratePythonAction"
-            label="Generate Pyt&amp;hon Code"
-            icon="icons/enerate.png"
-            menubarPath="enerate"
-            class="com.github.enerate.python.action.GeneratePythonAction"
-            enablesFor="1">
-       </action>
+           id="com.github.enerate.python.editor.GeneratePython"
+           nameFilter="*.ecore"
+           objectClass="org.eclipse.core.resources.IFile">
+        <action
+              class="com.github.enerate.python.action.GeneratePythonAction"
+              enablesFor="1"
+              icon="icons/enerate.png"
+              id="com.github.enerate.python.generate"
+              label="Generate Python Code"
+              menubarPath="com.github.enerate.menu/pythonGroup">
+        </action>
+       <menu
+             id="com.github.enerate.menu"
+             label="Enerate"
+             path="additions">
+          <groupMarker
+                name="pythonGroup">
+          </groupMarker>
+       </menu>
      </objectContribution>
    </extension>
 </plugin>
