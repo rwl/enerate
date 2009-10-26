@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/com.github.enerate.feature_1.0.0.jar" id="com.github.enerate.feature" version="1.0.0">
+      <category name="com.github.enerate"/>
+   </feature>
+   <category-def name="com.github.enerate" label="Enerate">
+      <description>
+         Generate Python code from ECore.
+      </description>
+   </category-def>
+</site>
