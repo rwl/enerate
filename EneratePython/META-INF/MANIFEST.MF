@@ -5,6 +5,7 @@ Bundle-SymbolicName: com.github.enerate.python;singleton:=true
 Bundle-Version: 1.0.0
 Bundle-Vendor: 
  Richard Lincoln
+Bundle-Activator: com.github.enerate.python.Activator
 Require-Bundle: org.eclipse.jet,
  org.eclipse.emf.ecore;bundle-version="2.4.2",
  org.eclipse.emf.codegen.ecore;bundle-version="2.4.2",
