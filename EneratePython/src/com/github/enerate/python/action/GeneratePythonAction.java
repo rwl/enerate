@@ -9,6 +9,8 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.jet.JET2Platform;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -47,13 +49,21 @@ public class GeneratePythonAction extends ActionDelegate implements IActionDeleg
 			return;
 		}
 
-		IFile ecoreFile = ecoreFiles.get(0);
+		final IFile ecoreFile = ecoreFiles.get(0);
 
 		IProject project = ecoreFile.getProject();
-		HashMap<String, String> variables = new HashMap<String, String>();
+		final HashMap<String, String> variables = new HashMap<String, String>();
 		variables.put("org.eclipse.jet.resource.project.name", project.getName()); // theNameOfTheProjectContainingTheEMFResource
 
-		IStatus status = JET2Platform.runTransformOnResource("com.github.enerate.python", ecoreFile, variables, monitor);
+		Job job = new Job("Python Code Generation") {
+			protected IStatus run(final IProgressMonitor monitor) {
+				JET2Platform.runTransformOnResource("com.github.enerate.python", ecoreFile, variables, monitor);
+				return Status.OK_STATUS;
+			}
+		};
+		job.setUser(true); // shows dialog window
+		job.schedule();
+		IStatus status = job.getResult();
 
 		if (!status.isOK())
 			Activator.getDefault().getLog().log(status);
