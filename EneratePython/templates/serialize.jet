@@ -1,0 +1,46 @@
+<%@jet imports="org.eclipse.emf.ecore.*"%>
+    def __str__(self):
+        """ Returns a string representation of the <c:get select="$eClass/@name"/>.
+        """
+        self.serialize()
+
+
+    def serialize(self, header=True, depth=2):
+        """ Returns an RDF/XML representation of the <c:get select="$eClass/@name"/>.
+        """
+        s = indent = ''
+        if header:
+            s += '<?xml version="1.0" encoding="UTF-8"?>\n'
+            s += '<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:%s="%s">' % (ns_prefix, ns_uri)
+            indent += ' ' * depth
+
+        s += '%s<\%s:%s rdf:ID="%s">' % (indent, ns_prefix, "<c:get select="$eClass/@name"/>", self.uri)
+        indent += ' ' * depth
+
+<c:iterate select="$eClass/eReferences" var="eReference">
+<c:choose>
+<c:when test="$eReference/@many = 'true'">
+        for obj in self.<c:get select="underscore($eReference/@name)"/>:
+            s += '%s<\%s:<c:get select="$eClass/@name"/>.<c:get select="underscore($eReference/@name)"/> rdf:resource="%s"/>' % (indent, ns_prefix, obj.uri)
+</c:when>
+<c:otherwise>
+        s += '%s<\%s:<c:get select="$eClass/@name"/>.<c:get select="underscore($eReference/@name)"/> rdf:resource="%s"/>' % (indent, ns_prefix, self.<c:get select="underscore($eReference/@name)"/>.uri)
+</c:otherwise>
+</c:choose>
+</c:iterate>
+<c:iterate select="$eClass/eAttributes" var="eAttribute">
+        s += '%s<\%s:<c:get select="$eClass/@name"/>.<c:get select="underscore($eAttribute/@name)"/>>%s</%s:<c:get select="$eClass/@name"/>.<c:get select="underscore($eAttribute/@name)"/>>' % (indent, ns_prefix, self.<c:get select="underscore($eAttribute/@name)"/>, ns_prefix)
+</c:iterate>
+<c:iterate select="$eClass/eSuperTypes" var="eSuperType">
+<c:iterate select="$eSuperType/eReferences" var="eReference">
+        s += '%s<\%s:<c:get select="$eSuperType/@name"/>.<c:get select="underscore($eReference/@name)"/> rdf:resource="%s"/>' % (indent, ns_prefix, self.<c:get select="underscore($eReference/@name)"/>.uri)
+</c:iterate>
+<c:iterate select="$eSuperType/eAttributes" var="eAttribute">
+        s += '%s<\%s:<c:get select="$eSuperType/@name"/>.<c:get select="underscore($eAttribute/@name)"/>>%s</%s:<c:get select="$eSuperType/@name"/>.<c:get select="underscore($eAttribute/@name)"/>>' % (indent, ns_prefix, self.<c:get select="underscore($eAttribute/@name)"/>, ns_prefix)
+</c:iterate>
+</c:iterate>
+
+        indent = indent[:depth]
+        s += '%s</%s:%s>' % (indent, ns_prefix, "<c:get select="$eClass/@name"/>")
+
+        return s

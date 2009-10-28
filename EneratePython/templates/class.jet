@@ -17,11 +17,13 @@ class <c:get select="$eClass/@name"/>(<c:choose select="count($eClass/eSuperType
 </c:initialCode>
     # >>> <c:get select="underscore($eClass/@name)"/>
 </c:userRegion>
-        
+
 <c:iterate select="$eClass/eReferences" var="eReference">
 <c:include template="templates/reference.jet"/>
 
-</c:iterate>    
+</c:iterate>
 <c:iterate select="$eClass/eOperations" var="eOperation">
 <c:include template="templates/operation.jet"/>
 </c:iterate>
+
+<c:include template="templates/serialize.jet"/>
