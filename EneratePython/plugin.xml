@@ -31,14 +31,6 @@
               label="Generate Python Code"
               menubarPath="com.github.enerate.menu/pythonGroup">
         </action>
-       <menu
-             id="com.github.enerate.menu"
-             label="Enerate"
-             path="additions">
-          <groupMarker
-                name="pythonGroup">
-          </groupMarker>
-       </menu>
      </objectContribution>
    </extension>
 </plugin>

@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: EnerateCore
+Bundle-SymbolicName: com.github.enerate.core;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: Richard Lincoln
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Require-Bundle: org.eclipse.core.resources,
+ org.eclipse.core.runtime,
+ org.eclipse.jet,
+ org.eclipse.jface,
+ org.eclipse.ui
+Export-Package: com.github.enerate.core

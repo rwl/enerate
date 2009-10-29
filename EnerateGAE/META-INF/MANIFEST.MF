@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Enerate Google App Engine
 Bundle-SymbolicName: com.github.enerate.gae;singleton:=true
-Bundle-Version: 1.0.1
+Bundle-Version: 1.0.1.qualifier
 Bundle-Vendor: 
  Richard Lincoln
 Require-Bundle: org.eclipse.jet,
@@ -10,7 +10,7 @@ Require-Bundle: org.eclipse.jet,
  org.eclipse.emf.codegen.ecore,
  org.eclipse.core.resources,
  org.eclipse.core.runtime,
- org.eclipse.jface,
- org.eclipse.ui
+ org.eclipse.ui,
+ com.github.enerate.core
 Bundle-ClassPath: .,bin/
 Bundle-RequiredExecutionEnvironment: J2SE-1.5

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            id="com.github.enerate.core.editor.GenerateCode"
+            nameFilter="*.ecore"
+            objectClass="org.eclipse.core.resources.IFile">
+         <menu
+               id="com.github.enerate.menu"
+               label="Enerate"
+               path="additions">
+            <groupMarker
+                  name="pythonGroup">
+            </groupMarker>
+         </menu>
+      </objectContribution>
+   </extension>
+
+</plugin>
