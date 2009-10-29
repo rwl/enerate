@@ -13,9 +13,9 @@
       </function>
       <function
             implementation="com.github.enerate.xpath.AnnotationWrapFunction"
-            maxArgs="1"
-            minArgs="1"
-            name="wrap80">
+            maxArgs="3"
+            minArgs="2"
+            name="wrap">
       </function>
    </extension>
 

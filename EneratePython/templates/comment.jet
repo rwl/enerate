@@ -1,2 +1,3 @@
+<%@taglib id="com.github.enerate.tag.tagLibrary" prefix="en"%>
 <c:iterate select="$eAnnotated/eAnnotations" var="eAnnotation"><c:iterate select="$eAnnotation/details" var="detailsEntry">
-<c:replaceStrings replace='\",\\n' with="\', "><c:get select="$detailsEntry/@value"/></c:replaceStrings></c:iterate></c:iterate>
+<en:wrap wrapLength="80" indentDepth="8"><c:replaceStrings replace='\",\\n' with="\', "><c:get select="$detailsEntry/@value"/></c:replaceStrings></en:wrap></c:iterate></c:iterate>

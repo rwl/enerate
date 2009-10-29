@@ -1,20 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <description name="Enerate" url="http://rwl.github.com/enerate/updates">
+   <description name="Enerate" url="http://rwl.github.com/enerate">
       Generate code from ECore models using JET2.
    </description>
-   <feature url="features/com.github.enerate.python.feature_1.0.1.200910291258.jar" id="com.github.enerate.python.feature" version="1.0.1.200910291258">
-      <category name="com.github.enerate"/>
+   <feature url="features/com.github.enerate.gae.feature_1.0.1.200910291439.jar" id="com.github.enerate.gae.feature" version="1.0.1.200910291439">
+      <category name="com.github.enerate.generators"/>
    </feature>
-   <feature url="features/com.github.enerate.traits.feature_1.0.1.200910291258.jar" id="com.github.enerate.traits.feature" version="1.0.1.200910291258">
-      <category name="com.github.enerate"/>
+   <feature url="features/com.github.enerate.python.feature_1.0.1.200910291439.jar" id="com.github.enerate.python.feature" version="1.0.1.200910291439">
+      <category name="com.github.enerate.generators"/>
    </feature>
-   <feature url="features/com.github.enerate.gae.feature_1.0.1.200910291258.jar" id="com.github.enerate.gae.feature" version="1.0.1.200910291258">
-      <category name="com.github.enerate"/>
+   <feature url="features/com.github.enerate.traits.feature_1.0.1.200910291439.jar" id="com.github.enerate.traits.feature" version="1.0.1.200910291439">
+      <category name="com.github.enerate.generators"/>
    </feature>
-   <category-def name="com.github.enerate" label="Enerate">
-      <description>
-         Generate code from ECore using JET2.
-      </description>
-   </category-def>
+   <category-def name="com.github.enerate.generators" label="Enerate"/>
 </site>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.jet.tagLibraries">
+      <tagLibrary
+            id="tagLibrary"
+            name="EnerateTagLibrary"
+            standardPrefix="en">
+         <functionTag
+               class="com.github.enerate.tag.WrapTag"
+               name="wrap"
+               whenContainingLineIsEmpty="preserve">
+            <description>
+               Wraps the contents of the tag accordings to the given line length, optionally padding the start of new lines with white space to the given depth.
+            </description>
+            <attribute
+                  name="wrapLength"
+                  type="string"
+                  use="required">
+            </attribute>
+            <attribute
+                  name="indentDepth"
+                  type="string"
+                  use="optional">
+            </attribute>
+         </functionTag>
+      </tagLibrary>
+   </extension>
+
+</plugin>
