@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="com.github.enerate.python.feature"
+      label="Python"
+      version="1.0.1"
+      provider-name="Richard Lincoln">
+
+   <description>
+      Generate Python code from ECore models.
+   </description>
+
+   <copyright>
+      Copyright (c) 2009 Richard Lincoln
+   </copyright>
+
+   <license url="http://www.gnu.org/copyleft/lesser.html">
+      GNU Lesser General Public License
+   </license>
+
+   <url>
+      <update label="Enerate" url="http://rwl.github.com/enerate/updates"/>
+   </url>
+
+   <plugin
+         id="com.github.enerate.python"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="com.github.enerate.xpath"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+</feature>
