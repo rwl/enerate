@@ -20,7 +20,7 @@
                   use="required">
             </attribute>
             <attribute
-                  name="indentDepth"
+                  name="linePrefix"
                   type="string"
                   use="optional">
             </attribute>

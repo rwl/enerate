@@ -1,6 +1,7 @@
 package com.github.enerate.tag;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang.SystemUtils;
 import org.apache.commons.lang.WordUtils;
 import org.eclipse.jet.JET2Context;
 import org.eclipse.jet.taglib.AbstractFunctionTag;
@@ -12,13 +13,14 @@ public class WrapTag extends AbstractFunctionTag {
 	public String doFunction(TagInfo td, JET2Context context, String bodyContent)
 			throws JET2TagException {
 
-//		String wrapLength = getAttribute("wrapLength");
-//		String indentDepth = getAttribute("indentDepth");
+		int wrapLength = Integer.parseInt(getAttribute("wrapLength"));
+		String linePrefix = getAttribute("linePrefix");
 
-		final String NEW_LINE = System.getProperty("line.separator");
-		String newLineStr = StringUtils.leftPad(NEW_LINE, 8);
+		final String NEW_LINE = SystemUtils.LINE_SEPARATOR;
+//		String newLineStr = StringUtils.rightPad(NEW_LINE, 8);
+		String newLineStr = NEW_LINE + linePrefix;
 
-		String wrapped = WordUtils.wrap(bodyContent, 80, newLineStr, true);
+		String wrapped = WordUtils.wrap(bodyContent, wrapLength, newLineStr, false);
 
 		return wrapped;
 	}
