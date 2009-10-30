@@ -11,9 +11,11 @@ class <c:get select="$eClass/@name"/>(<c:choose select="count($eClass/eSuperType
 </c:if>
 <c:iterate select="$eClass/eAttributes" var="eAttribute">
 <c:include template="templates/attribute.jet"/>
+
 </c:iterate>
 <c:iterate select="$eClass/eReferences" var="eReference">
 <c:include template="templates/reference.jet"/>
+
 </c:iterate>
 <c:iterate select="$eClass/eOperations" var="eOperation">
 <c:include template="templates/operation.jet"/>
