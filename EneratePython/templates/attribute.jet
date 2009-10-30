@@ -1,24 +1,30 @@
 <%@jet imports="org.eclipse.emf.ecore.*"%>
 <%@jet imports="java.util.*"%>
-<%-- FIMXE: Remove duplication with the 'import' template. --%>
+<%-- FIMXE: Remove duplication with the 'init' template. --%>
 <%
 ArrayList<String> imported = new ArrayList<String>();
 ArrayList<String> traitNames = new ArrayList<String>();
-HashMap<String, String> eAttributeTraitMap = new HashMap<String, String>();
-eAttributeTraitMap.put("EString", "''");
-eAttributeTraitMap.put("EInt", "0");
-eAttributeTraitMap.put("EBoolean", "False");
-eAttributeTraitMap.put("EDate", "''");
-eAttributeTraitMap.put("EDouble", "0.0");
-eAttributeTraitMap.put("EList", "[]");
-eAttributeTraitMap.put("EEnumerator", "''");
-eAttributeTraitMap.put("EFloat", "0.0");
-eAttributeTraitMap.put("ELong", "0.0");
-eAttributeTraitMap.put("EMap", "{}");
-eAttributeTraitMap.put("EShort", "0");
 
-eAttributeTraitMap.put("Integer", "0");
-eAttributeTraitMap.put("Boolean", "False");
+HashMap<String, String> instanceTypeNameValueMap = new HashMap<String, String>();
+instanceTypeNameValueMap.put("boolean", "False");
+instanceTypeNameValueMap.put("java.lang.Boolean", "False");
+instanceTypeNameValueMap.put("char", "''");
+instanceTypeNameValueMap.put("java.lang.Character", "''");
+instanceTypeNameValueMap.put("java.util.Date", "''");
+instanceTypeNameValueMap.put("double", "0.0");
+instanceTypeNameValueMap.put("java.lang.Double", "0.0");
+instanceTypeNameValueMap.put("float", "0.0");
+instanceTypeNameValueMap.put("java.lang.Float", "0.0");
+instanceTypeNameValueMap.put("int", "0");
+instanceTypeNameValueMap.put("java.lang.Integer", "0");
+instanceTypeNameValueMap.put("java.lang.Class", "None");
+instanceTypeNameValueMap.put("java.lang.Object", "None");
+instanceTypeNameValueMap.put("long", "0L");
+instanceTypeNameValueMap.put("java.lang.Long", "0L");
+instanceTypeNameValueMap.put("java.util.Map", "{}");
+instanceTypeNameValueMap.put("short", "0");
+instanceTypeNameValueMap.put("java.lang.Short", "0");
+instanceTypeNameValueMap.put("java.lang.String", "''");
 
 HashMap<String, String> pythonKeywordMap = new HashMap<String, String>();
 pythonKeywordMap.put("For", "ffor");
@@ -27,14 +33,13 @@ pythonKeywordMap.put("Class", "klass");
 <c:if test="count($eAttribute/eAnnotations) > 0">
 <c:setVariable var="eAnnotated" select="$eAttribute"/>
         # <c:include template="templates/comment.jet" passVariables="eAnnotated"/></c:if> <c:if test="count($eAttribute/eAttributeType/eLiterals) > 0"><c:setVariable var="eEnum" select="$eAttribute/eAttributeType"/>Values are: <c:iterate select="count($eEnum/eLiterals)" var="eLiteralIdx">"<c:get select="underscore($eEnum/eLiterals[$eLiteralIdx]/@literal)"/>"<c:if test="$eLiteralIdx != count($eEnum/eLiterals)">, </c:if></c:iterate></c:if>
-<c:setVariable select="string($eAttribute/eAttributeType/@name)" var="eAttributeTypeName"/><%
-String atn = (String)context.getVariable("eAttributeTypeName");
-// Trait name.
-String tn;
+<c:setVariable select="string($eAttribute/eAttributeType/@instanceTypeName)" var="instanceTypeName"/><%
+String itn = (String)context.getVariable("instanceTypeName");
+String val;
 
-if ( eAttributeTraitMap.containsKey( atn ) ) {
-    tn = eAttributeTraitMap.get( atn );
-%>        self.<c:get select="underscore($eAttribute/@name)"/> = <%= tn %>
+if ( instanceTypeNameValueMap.containsKey( itn ) ) {
+    val = instanceTypeNameValueMap.get( itn );
+%>        self.<c:get select="underscore($eAttribute/@name)"/> = <c:get select="underscore($eAttribute/@name)"/>
 <%
 } else {%>
         self.<c:get select="underscore($eAttribute/@name)"/> = '<c:get select="underscore($eAttribute/eAttributeType/eLiterals[1]/@literal)"/>'

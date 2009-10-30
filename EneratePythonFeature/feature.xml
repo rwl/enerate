@@ -22,7 +22,6 @@
    </url>
 
    <requires>
-      <import feature="com.github.enerate.core.feature" version="1.0.0.qualifier"/>
       <import plugin="org.eclipse.jet"/>
       <import plugin="org.eclipse.emf.ecore"/>
       <import plugin="org.eclipse.emf.codegen.ecore"/>
@@ -30,8 +29,7 @@
       <import plugin="org.eclipse.core.runtime"/>
       <import plugin="org.eclipse.ui"/>
       <import plugin="com.github.enerate.core"/>
-      <import plugin="com.github.enerate.xpath"/>
-      <import plugin="com.github.enerate.tag"/>
+      <import feature="com.github.enerate.core.feature" version="1.0.0.qualifier"/>
    </requires>
 
    <plugin
