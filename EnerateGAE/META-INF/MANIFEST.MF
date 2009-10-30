@@ -11,6 +11,8 @@ Require-Bundle: org.eclipse.jet,
  org.eclipse.core.resources,
  org.eclipse.core.runtime,
  org.eclipse.ui,
- com.github.enerate.core
+ com.github.enerate.core,
+ com.github.enerate.tag,
+ com.github.enerate.xpath
 Bundle-ClassPath: .,bin/
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
