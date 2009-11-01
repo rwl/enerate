@@ -1,27 +1,28 @@
 <%@jet imports="org.eclipse.emf.ecore.*"%>
 <c:choose>
+<%-- One-to-one (1..1) association. --%>
 <c:when test="$eReference/@many = 'false' and $eReference/eOpposite/@many = 'false'">
-    <%-- One-to-one (1..1) association. --%>
-#    <c:get select="underscore($eReference/@name)"/> = db.ReferenceProperty()
+    # <c:if test="count($eReference/eAnnotations) > 0"><c:setVariable var="eAnnotated" select="$eReference"/><c:include template="templates/comment.jet" passVariables="eAnnotated"/></c:if>
+    <c:get select="underscore($eReference/@name)"/> = db.ReferenceProperty()
 </c:when>
+<%-- One-to-many (1..n) association. --%>
 <c:when test="$eReference/@many = 'false' and $eReference/eOpposite/@many = 'true'">
-    <%-- One-to-many (1..n) association. --%>
-#    <c:get select="underscore($eReference/@name)"/> = db.ReferenceProperty()
+    # <c:if test="count($eReference/eAnnotations) > 0"><c:setVariable var="eAnnotated" select="$eReference"/><c:include template="templates/comment.jet" passVariables="eAnnotated"/></c:if>
+    <c:get select="underscore($eReference/@name)"/> = db.ReferenceProperty(collection_name="<c:get select="underscore($eReference/eOpposite/@name)"/>")
 </c:when>
+<%-- Many-to-one (n..1) association. --%>
 <c:when test="$eReference/@many = 'true' and $eReference/eOpposite/@many = 'false'">
-    <%-- Many-to-one (n..1) association. --%>
-    # The '<c:get select="underscore($eReference/@name)"/>' property has been implicitly created by
-    # the <c:get select="underscore($eReference/eOpposite/@name)"/>' property of <c:get select="$eReference/eOpposite/eContainingClass/@name"/>.
-    pass
+    # Virtual property. <c:if test="count($eReference/eAnnotations) > 0"><c:setVariable var="eAnnotated" select="$eReference"/><c:include template="templates/comment.jet" passVariables="eAnnotated"/></c:if>
+    pass #<c:get select="underscore($eReference/@name)"/>
 </c:when>
+<%-- Many-to-many (n..n) association.
 <c:when test="$eReference/@many = 'true' and $eReference/eOpposite/@many = 'true'">
-    <%-- Many-to-many (n..n) association. --%>
-#    <c:get select="underscore($eReference/@name)"/> = db.ListProperty(db.Key)
+    <c:get select="underscore($eReference/@name)"/> = db.ListProperty(db.Key)
 
-#    @property
-#    def <c:get select="underscore($eReference/eOpposite/@name)"/>(self):
-#        return <c:get select="$eReference/eReferenceType/@name"/>.gql("WHERE <c:get select="underscore($eReference/@name)"/> = :1", self.key())
-</c:when>
+    @property
+    def <c:get select="underscore($eReference/eOpposite/@name)"/>(self):
+        return <c:get select="$eReference/eReferenceType/@name"/>.gql("WHERE <c:get select="underscore($eReference/@name)"/> = :1", self.key())
+</c:when>--%>
 <%-- References without opposites. --%>
 <c:when test="$eReference/@many = 'false'">
 <c:if test="count($eReference/eAnnotations) > 0">

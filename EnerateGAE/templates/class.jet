@@ -1,14 +1,15 @@
 <%@jet imports="org.eclipse.emf.ecore.*"%>
 <%-- Classes with no super classes derive from db.Model. --%>
+#------------------------------------------------------------------------------
+#  "<c:get select="$eClass/@name"/>" class:
+#------------------------------------------------------------------------------
+
 class <c:get select="$eClass/@name"/>(<c:choose select="count($eClass/eSuperTypes)"><c:when test="0">db.Model</c:when><c:otherwise><c:iterate select="count($eClass/eSuperTypes)" var="eSuperTypeIdx"><c:get select="$eClass/eSuperTypes[$eSuperTypeIdx]/@name"/><c:if test="$eSuperTypeIdx != count($eClass/eSuperTypes)">, </c:if></c:iterate></c:otherwise></c:choose>):
     <c:if test="count($eClass/eAnnotations) > 0">
     """ <c:setVariable var="eAnnotated" select="$eClass"/><c:include template="templates/comment.jet" passVariables="eAnnotated"/>
     """
-
 </c:if>
-<c:if test="(count($eClass/eReferences) = 0) and (count($eClass/eAttributes) = 0)">
-    pass
-</c:if>
+    <c:if test="(count($eClass/eReferences) = 0) and (count($eClass/eAttributes) = 0)">pass</c:if>
 <c:iterate select="$eClass/eAttributes" var="eAttribute">
 <c:include template="templates/attribute.jet"/>
 
@@ -17,6 +18,15 @@ class <c:get select="$eClass/@name"/>(<c:choose select="count($eClass/eSuperType
 <c:include template="templates/reference.jet"/>
 
 </c:iterate>
+<c:userRegion>
+    # <<< <c:get select="underscore($eClass/@name)"/>
+<c:initialCode unmodifiedMarker="@generated">
+    # @generated
+</c:initialCode>
+    # >>> <c:get select="underscore($eClass/@name)"/>
+</c:userRegion>
+
 <c:iterate select="$eClass/eOperations" var="eOperation">
 <c:include template="templates/operation.jet"/>
+
 </c:iterate>

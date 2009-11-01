@@ -26,14 +26,24 @@ instanceTypeNameTraitMap.put("short", "db.IntegerProperty");
 instanceTypeNameTraitMap.put("java.lang.Short", "db.IntegerProperty");
 instanceTypeNameTraitMap.put("java.lang.String", "db.StringProperty");
 %>
+#------------------------------------------------------------------------------
 <c:include template="templates/license.jet"/>
+#------------------------------------------------------------------------------
 
 <c:if test="count($ePackage/eAnnotations) > 0">
 """ <c:setVariable var="eAnnotated" select="$ePackage"/><c:include template="templates/comment.jet" passVariables="eAnnotated"/>
 """
 </c:if>
 
+#------------------------------------------------------------------------------
+#  Imports:
+#------------------------------------------------------------------------------
+
 <c:include template="templates/import.jet"/>
+
+#------------------------------------------------------------------------------
+#  Properties:
+#------------------------------------------------------------------------------
 <c:iterate select="$ePackage/EDataType" var="eDataType"><%
 EDataType dt = (EDataType)context.getVariable("eDataType");
 String tn;
@@ -59,8 +69,12 @@ if ( instanceTypeNameTraitMap.containsKey( dt.getInstanceTypeName() ) ) {
 </c:choose>
 </c:iterate>
 
-ns_prefix = "<c:get select="$ePackage/@nsPrefix"/>"
-ns_uri = "<c:get select="$ePackage/@nsURI"/>"
+#------------------------------------------------------------------------------
+#  Constants:
+#------------------------------------------------------------------------------
+
+NS_PREFIX = "<c:get select="$ePackage/@nsPrefix"/>"
+NS_URI = "<c:get select="$ePackage/@nsURI"/>"
 
 <%-- Call the class template for any EClass objects. --%>
 <c:iterate select="$ePackage/EClass" var="eClass">
@@ -96,3 +110,5 @@ while ( i.hasNext() )
 }
 %>
 --%>
+
+# EOF -------------------------------------------------------------------------
