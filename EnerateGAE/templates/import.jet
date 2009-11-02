@@ -1,42 +1,25 @@
 <%@jet imports="org.eclipse.emf.ecore.*"%>
-<%@jet imports="java.util.*"%>
-<%
-ArrayList<String> imported = new ArrayList<String>();
-%>
 <c:userRegion>
 # <<< imports
 <c:initialCode unmodifiedMarker="@generated">
 # @generated
 <%-- Import super classes defined in other packages. --%>
-<c:iterate select="$ePackage/EClass/eSuperTypes" var="eSuperType">
-    <%-- The package in which the super class is defined. --%>
-    <c:setVariable var="eSuper" select="$eSuperType/ePackage"/>
-    <%-- Fixme: Use @nsPrefix aswell. --%>
-    <c:if test="string($eSuper/@name) != string($ePackage/@name)">
-<%
-EClass st = (EClass)context.getVariable("eSuperType");
-if ( !imported.contains( st.getName() ) ) {
-  imported.add( st.getName() );
-%>
-from <c:include template="templates/package_name.jet" passVariables="eSuper"/> import <c:get select="$eSuperType/@name"/>
-<%
-}
-%>
-    </c:if>
+<c:iterate select="$eClass/eSuperTypes" var="eSuperType">
+<c:setVariable var="eSuper" select="$eSuperType/ePackage"/>
+from <c:include template="templates/package_name.jet" passVariables="eSuper"/>.<c:get select="underscore($eSuperType/@name)"/> import <c:get select="$eSuperType/@name"/>
 </c:iterate>
 
-<%-- Import classes referenced by classes in this module. --%>
-<c:iterate select="$ePackage/EClass/eReferences" var="eReference">
-<c:if test="$eReference/@many = 'false'">
-<c:if test="string($eReference/eReferenceType/ePackage/@name) != string($ePackage/@name)">
-from <c:setVariable var="eSuper" select="$eReference/eReferenceType/ePackage"/><c:include template="templates/package_name.jet" passVariables="eSuper"/> import <c:get select="$eReference/eReferenceType/@name"/>
-</c:if>
+<%-- Import classes referenced by a one-to-many association. --%>
+<c:iterate select="$eClass/eReferences" var="eReference">
+<c:if test="$eReference/@many = 'false' and $eReference/eOpposite/@many = 'true'">
+<c:setVariable var="eSuper" select="$eReference/eReferenceType/ePackage"/>
+from <c:include template="templates/package_name.jet" passVariables="eSuper"/>.<c:get select="underscore($eReference/eReferenceType/@name)"/> import <c:get select="$eReference/eReferenceType/@name"/>
 </c:if>
 </c:iterate>
 
-<%-- Import custom trait attributes that are not defined in the 'ecore' package or the template's package. --%>
-<c:iterate select="$ePackage/EClass/eAttributes/eAttributeType" var="eAttributeType">
-<c:if test="string($eAttributeType/ePackage/@name) != 'ecore' and string($eAttributeType/ePackage/@name) != string($ePackage/@name)">
+<%-- Import custom trait attributes that are not defined in the 'ecore' package. --%>
+<c:iterate select="$eClass/eAttributes/eAttributeType" var="eAttributeType">
+<c:if test="string($eAttributeType/ePackage/@name) != 'ecore'">
 <c:setVariable var="eSuper" select="$eAttributeType/ePackage"/>
 from <c:include template="templates/package_name.jet" passVariables="eSuper"/> import <c:get select="$eAttributeType/@name"/>
 </c:if>

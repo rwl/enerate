@@ -1,18 +1,16 @@
 <%@taglib prefix="ws" id="org.eclipse.jet.workspaceTags" %>
 <%@jet imports="org.eclipse.emf.ecore.*"%>
-<c:choose>
-<c:when test="count($ePackage/eSubpackages) = 0">
-  <%-- ePackages that have no subpackages are written to a Python module. --%>
-  <ws:file template="templates/module.jet" path="{underscore($ePackage/@name)}.py"/>
-</c:when>
-<c:otherwise>
-  <%-- An ePackage that has subpackages is written to a Python package. --%>
-  <ws:folder path="{underscore($ePackage/@name)}">
-    <ws:file template="templates/module.jet" path="__init__.py"/>
-    <%-- Pass the subpackages to another package template. --%>
-    <c:iterate select="$ePackage/eSubpackages" var="ePackage">
-      <c:include template="templates/package.jet"/>
-    </c:iterate>
-  </ws:folder>
-</c:otherwise>
-</c:choose>
+<ws:folder path="{underscore($ePackage/@name)}">
+  <%-- Create an __init__.py file for the package containing any defined EEnum/EDataType. --%>
+  <ws:file template="templates/init.jet" path="__init__.py"/>
+
+  <%-- Create one file per class. --%>
+  <c:iterate select="$ePackage/EClass" var="eClass">
+    <ws:file template="templates/module.jet" path="{underscore($eClass/@name)}.py"/>
+  </c:iterate>
+
+  <%-- Recursively call the package template with any subpackages. --%>
+  <c:iterate select="$ePackage/eSubpackages" var="ePackage">
+    <c:include template="templates/package.jet"/>
+  </c:iterate>
+</ws:folder>
