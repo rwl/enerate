@@ -3,6 +3,10 @@
 <%
 ArrayList<String> imported = new ArrayList<String>();
 %>
+<c:userRegion>
+# <<< imports
+<c:initialCode unmodifiedMarker="@generated">
+# @generated
 <%-- Import super classes defined in other packages. --%>
 <c:iterate select="$ePackage/EClass/eSuperTypes" var="eSuperType">
     <%-- The package in which the super class is defined. --%>
@@ -29,10 +33,6 @@ from <c:include template="templates/package_name.jet" passVariables="eSuper"/> i
 </c:if>
 </c:iterate>
 
-<c:userRegion>
-# <<< imports
-<c:initialCode unmodifiedMarker="@generated">
-# @generated
 from google.appengine.ext import db
 </c:initialCode>
 # >>> imports

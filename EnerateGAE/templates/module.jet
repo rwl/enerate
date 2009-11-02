@@ -35,15 +35,12 @@ instanceTypeNameTraitMap.put("java.lang.String", "db.StringProperty");
 """
 </c:if>
 
-#------------------------------------------------------------------------------
-#  Imports:
-#------------------------------------------------------------------------------
-
 <c:include template="templates/import.jet"/>
 
-#------------------------------------------------------------------------------
-#  Properties:
-#------------------------------------------------------------------------------
+<c:userRegion>
+# <<< properties
+<c:initialCode unmodifiedMarker="@generated">
+# @generated
 <c:iterate select="$ePackage/EDataType" var="eDataType"><%
 EDataType dt = (EDataType)context.getVariable("eDataType");
 String tn;
@@ -68,13 +65,19 @@ if ( instanceTypeNameTraitMap.containsKey( dt.getInstanceTypeName() ) ) {
 </c:otherwise>
 </c:choose>
 </c:iterate>
+</c:initialCode>
+# >>> properties
+</c:userRegion>
 
-#------------------------------------------------------------------------------
-#  Constants:
-#------------------------------------------------------------------------------
-
+<c:userRegion>
+# <<< constants
+<c:initialCode unmodifiedMarker="@generated">
+# @generated
 NS_PREFIX = "<c:get select="$ePackage/@nsPrefix"/>"
 NS_URI = "<c:get select="$ePackage/@nsURI"/>"
+</c:initialCode>
+# >>> constants
+</c:userRegion>
 
 <%-- Call the class template for any EClass objects. --%>
 <c:iterate select="$ePackage/EClass" var="eClass">
