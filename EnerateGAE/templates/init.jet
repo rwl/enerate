@@ -4,27 +4,27 @@
 <%
 ArrayList<String> defined = new ArrayList<String>();
 ArrayList<String> queue = new ArrayList<String>();
-HashMap<String, String> instanceTypeNameTraitMap = new HashMap<String, String>();
+HashMap<String, String> instanceTypeNamePropertyMap = new HashMap<String, String>();
 
-instanceTypeNameTraitMap.put("boolean", "db.BooleanProperty(default=False)");
-instanceTypeNameTraitMap.put("java.lang.Boolean", "db.BooleanProperty(default=False)");
-instanceTypeNameTraitMap.put("char", "db.StringProperty(default='')");
-instanceTypeNameTraitMap.put("java.lang.Character", "db.StringProperty(default='')");
-instanceTypeNameTraitMap.put("java.util.Date", "db.DateProperty(default='')");
-instanceTypeNameTraitMap.put("double", "db.FloatProperty(default=0.0)");
-instanceTypeNameTraitMap.put("java.lang.Double", "db.FloatProperty(default=0.0)");
-instanceTypeNameTraitMap.put("float", "db.FloatProperty(default=0.0)");
-instanceTypeNameTraitMap.put("java.lang.Float", "db.FloatProperty(default=0.0)");
-instanceTypeNameTraitMap.put("int", "db.IntegerProperty(default=0)");
-instanceTypeNameTraitMap.put("java.lang.Integer", "db.IntegerProperty(default=0)");
-instanceTypeNameTraitMap.put("java.lang.Class", "db.ReferenceProperty()");
-instanceTypeNameTraitMap.put("java.lang.Object", "db.ReferenceProperty()");
-instanceTypeNameTraitMap.put("long", "db.IntegerProperty(default=0)");
-instanceTypeNameTraitMap.put("java.lang.Long", "db.IntegerProperty(default=0)");
-instanceTypeNameTraitMap.put("java.util.Map", "db.ListProperty(default=[])");
-instanceTypeNameTraitMap.put("short", "db.IntegerProperty(default=0)");
-instanceTypeNameTraitMap.put("java.lang.Short", "db.IntegerProperty(default=0)");
-instanceTypeNameTraitMap.put("java.lang.String", "db.StringProperty(default='')");
+instanceTypeNamePropertyMap.put("boolean", "db.BooleanProperty()");
+instanceTypeNamePropertyMap.put("java.lang.Boolean", "db.BooleanProperty()");
+instanceTypeNamePropertyMap.put("char", "db.StringProperty()");
+instanceTypeNamePropertyMap.put("java.lang.Character", "db.StringProperty()");
+instanceTypeNamePropertyMap.put("java.util.Date", "db.DateProperty()");
+instanceTypeNamePropertyMap.put("double", "db.FloatProperty()");
+instanceTypeNamePropertyMap.put("java.lang.Double", "db.FloatProperty()");
+instanceTypeNamePropertyMap.put("float", "db.FloatProperty()");
+instanceTypeNamePropertyMap.put("java.lang.Float", "db.FloatProperty()");
+instanceTypeNamePropertyMap.put("int", "db.IntegerProperty()");
+instanceTypeNamePropertyMap.put("java.lang.Integer", "db.IntegerProperty()");
+instanceTypeNamePropertyMap.put("java.lang.Class", "db.ReferenceProperty()");
+instanceTypeNamePropertyMap.put("java.lang.Object", "db.ReferenceProperty()");
+instanceTypeNamePropertyMap.put("long", "db.IntegerProperty()");
+instanceTypeNamePropertyMap.put("java.lang.Long", "db.IntegerProperty()");
+instanceTypeNamePropertyMap.put("java.util.Map", "db.ListProperty()");
+instanceTypeNamePropertyMap.put("short", "db.IntegerProperty()");
+instanceTypeNamePropertyMap.put("java.lang.Short", "db.IntegerProperty()");
+instanceTypeNamePropertyMap.put("java.lang.String", "db.StringProperty()");
 %>
 #------------------------------------------------------------------------------
 <c:include template="templates/license.jet"/>
@@ -51,8 +51,8 @@ ns_uri = "<c:get select="$ePackage/@nsURI"/>"
 EDataType dt = (EDataType)context.getVariable("eDataType");
 String tn;
 
-if ( instanceTypeNameTraitMap.containsKey( dt.getInstanceTypeName() ) ) {
-    tn = instanceTypeNameTraitMap.get( dt.getInstanceTypeName() );
+if ( instanceTypeNamePropertyMap.containsKey( dt.getInstanceTypeName() ) ) {
+    tn = instanceTypeNamePropertyMap.get( dt.getInstanceTypeName() );
 } else {
     tn = "db.StringProperty";
 }

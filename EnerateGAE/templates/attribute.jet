@@ -4,23 +4,23 @@
 <%
 ArrayList<String> imported = new ArrayList<String>();
 ArrayList<String> traitNames = new ArrayList<String>();
-HashMap<String, String> eAttributeTraitMap = new HashMap<String, String>();
+HashMap<String, String> eAttributePropertyMap = new HashMap<String, String>();
 
-eAttributeTraitMap.put("EString", "db.StringProperty(default='')");
-eAttributeTraitMap.put("EInt", "db.IntegerProperty(default=0)");
-eAttributeTraitMap.put("EBoolean", "db.BooleanProperty(default=False)");
-//eAttributeTraitMap.put("EDate", "db.DateProperty()");
-eAttributeTraitMap.put("EDate", "db.StringProperty(default='')");
-eAttributeTraitMap.put("EDouble", "db.FloatProperty(default=0.0)");
-eAttributeTraitMap.put("EList", "db.ListProperty(default=[])");
-eAttributeTraitMap.put("EEnumerator", "db.StringProperty(default='')");
-eAttributeTraitMap.put("EFloat", "db.FloatProperty(default=0.0)");
-eAttributeTraitMap.put("ELong", "db.IntegerProperty(default=0)");
-eAttributeTraitMap.put("EMap", "db.ListProperty(default=[])");
-eAttributeTraitMap.put("EShort", "db.IntegerProperty(default=0)");
+eAttributePropertyMap.put("EString", "db.StringProperty()");
+eAttributePropertyMap.put("EInt", "db.IntegerProperty()");
+eAttributePropertyMap.put("EBoolean", "db.BooleanProperty()");
+eAttributePropertyMap.put("EDate", "db.DateProperty()");
+//eAttributePropertyMap.put("EDate", "db.StringProperty()");
+eAttributePropertyMap.put("EDouble", "db.FloatProperty()");
+eAttributePropertyMap.put("EList", "db.ListProperty()");
+eAttributePropertyMap.put("EEnumerator", "db.StringProperty()");
+eAttributePropertyMap.put("EFloat", "db.FloatProperty()");
+eAttributePropertyMap.put("ELong", "db.IntegerProperty()");
+eAttributePropertyMap.put("EMap", "db.ListProperty()");
+eAttributePropertyMap.put("EShort", "db.IntegerProperty()");
 
-eAttributeTraitMap.put("Integer", "db.IntegerProperty(default=0)");
-eAttributeTraitMap.put("Boolean", "db.BooleanProperty(default=False)");
+eAttributePropertyMap.put("Integer", "db.IntegerProperty()");
+eAttributePropertyMap.put("Boolean", "db.BooleanProperty()");
 %>
 <c:if test="count($eAttribute/eAnnotations) > 0">
 <c:setVariable var="eAnnotated" select="$eAttribute"/>
@@ -30,8 +30,8 @@ String atn = (String)context.getVariable("eAttributeTypeName");
 // Trait name.
 String tn;
 
-if ( eAttributeTraitMap.containsKey( atn ) ) {
-    tn = eAttributeTraitMap.get( atn );
+if ( eAttributePropertyMap.containsKey( atn ) ) {
+    tn = eAttributePropertyMap.get( atn );
 } else {
     tn = atn;
 }
