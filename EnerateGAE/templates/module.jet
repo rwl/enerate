@@ -10,8 +10,8 @@
 
 <c:include template="templates/import.jet"/>
 
-<%-- Classes with no super classes derive from db.Model. --%>
-class <c:get select="$eClass/@name"/>(<c:choose select="count($eClass/eSuperTypes)"><c:when test="0">db.Model</c:when><c:otherwise><c:iterate select="$eClass/eSuperTypes" var="eSuperType" delimiter=", "><c:get select="$eSuperType/@name"/></c:iterate></c:otherwise></c:choose>):
+<%-- Classes with no super classes derive from db.Model.  N.B. No support for multiple inheritance. --%>
+class <c:get select="$eClass/@name"/>(<c:choose select="count($eClass/eSuperTypes)"><c:when test="0">db.Model</c:when><c:otherwise><c:get select="$eClass/eSuperTypes[1]/@name"/></c:otherwise></c:choose>):
     <c:if test="count($eClass/eAnnotations) > 0">
     """ <c:setVariable var="eAnnotated" select="$eClass"/><c:include template="templates/comment.jet" passVariables="eAnnotated"/>
     """

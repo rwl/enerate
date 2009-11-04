@@ -3,12 +3,14 @@
 <%-- One-to-one (1..1) association. --%>
 <c:when test="$eReference/@many = 'false' and $eReference/eOpposite/@many = 'false'">
     # <c:if test="count($eReference/eAnnotations) > 0"><c:setVariable var="eAnnotated" select="$eReference"/><c:include template="templates/comment.jet" passVariables="eAnnotated"/></c:if>
-    <c:get select="underscore($eReference/@name)"/> = db.ReferenceProperty(db.Model, collection_name="_<c:get select="underscore($eClass/@name)"/>_set")
+    <c:get select="underscore($eReference/@name)"/> = db.ReferenceProperty(db.Model,
+        collection_name="_<c:get select="underscore($eClass/@name)"/>_set") # <c:get select="underscore($eReference/eOpposite/@name)"/>
 </c:when>
 <%-- One-to-many (1..n) association. --%>
 <c:when test="$eReference/@many = 'false' and $eReference/eOpposite/@many = 'true'">
     # <c:if test="count($eReference/eAnnotations) > 0"><c:setVariable var="eAnnotated" select="$eReference"/><c:include template="templates/comment.jet" passVariables="eAnnotated"/></c:if>
-    <c:get select="underscore($eReference/@name)"/> = db.ReferenceProperty(<c:get select="$eReference/eReferenceType/@name"/>, collection_name="<c:get select="underscore($eReference/eOpposite/@name)"/>")
+    <c:get select="underscore($eReference/@name)"/> = db.ReferenceProperty(<c:get select="$eReference/eReferenceType/@name"/>,
+        collection_name="<c:get select="underscore($eReference/eOpposite/@name)"/>")
 </c:when>
 <%-- Many-to-one (n..1) association. --%>
 <c:when test="$eReference/@many = 'true' and $eReference/eOpposite/@many = 'false'">
@@ -29,7 +31,8 @@
     <c:setVariable var="eAnnotated" select="$eReference"/>
     # <c:include template="templates/comment.jet" passVariables="eAnnotated"/>
 </c:if>
-    <c:get select="underscore($eReference/@name)"/> = db.ReferenceProperty(<c:get select="$eReference/eReferenceType/@name"/>, collection_name="_<c:get select="underscore($eClass/@name)"/>_set")
+    <c:get select="underscore($eReference/@name)"/> = db.ReferenceProperty(<c:get select="$eReference/eReferenceType/@name"/>,
+        collection_name="_<c:get select="underscore($eClass/@name)"/>_set")
 </c:when>
 <c:when test="$eReference/@many='true'">
     <c:get select="underscore($eReference/@name)"/> = db.ListProperty(db.Key)
