@@ -4,35 +4,39 @@
 <%
 ArrayList<String> imported = new ArrayList<String>();
 ArrayList<String> traitNames = new ArrayList<String>();
-HashMap<String, String> eAttributePropertyMap = new HashMap<String, String>();
+HashMap<String, String> instanceTypeNamePropertyMap = new HashMap<String, String>();
 
-eAttributePropertyMap.put("EString", "db.StringProperty()");
-eAttributePropertyMap.put("EInt", "db.IntegerProperty()");
-eAttributePropertyMap.put("EBoolean", "db.BooleanProperty()");
-eAttributePropertyMap.put("EDate", "db.DateProperty()");
-//eAttributePropertyMap.put("EDate", "db.StringProperty()");
-eAttributePropertyMap.put("EDouble", "db.FloatProperty()");
-eAttributePropertyMap.put("EList", "db.ListProperty()");
-eAttributePropertyMap.put("EEnumerator", "db.StringProperty()");
-eAttributePropertyMap.put("EFloat", "db.FloatProperty()");
-eAttributePropertyMap.put("ELong", "db.IntegerProperty()");
-eAttributePropertyMap.put("EMap", "db.ListProperty()");
-eAttributePropertyMap.put("EShort", "db.IntegerProperty()");
-
-eAttributePropertyMap.put("Integer", "db.IntegerProperty()");
-eAttributePropertyMap.put("Boolean", "db.BooleanProperty()");
+instanceTypeNamePropertyMap.put("boolean", "db.BooleanProperty()");
+instanceTypeNamePropertyMap.put("java.lang.Boolean", "db.BooleanProperty()");
+instanceTypeNamePropertyMap.put("char", "db.StringProperty()");
+instanceTypeNamePropertyMap.put("java.lang.Character", "db.StringProperty()");
+instanceTypeNamePropertyMap.put("java.util.Date", "db.DateTimeProperty()");
+instanceTypeNamePropertyMap.put("double", "db.FloatProperty()");
+instanceTypeNamePropertyMap.put("java.lang.Double", "db.FloatProperty()");
+instanceTypeNamePropertyMap.put("float", "db.FloatProperty()");
+instanceTypeNamePropertyMap.put("java.lang.Float", "db.FloatProperty()");
+instanceTypeNamePropertyMap.put("int", "db.IntegerProperty()");
+instanceTypeNamePropertyMap.put("java.lang.Integer", "db.IntegerProperty()");
+instanceTypeNamePropertyMap.put("java.lang.Class", "db.ReferenceProperty()");
+instanceTypeNamePropertyMap.put("java.lang.Object", "db.ReferenceProperty()");
+instanceTypeNamePropertyMap.put("long", "db.IntegerProperty()");
+instanceTypeNamePropertyMap.put("java.lang.Long", "db.IntegerProperty()");
+instanceTypeNamePropertyMap.put("java.util.Map", "db.ListProperty()");
+instanceTypeNamePropertyMap.put("short", "db.IntegerProperty()");
+instanceTypeNamePropertyMap.put("java.lang.Short", "db.IntegerProperty()");
+instanceTypeNamePropertyMap.put("java.lang.String", "db.StringProperty()");
 %>
 <c:if test="count($eAttribute/eAnnotations) > 0">
 <c:setVariable var="eAnnotated" select="$eAttribute"/>
     # <c:include template="templates/comment.jet" passVariables="eAnnotated"/>
-</c:if><c:setVariable select="string($eAttribute/eAttributeType/@name)" var="eAttributeTypeName"/><%
-String atn = (String)context.getVariable("eAttributeTypeName");
-// Trait name.
-String tn;
+</c:if><c:setVariable select="string($eAttribute/eAttributeType/@instanceTypeName)" var="instanceTypeName"/><%
+String itn = (String)context.getVariable("instanceTypeName");
+// Property name.
+String pn;
 
-if ( eAttributePropertyMap.containsKey( atn ) ) {
-    tn = eAttributePropertyMap.get( atn );
+if ( instanceTypeName.containsKey( itn ) ) {
+    pn = eAttributePropertyMap.get( itn );
 } else {
-    tn = atn;
+    pn = itn;
 }
-%>    <c:get select="underscore($eAttribute/@name)"/> = <%= tn %>
+%>    <c:get select="underscore($eAttribute/@name)"/> = <%= pn %>

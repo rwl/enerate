@@ -10,7 +10,7 @@ instanceTypeNamePropertyMap.put("boolean", "db.BooleanProperty()");
 instanceTypeNamePropertyMap.put("java.lang.Boolean", "db.BooleanProperty()");
 instanceTypeNamePropertyMap.put("char", "db.StringProperty()");
 instanceTypeNamePropertyMap.put("java.lang.Character", "db.StringProperty()");
-instanceTypeNamePropertyMap.put("java.util.Date", "db.DateProperty()");
+instanceTypeNamePropertyMap.put("java.util.Date", "db.DateTimeProperty()");
 instanceTypeNamePropertyMap.put("double", "db.FloatProperty()");
 instanceTypeNamePropertyMap.put("java.lang.Double", "db.FloatProperty()");
 instanceTypeNamePropertyMap.put("float", "db.FloatProperty()");
