@@ -34,8 +34,8 @@ String itn = (String)context.getVariable("instanceTypeName");
 // Property name.
 String pn;
 
-if ( instanceTypeName.containsKey( itn ) ) {
-    pn = eAttributePropertyMap.get( itn );
+if ( instanceTypeNamePropertyMap.containsKey( itn ) ) {
+    pn = instanceTypeNamePropertyMap.get( itn );
 } else {
     pn = itn;
 }
