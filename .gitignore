@@ -1,11 +1,11 @@
 *.class
 *~
 EnerateGAE/bin/*
-EnerateGAE/jet2java/*
+#EnerateGAE/jet2java/*
 EneratePython/bin/*
-EneratePython/jet2java/*
+#EneratePython/jet2java/*
 EnerateTraits/bin/*
-EnerateTraits/jet2java/*
+#EnerateTraits/jet2java/*
 EnerateXPath/bin/*
-EnerateXPath/jet2java/*
+#EnerateXPath/jet2java/*
 
