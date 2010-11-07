@@ -149,11 +149,11 @@ public class _jet_attribute implements JET2Template {
             _jettag_c_if_4_216.setTagInfo(_td_c_if_4_216);
             _jettag_c_if_4_216.doStart(context, out);
             while (_jettag_c_if_4_216.okToProcessBody()) {
-                out.write("        #: ");  //$NON-NLS-1$        
+                out.write("        #:");  //$NON-NLS-1$        
                 _jettag_c_if_4_216.handleBodyContent(out);
             }
             _jettag_c_if_4_216.doEnd();
-            out.write("Values are: ");  //$NON-NLS-1$        
+            out.write(" Values are: ");  //$NON-NLS-1$        
             RuntimeTagElement _jettag_c_iterate_4_295 = context.getTagFactory().createRuntimeTag(_jetns_c, "iterate", "c:iterate", _td_c_iterate_4_295); //$NON-NLS-1$ //$NON-NLS-2$
             _jettag_c_iterate_4_295.setRuntimeParent(_jettag_c_if_4_91);
             _jettag_c_iterate_4_295.setTagInfo(_td_c_iterate_4_295);

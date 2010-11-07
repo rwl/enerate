@@ -1,5 +1,5 @@
 <%@jet imports="org.eclipse.emf.ecore.*"%>
 <c:if test="count($eAttribute/eAnnotations) > 0">
 <c:setVariable var="eAnnotated" select="$eAttribute"/>
-        #: <c:include template="templates/comment.jet" passVariables="eAnnotated"/></c:if><c:if test="count($eAttribute/eAttributeType/eLiterals) > 0"><c:setVariable var="eEnum" select="$eAttribute/eAttributeType"/><c:if test="count($eAttribute/eAnnotations) = 0">        #: </c:if>Values are: <c:iterate select="count($eEnum/eLiterals)" var="eLiteralIdx">"<c:get select="$eEnum/eLiterals[$eLiteralIdx]/@literal"/>"<c:if test="$eLiteralIdx != count($eEnum/eLiterals)">, </c:if></c:iterate></c:if>
+        #: <c:include template="templates/comment.jet" passVariables="eAnnotated"/></c:if><c:if test="count($eAttribute/eAttributeType/eLiterals) > 0"><c:setVariable var="eEnum" select="$eAttribute/eAttributeType"/><c:if test="count($eAttribute/eAnnotations) = 0">        #:</c:if> Values are: <c:iterate select="count($eEnum/eLiterals)" var="eLiteralIdx">"<c:get select="$eEnum/eLiterals[$eLiteralIdx]/@literal"/>"<c:if test="$eLiteralIdx != count($eEnum/eLiterals)">, </c:if></c:iterate></c:if>
         self.<c:get select="$eAttribute/@name"/> = <c:get select="$eAttribute/@name"/>

@@ -70,9 +70,9 @@ public class _jet_reference_0 implements JET2Template {
         out.write(NL);         
         out.write("        \"\"\"");  //$NON-NLS-1$        
         out.write(NL);         
-        out.write("        if self.Parent is not None:");  //$NON-NLS-1$        
+        out.write("        if self.Model is not None:");  //$NON-NLS-1$        
         out.write(NL);         
-        out.write("            return [e for e in self.Parent.Elements \\");  //$NON-NLS-1$        
+        out.write("            return [e for e in self.Model.Elements \\");  //$NON-NLS-1$        
         out.write(NL);         
         out.write("                if \"%s.%s\" % (e.__module__, e.__class__.__name__) == \\");  //$NON-NLS-1$        
         out.write(NL);         
