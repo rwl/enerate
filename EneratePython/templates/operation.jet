@@ -1,18 +1,18 @@
 <c:userRegion>
-    # <<< <c:get select="underscore($eOperation/@name)"/>
+    # <<< <c:get select="$eOperation/@name"/>
     <c:initialCode unmodifiedMarker="@generated">
     <c:setVariable select="$eOperation/EGenericType/eClassifier/@name" var="returnType"/>
     <%-- Define a class method if it returns an instance of the parent class. --%>
     <c:if test="$returnType = $eOperation/eContainingClass/@name">
     @classmethod
     </c:if>
-    def <c:get select="underscore($eOperation/@name)"/>(<c:choose select="$returnType">
+    def <c:get select="$eOperation/@name"/>(<c:choose select="$returnType">
   <c:when test="$eOperation/eContainingClass/@name">cls</c:when>
   <c:otherwise>self</c:otherwise>
 </c:choose><c:iterate select="$eOperation/eParameters" var="eParameter"><c:choose>
-  <c:when test="$eParameter/@upperBound > 1">, *<c:get select="underscore($eParameter/@name)"/></c:when>
-  <c:when test="$eParameter/eType/@name = 'EMap'">, **<c:get select="underscore($eParameter/@name)"/></c:when>
-  <c:otherwise>, <c:get select="underscore($eParameter/@name)"/></c:otherwise>
+  <c:when test="$eParameter/@upperBound > 1">, *<c:get select="$eParameter/@name"/></c:when>
+  <c:when test="$eParameter/eType/@name = 'EMap'">, **<c:get select="$eParameter/@name"/></c:when>
+  <c:otherwise>, <c:get select="$eParameter/@name"/></c:otherwise>
 </c:choose></c:iterate>):
         """ <c:if test="count($eOperation/eAnnotations) > 0"><c:setVariable var="eAnnotated" select="$eOperation"/>
         <c:include template="templates/comment.jet" passVariables="eAnnotated"/>
@@ -21,5 +21,5 @@
         """
         pass
     </c:initialCode>
-    # >>> <c:get select="underscore($eOperation/@name)"/>
+    # >>> <c:get select="$eOperation/@name"/>
 </c:userRegion>

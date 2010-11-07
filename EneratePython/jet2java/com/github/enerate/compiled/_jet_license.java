@@ -18,27 +18,31 @@ public class _jet_license implements JET2Template {
         out.write(NL);         
         out.write("#");  //$NON-NLS-1$        
         out.write(NL);         
-        out.write("# Licensed under the Apache License, Version 2.0 (the \"License\");");  //$NON-NLS-1$        
+        out.write("# This library is free software; you can redistribute it and/or");  //$NON-NLS-1$        
         out.write(NL);         
-        out.write("# you may not use this file except in compliance with the License.");  //$NON-NLS-1$        
+        out.write("# modify it under the terms of the GNU Lesser General Public");  //$NON-NLS-1$        
         out.write(NL);         
-        out.write("# You may obtain a copy of the License at");  //$NON-NLS-1$        
+        out.write("# License as published by the Free Software Foundation; either");  //$NON-NLS-1$        
         out.write(NL);         
-        out.write("#");  //$NON-NLS-1$        
-        out.write(NL);         
-        out.write("#     http://www.apache.org/licenses/LICENSE-2.0");  //$NON-NLS-1$        
+        out.write("# version 2.1 of the License, or (at your option) any later version.");  //$NON-NLS-1$        
         out.write(NL);         
         out.write("#");  //$NON-NLS-1$        
         out.write(NL);         
-        out.write("# Unless required by applicable law or agreed to in writing, software");  //$NON-NLS-1$        
+        out.write("# This library is distributed in the hope that it will be useful,");  //$NON-NLS-1$        
         out.write(NL);         
-        out.write("# distributed under the License is distributed on an \"AS IS\" BASIS,");  //$NON-NLS-1$        
+        out.write("# but WITHOUT ANY WARRANTY; without even the implied warranty of");  //$NON-NLS-1$        
         out.write(NL);         
-        out.write("# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.");  //$NON-NLS-1$        
+        out.write("# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU");  //$NON-NLS-1$        
         out.write(NL);         
-        out.write("# See the License for the specific language governing permissions and");  //$NON-NLS-1$        
+        out.write("# Lesser General Public License for more details.");  //$NON-NLS-1$        
         out.write(NL);         
-        out.write("# limitations under the License.");  //$NON-NLS-1$        
+        out.write("#");  //$NON-NLS-1$        
+        out.write(NL);         
+        out.write("# You should have received a copy of the GNU Lesser General Public");  //$NON-NLS-1$        
+        out.write(NL);         
+        out.write("# License along with this library; if not, write to the Free Software");  //$NON-NLS-1$        
+        out.write(NL);         
+        out.write("# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA, USA");  //$NON-NLS-1$        
         out.write(NL);         
     }
 }

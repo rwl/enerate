@@ -71,8 +71,9 @@ public abstract class GenerateCodeAction extends ActionDelegate implements IActi
 		job.schedule();
 		IStatus status = job.getResult();
 
-		if (!status.isOK())
-			System.err.println(status.getMessage());
+		if (status != null)
+			if (!status.isOK())
+				System.err.println(status.getMessage());
 	}
 
 	/**

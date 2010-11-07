@@ -1,4 +1,4 @@
 <c:setVariable var="pkg_name" select="$eSuper/@name"/>
 <c:if test="$eSuper/eSuperPackage">
 <c:setVariable var="eSuper" select="$eSuper/eSuperPackage"/>
-<c:include template="templates/package_name.jet" passVariables="eSuper"/>.</c:if><c:get select="underscore($pkg_name)"/>
+<c:include template="templates/package_name.jet" passVariables="eSuper"/>.</c:if><c:get select="$pkg_name"/>

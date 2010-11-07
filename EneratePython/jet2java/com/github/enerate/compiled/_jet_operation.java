@@ -27,7 +27,7 @@ public class _jet_operation implements JET2Template {
                 "select", //$NON-NLS-1$
             },
             new String[] {
-                "underscore($eOperation/@name)", //$NON-NLS-1$
+                "$eOperation/@name", //$NON-NLS-1$
             } );
     private static final TagInfo _td_c_initialCode_3_5 = new TagInfo("c:initialCode", //$NON-NLS-1$
             3, 5,
@@ -61,10 +61,10 @@ public class _jet_operation implements JET2Template {
                 "select", //$NON-NLS-1$
             },
             new String[] {
-                "underscore($eOperation/@name)", //$NON-NLS-1$
+                "$eOperation/@name", //$NON-NLS-1$
             } );
-    private static final TagInfo _td_c_choose_9_57 = new TagInfo("c:choose", //$NON-NLS-1$
-            9, 57,
+    private static final TagInfo _td_c_choose_9_45 = new TagInfo("c:choose", //$NON-NLS-1$
+            9, 45,
             new String[] {
                 "select", //$NON-NLS-1$
             },
@@ -115,7 +115,7 @@ public class _jet_operation implements JET2Template {
                 "select", //$NON-NLS-1$
             },
             new String[] {
-                "underscore($eParameter/@name)", //$NON-NLS-1$
+                "$eParameter/@name", //$NON-NLS-1$
             } );
     private static final TagInfo _td_c_when_14_3 = new TagInfo("c:when", //$NON-NLS-1$
             14, 3,
@@ -131,7 +131,7 @@ public class _jet_operation implements JET2Template {
                 "select", //$NON-NLS-1$
             },
             new String[] {
-                "underscore($eParameter/@name)", //$NON-NLS-1$
+                "$eParameter/@name", //$NON-NLS-1$
             } );
     private static final TagInfo _td_c_otherwise_15_3 = new TagInfo("c:otherwise", //$NON-NLS-1$
             15, 3,
@@ -145,7 +145,7 @@ public class _jet_operation implements JET2Template {
                 "select", //$NON-NLS-1$
             },
             new String[] {
-                "underscore($eParameter/@name)", //$NON-NLS-1$
+                "$eParameter/@name", //$NON-NLS-1$
             } );
     private static final TagInfo _td_c_if_17_13 = new TagInfo("c:if", //$NON-NLS-1$
             17, 13,
@@ -181,7 +181,7 @@ public class _jet_operation implements JET2Template {
                 "select", //$NON-NLS-1$
             },
             new String[] {
-                "underscore($eOperation/@name)", //$NON-NLS-1$
+                "$eOperation/@name", //$NON-NLS-1$
             } );
 
     public void generate(final JET2Context context, final JET2Writer __out) {
@@ -226,17 +226,17 @@ public class _jet_operation implements JET2Template {
                 _jettag_c_get_9_9.doStart(context, out);
                 _jettag_c_get_9_9.doEnd();
                 out.write("(");  //$NON-NLS-1$        
-                RuntimeTagElement _jettag_c_choose_9_57 = context.getTagFactory().createRuntimeTag(_jetns_c, "choose", "c:choose", _td_c_choose_9_57); //$NON-NLS-1$ //$NON-NLS-2$
-                _jettag_c_choose_9_57.setRuntimeParent(_jettag_c_initialCode_3_5);
-                _jettag_c_choose_9_57.setTagInfo(_td_c_choose_9_57);
-                _jettag_c_choose_9_57.doStart(context, out);
-                JET2Writer _jettag_c_choose_9_57_saved_out = out;
-                while (_jettag_c_choose_9_57.okToProcessBody()) {
+                RuntimeTagElement _jettag_c_choose_9_45 = context.getTagFactory().createRuntimeTag(_jetns_c, "choose", "c:choose", _td_c_choose_9_45); //$NON-NLS-1$ //$NON-NLS-2$
+                _jettag_c_choose_9_45.setRuntimeParent(_jettag_c_initialCode_3_5);
+                _jettag_c_choose_9_45.setTagInfo(_td_c_choose_9_45);
+                _jettag_c_choose_9_45.doStart(context, out);
+                JET2Writer _jettag_c_choose_9_45_saved_out = out;
+                while (_jettag_c_choose_9_45.okToProcessBody()) {
                     out = out.newNestedContentWriter();
                     out.write(NL);         
                     out.write("  ");  //$NON-NLS-1$        
                     RuntimeTagElement _jettag_c_when_10_3 = context.getTagFactory().createRuntimeTag(_jetns_c, "when", "c:when", _td_c_when_10_3); //$NON-NLS-1$ //$NON-NLS-2$
-                    _jettag_c_when_10_3.setRuntimeParent(_jettag_c_choose_9_57);
+                    _jettag_c_when_10_3.setRuntimeParent(_jettag_c_choose_9_45);
                     _jettag_c_when_10_3.setTagInfo(_td_c_when_10_3);
                     _jettag_c_when_10_3.doStart(context, out);
                     JET2Writer _jettag_c_when_10_3_saved_out = out;
@@ -250,7 +250,7 @@ public class _jet_operation implements JET2Template {
                     out.write(NL);         
                     out.write("  ");  //$NON-NLS-1$        
                     RuntimeTagElement _jettag_c_otherwise_11_3 = context.getTagFactory().createRuntimeTag(_jetns_c, "otherwise", "c:otherwise", _td_c_otherwise_11_3); //$NON-NLS-1$ //$NON-NLS-2$
-                    _jettag_c_otherwise_11_3.setRuntimeParent(_jettag_c_choose_9_57);
+                    _jettag_c_otherwise_11_3.setRuntimeParent(_jettag_c_choose_9_45);
                     _jettag_c_otherwise_11_3.setTagInfo(_td_c_otherwise_11_3);
                     _jettag_c_otherwise_11_3.doStart(context, out);
                     JET2Writer _jettag_c_otherwise_11_3_saved_out = out;
@@ -262,10 +262,10 @@ public class _jet_operation implements JET2Template {
                     out = _jettag_c_otherwise_11_3_saved_out;
                     _jettag_c_otherwise_11_3.doEnd();
                     out.write(NL);         
-                    _jettag_c_choose_9_57.handleBodyContent(out);
+                    _jettag_c_choose_9_45.handleBodyContent(out);
                 }
-                out = _jettag_c_choose_9_57_saved_out;
-                _jettag_c_choose_9_57.doEnd();
+                out = _jettag_c_choose_9_45_saved_out;
+                _jettag_c_choose_9_45.doEnd();
                 RuntimeTagElement _jettag_c_iterate_12_12 = context.getTagFactory().createRuntimeTag(_jetns_c, "iterate", "c:iterate", _td_c_iterate_12_12); //$NON-NLS-1$ //$NON-NLS-2$
                 _jettag_c_iterate_12_12.setRuntimeParent(_jettag_c_initialCode_3_5);
                 _jettag_c_iterate_12_12.setTagInfo(_td_c_iterate_12_12);

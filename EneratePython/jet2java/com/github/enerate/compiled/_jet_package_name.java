@@ -57,7 +57,7 @@ public class _jet_package_name implements JET2Template {
                 "select", //$NON-NLS-1$
             },
             new String[] {
-                "underscore($pkg_name)", //$NON-NLS-1$
+                "$pkg_name", //$NON-NLS-1$
             } );
 
     public void generate(final JET2Context context, final JET2Writer __out) {

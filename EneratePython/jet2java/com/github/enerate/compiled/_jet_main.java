@@ -53,16 +53,6 @@ public class _jet_main implements JET2Template {
             new String[] {
                 "templates/package.jet", //$NON-NLS-1$
             } );
-    private static final TagInfo _td_ws_file_17_1 = new TagInfo("ws:file", //$NON-NLS-1$
-            17, 1,
-            new String[] {
-                "template", //$NON-NLS-1$
-                "path", //$NON-NLS-1$
-            },
-            new String[] {
-                "templates/map.jet", //$NON-NLS-1$
-                "module_dict.py", //$NON-NLS-1$
-            } );
 
     public void generate(final JET2Context context, final JET2Writer __out) {
         JET2Writer out = __out;
@@ -94,13 +84,6 @@ public class _jet_main implements JET2Template {
             _jettag_c_include_15_3.setTagInfo(_td_c_include_15_3);
             _jettag_c_include_15_3.doStart(context, out);
             _jettag_c_include_15_3.doEnd();
-            out.write(NL);         
-            RuntimeTagElement _jettag_ws_file_17_1 = context.getTagFactory().createRuntimeTag(_jetns_ws, "file", "ws:file", _td_ws_file_17_1); //$NON-NLS-1$ //$NON-NLS-2$
-            _jettag_ws_file_17_1.setRuntimeParent(_jettag_ws_project_14_1);
-            _jettag_ws_file_17_1.setTagInfo(_td_ws_file_17_1);
-            _jettag_ws_file_17_1.doStart(context, out);
-            _jettag_ws_file_17_1.doEnd();
-            out.write(NL);         
             out.write(NL);         
             _jettag_ws_project_14_1.handleBodyContent(out);
         }
