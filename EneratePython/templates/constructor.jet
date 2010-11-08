@@ -91,8 +91,8 @@ if ( instanceTypeNameValueMap.containsKey( itn ) ) {
         super(<c:get select="$eClass/@name"/>, self).__init__(*args, **kw_args)
         </c:if>
 
-    __attrs = [<c:iterate select="$eClass/eAttributes" var="eAttribute" delimiter=", ">"<c:get select="$eAttribute/@name"/>"</c:iterate>]
-    __attr_types = {<c:iterate select="$eClass/eAttributes" var="eAttribute" delimiter=", "><c:setVariable select="string($eAttribute/eAttributeType/@instanceTypeName)" var="instanceTypeName"/>
+    _attrs = [<c:iterate select="$eClass/eAttributes" var="eAttribute" delimiter=", ">"<c:get select="$eAttribute/@name"/>"</c:iterate>]
+    _attr_types = {<c:iterate select="$eClass/eAttributes" var="eAttribute" delimiter=", "><c:setVariable select="string($eAttribute/eAttributeType/@instanceTypeName)" var="instanceTypeName"/>
 <%
 String itn = (String)context.getVariable("instanceTypeName");
 String val;
@@ -102,7 +102,7 @@ if ( instanceTypeNameTypeMap.containsKey( itn ) ) {
 %>"<c:get select="$eAttribute/@name"/>": <%= val %><%
 } else {%>"<c:get select="$eAttribute/@name"/>": str<%
 }%></c:iterate>}
-    __defaults = {<c:iterate select="$eClass/eAttributes" var="eAttribute" delimiter=", "><c:setVariable select="string($eAttribute/eAttributeType/@instanceTypeName)" var="instanceTypeName"/>
+    _defaults = {<c:iterate select="$eClass/eAttributes" var="eAttribute" delimiter=", "><c:setVariable select="string($eAttribute/eAttributeType/@instanceTypeName)" var="instanceTypeName"/>
 <%
 String itn = (String)context.getVariable("instanceTypeName");
 String val;
@@ -112,7 +112,7 @@ if ( instanceTypeNameValueMap.containsKey( itn ) ) {
 %>"<c:get select="$eAttribute/@name"/>": <%= val %><%
 } else {%>"<c:get select="$eAttribute/@name"/>": "<c:get select="$eAttribute/eAttributeType/eLiterals[1]/@literal"/>"<%
 }%></c:iterate>}
-    __enums = {<%
+    _enums = {<%
 EClass eClass = (EClass) context.getVariable("eClass");
 
 boolean first = true;
@@ -124,8 +124,8 @@ for (EAttribute attr : eClass.getEAttributes()) {
 		first = false;
 	}
 }%>}
-    __refs = [<c:iterate select="$eClass/eReferences" var="eReference" delimiter=", ">"<c:get select="$eReference/@name"/>"</c:iterate>]
-    __many_refs = [<%
+    _refs = [<c:iterate select="$eClass/eReferences" var="eReference" delimiter=", ">"<c:get select="$eReference/@name"/>"</c:iterate>]
+    _many_refs = [<%
 first = true;
 for (EReference ref : eClass.getEReferences()) {
 	if (ref.isMany()) {
