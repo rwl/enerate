@@ -28,31 +28,32 @@ typeMap.put("java.lang.Class", "other");
 typeMap.put("java.lang.Object", "other");
 typeMap.put("java.util.Map", "other");
 
-String itn = (String) context.getVariable("instanceTypeName");
-String val = "other";
-if (typeMap.containsKey(itn))
-    val = typeMap.get(itn);
-
 EAttribute attr = (EAttribute) context.getVariable("eAttribute");
-if (attr.getEAttributeType().eClass().getName() == "EEnum")
+String itn = (String) context.getVariable("instanceTypeName");
+String val;
+
+if (typeMap.containsKey(itn)) {
+    val = typeMap.get(itn);
+} else if (attr.getEAttributeType().eClass().getName() == "EEnum") {
 	val = "enum";
+} else if (attr.getUpperBound() > 1) {
+	val = "set";
+} else {
+	val = "other";
+}
 
 context.setVariable("fieldType", val);
 %>
-<c:if test="$eAttribute/eAttributeType/eClass"></c:if>
-field <c:get select="$fieldType"/> --fieldName <c:get select="$eAttribute/@name"/>
-<c:if test="$eAttribute/@transient = 'true'">--transient</c:if>
-<c:if test="$eAttribute/@defaultValueLiteral">--value <c:get select="$eAttribute/@defaultValueLiteral"/></c:if>
-<c:if test="($eAttribute/@lowerBound = 1) and ($eAttribute/@upperBound = 1)">--notNull</c:if>
-<c:if test="($eAttribute/@lowerBound = 0) and ($eAttribute/@upperBound = 0)">--nullRequired</c:if>
-
-<c:if test="($fieldType = 'number') or ($fieldType = 'date') or ($fieldType = 'other')">--type <c:get select="$instanceTypeName"/></c:if>
-<c:if test="($fieldType = 'boolean') and ($instanceTypeName = 'boolean')">--primitive</c:if>
-
-<c:if test="$fieldType = 'number'">
-<c:if test="($instanceTypeName = 'float') or ($instanceTypeName = 'double') or ($instanceTypeName = 'int') or ($instanceTypeName = 'short') or ($instanceTypeName = 'long')">--primitive</c:if>
-<c:if test="$eAttribute/@iD = 'true'">--unique</c:if>
-</c:if>
-
-<c:setVariable var="eAnnotated" select="$eAttribute"/>
-<c:include template="templates/comment.jet" passVariables="eAnnotated"/>
+field <c:get select="$fieldType"/> --fieldName <c:get select="$eAttribute/@name"/><c:if
+	test="$eAttribute/@transient = 'true'"> --transient</c:if><c:if
+	test="not($fieldType = 'set') and not($fieldType = 'enum') and $eAttribute/@defaultValueLiteral"> --value <c:get select="$eAttribute/@defaultValueLiteral"/></c:if><c:if
+	test="($eAttribute/@lowerBound = 1) and ($eAttribute/@upperBound = 1)"> --notNull</c:if><c:if
+	test="($eAttribute/@lowerBound = 0) and ($eAttribute/@upperBound = 0)"> --nullRequired</c:if><c:if
+	test="$fieldType = 'set'"> --element <c:get select="instanceTypeName"/> --sizeMin <c:get select="$eAttribute/lowerBound"/> --sizeMax <c:get select="$eAttribute/upperBound"/></c:if><c:if
+	test="($fieldType = 'number') or ($fieldType = 'date') or ($fieldType = 'other')"> --type <c:get select="$instanceTypeName"/></c:if><c:if
+	test="$fieldType = 'enum'"> --type <c:setVariable var="eSuper"
+	select="$eAttribute/eAttributeType/ePackage"/>~.<c:include template="templates/package_name.jet" passVariables="eSuper"/>.<c:get
+	select="$eAttribute/eAttributeType/@name"/></c:if><c:if
+	test="($fieldType = 'boolean') and ($instanceTypeName = 'boolean')">--primitive</c:if><c:if
+	test="$fieldType = 'number'"><c:if test="($instanceTypeName = 'float') or ($instanceTypeName = 'double') or ($instanceTypeName = 'int') or ($instanceTypeName = 'short') or ($instanceTypeName = 'long')"> --primitive</c:if><c:if
+	test="$eAttribute/@iD = 'true'"> --unique</c:if></c:if><c:setVariable var="eAnnotated" select="$eAttribute"/><c:include template="templates/comment.jet" passVariables="eAnnotated"/>

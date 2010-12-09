@@ -21,8 +21,8 @@ public class _jet_comment implements JET2Template {
             new String[] {
                 "count($eAnnotated/eAnnotations[@source='http://www.eclipse.org/emf/2002/GenModel']) > 0", //$NON-NLS-1$
             } );
-    private static final TagInfo _td_c_iterate_1_113 = new TagInfo("c:iterate", //$NON-NLS-1$
-            1, 113,
+    private static final TagInfo _td_c_iterate_1_114 = new TagInfo("c:iterate", //$NON-NLS-1$
+            1, 114,
             new String[] {
                 "select", //$NON-NLS-1$
                 "var", //$NON-NLS-1$
@@ -31,18 +31,18 @@ public class _jet_comment implements JET2Template {
                 "$eAnnotated/eAnnotations[@source='http://www.eclipse.org/emf/2002/GenModel']", //$NON-NLS-1$
                 "eAnnotation", //$NON-NLS-1$
             } );
-    private static final TagInfo _td_c_iterate_1_228 = new TagInfo("c:iterate", //$NON-NLS-1$
-            1, 228,
+    private static final TagInfo _td_c_iterate_1_229 = new TagInfo("c:iterate", //$NON-NLS-1$
+            1, 229,
             new String[] {
                 "select", //$NON-NLS-1$
                 "var", //$NON-NLS-1$
             },
             new String[] {
-                "$eAnnotation/details[@source='documentation']", //$NON-NLS-1$
+                "$eAnnotation/details[@key='documentation']", //$NON-NLS-1$
                 "detailsEntry", //$NON-NLS-1$
             } );
-    private static final TagInfo _td_c_replaceStrings_2_1 = new TagInfo("c:replaceStrings", //$NON-NLS-1$
-            2, 1,
+    private static final TagInfo _td_c_replaceStrings_3_1 = new TagInfo("c:replaceStrings", //$NON-NLS-1$
+            3, 1,
             new String[] {
                 "replace", //$NON-NLS-1$
                 "with", //$NON-NLS-1$
@@ -51,8 +51,8 @@ public class _jet_comment implements JET2Template {
                 "\",\\n", //$NON-NLS-1$
                 "', ", //$NON-NLS-1$
             } );
-    private static final TagInfo _td_c_get_2_48 = new TagInfo("c:get", //$NON-NLS-1$
-            2, 48,
+    private static final TagInfo _td_c_get_3_48 = new TagInfo("c:get", //$NON-NLS-1$
+            3, 48,
             new String[] {
                 "select", //$NON-NLS-1$
             },
@@ -67,39 +67,39 @@ public class _jet_comment implements JET2Template {
         _jettag_c_if_1_1.setTagInfo(_td_c_if_1_1);
         _jettag_c_if_1_1.doStart(context, out);
         while (_jettag_c_if_1_1.okToProcessBody()) {
-            out.write("--comment \"");  //$NON-NLS-1$        
-            RuntimeTagElement _jettag_c_iterate_1_113 = context.getTagFactory().createRuntimeTag(_jetns_c, "iterate", "c:iterate", _td_c_iterate_1_113); //$NON-NLS-1$ //$NON-NLS-2$
-            _jettag_c_iterate_1_113.setRuntimeParent(_jettag_c_if_1_1);
-            _jettag_c_iterate_1_113.setTagInfo(_td_c_iterate_1_113);
-            _jettag_c_iterate_1_113.doStart(context, out);
-            while (_jettag_c_iterate_1_113.okToProcessBody()) {
-                RuntimeTagElement _jettag_c_iterate_1_228 = context.getTagFactory().createRuntimeTag(_jetns_c, "iterate", "c:iterate", _td_c_iterate_1_228); //$NON-NLS-1$ //$NON-NLS-2$
-                _jettag_c_iterate_1_228.setRuntimeParent(_jettag_c_iterate_1_113);
-                _jettag_c_iterate_1_228.setTagInfo(_td_c_iterate_1_228);
-                _jettag_c_iterate_1_228.doStart(context, out);
-                while (_jettag_c_iterate_1_228.okToProcessBody()) {
-                    RuntimeTagElement _jettag_c_replaceStrings_2_1 = context.getTagFactory().createRuntimeTag(_jetns_c, "replaceStrings", "c:replaceStrings", _td_c_replaceStrings_2_1); //$NON-NLS-1$ //$NON-NLS-2$
-                    _jettag_c_replaceStrings_2_1.setRuntimeParent(_jettag_c_iterate_1_228);
-                    _jettag_c_replaceStrings_2_1.setTagInfo(_td_c_replaceStrings_2_1);
-                    _jettag_c_replaceStrings_2_1.doStart(context, out);
-                    JET2Writer _jettag_c_replaceStrings_2_1_saved_out = out;
-                    while (_jettag_c_replaceStrings_2_1.okToProcessBody()) {
+            out.write(" --comment \"");  //$NON-NLS-1$        
+            RuntimeTagElement _jettag_c_iterate_1_114 = context.getTagFactory().createRuntimeTag(_jetns_c, "iterate", "c:iterate", _td_c_iterate_1_114); //$NON-NLS-1$ //$NON-NLS-2$
+            _jettag_c_iterate_1_114.setRuntimeParent(_jettag_c_if_1_1);
+            _jettag_c_iterate_1_114.setTagInfo(_td_c_iterate_1_114);
+            _jettag_c_iterate_1_114.doStart(context, out);
+            while (_jettag_c_iterate_1_114.okToProcessBody()) {
+                RuntimeTagElement _jettag_c_iterate_1_229 = context.getTagFactory().createRuntimeTag(_jetns_c, "iterate", "c:iterate", _td_c_iterate_1_229); //$NON-NLS-1$ //$NON-NLS-2$
+                _jettag_c_iterate_1_229.setRuntimeParent(_jettag_c_iterate_1_114);
+                _jettag_c_iterate_1_229.setTagInfo(_td_c_iterate_1_229);
+                _jettag_c_iterate_1_229.doStart(context, out);
+                while (_jettag_c_iterate_1_229.okToProcessBody()) {
+                    RuntimeTagElement _jettag_c_replaceStrings_3_1 = context.getTagFactory().createRuntimeTag(_jetns_c, "replaceStrings", "c:replaceStrings", _td_c_replaceStrings_3_1); //$NON-NLS-1$ //$NON-NLS-2$
+                    _jettag_c_replaceStrings_3_1.setRuntimeParent(_jettag_c_iterate_1_229);
+                    _jettag_c_replaceStrings_3_1.setTagInfo(_td_c_replaceStrings_3_1);
+                    _jettag_c_replaceStrings_3_1.doStart(context, out);
+                    JET2Writer _jettag_c_replaceStrings_3_1_saved_out = out;
+                    while (_jettag_c_replaceStrings_3_1.okToProcessBody()) {
                         out = out.newNestedContentWriter();
-                        RuntimeTagElement _jettag_c_get_2_48 = context.getTagFactory().createRuntimeTag(_jetns_c, "get", "c:get", _td_c_get_2_48); //$NON-NLS-1$ //$NON-NLS-2$
-                        _jettag_c_get_2_48.setRuntimeParent(_jettag_c_replaceStrings_2_1);
-                        _jettag_c_get_2_48.setTagInfo(_td_c_get_2_48);
-                        _jettag_c_get_2_48.doStart(context, out);
-                        _jettag_c_get_2_48.doEnd();
-                        _jettag_c_replaceStrings_2_1.handleBodyContent(out);
+                        RuntimeTagElement _jettag_c_get_3_48 = context.getTagFactory().createRuntimeTag(_jetns_c, "get", "c:get", _td_c_get_3_48); //$NON-NLS-1$ //$NON-NLS-2$
+                        _jettag_c_get_3_48.setRuntimeParent(_jettag_c_replaceStrings_3_1);
+                        _jettag_c_get_3_48.setTagInfo(_td_c_get_3_48);
+                        _jettag_c_get_3_48.doStart(context, out);
+                        _jettag_c_get_3_48.doEnd();
+                        _jettag_c_replaceStrings_3_1.handleBodyContent(out);
                     }
-                    out = _jettag_c_replaceStrings_2_1_saved_out;
-                    _jettag_c_replaceStrings_2_1.doEnd();
-                    _jettag_c_iterate_1_228.handleBodyContent(out);
+                    out = _jettag_c_replaceStrings_3_1_saved_out;
+                    _jettag_c_replaceStrings_3_1.doEnd();
+                    _jettag_c_iterate_1_229.handleBodyContent(out);
                 }
-                _jettag_c_iterate_1_228.doEnd();
-                _jettag_c_iterate_1_113.handleBodyContent(out);
+                _jettag_c_iterate_1_229.doEnd();
+                _jettag_c_iterate_1_114.handleBodyContent(out);
             }
-            _jettag_c_iterate_1_113.doEnd();
+            _jettag_c_iterate_1_114.doEnd();
             out.write("\"");  //$NON-NLS-1$        
             _jettag_c_if_1_1.handleBodyContent(out);
         }
