@@ -3,8 +3,14 @@
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="roo"
     nsURI="http://www.springsource.org/roo" nsPrefix="roo">
-  <eClassifiers xsi:type="ecore:EClass" name="Project">
+  <eClassifiers xsi:type="ecore:EClass" name="RooModel">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="project" eType="#//Project"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="persistence" eType="#//PersistenceSetup"
+        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="model" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EPackage"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Project">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="topLevelPackage" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" defaultValueLiteral="com">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -16,7 +22,8 @@
         <details key="documentation" value="The name of the project (last segment of package name used as default)."/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="java" eType="#//javaVersion">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="java" eType="#//javaVersion"
+        unsettable="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="Forces a particular major version of Java to be used (will be auto-detected if unspecified; specify 5 or 6 or 7 only)."/>
       </eAnnotations>
