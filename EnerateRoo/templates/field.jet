@@ -1,0 +1,43 @@
+<%@jet imports="java.util.*"%>
+<c:setVariable select="string($eAttribute/eAttributeType/@instanceTypeName)" var="instanceTypeName"/>
+<%
+HashMap<String, String> typeMap = new HashMap<String, String>();
+typeMap.put("boolean", "boolean");
+typeMap.put("java.lang.Boolean", "boolean");
+typeMap.put("char", "string");
+typeMap.put("java.lang.Character", "string");
+typeMap.put("java.util.Date", "date");
+typeMap.put("double", "number");
+typeMap.put("java.lang.Double", "number");
+typeMap.put("float", "number");
+typeMap.put("java.lang.Float", "number");
+typeMap.put("int", "number");
+typeMap.put("java.lang.Integer", "number");
+typeMap.put("java.lang.Class", "other");
+typeMap.put("java.lang.Object", "other");
+typeMap.put("long", "number");
+typeMap.put("java.lang.Long", "number");
+typeMap.put("java.util.Map", "other");
+typeMap.put("short", "number");
+typeMap.put("java.lang.Short", "number");
+typeMap.put("java.lang.String", "string");
+
+String itn = (String)context.getVariable("instanceTypeName");
+String val = "other";
+if (typeMap.containsKey(itn))
+    val = typeMap.get(itn);
+context.setVariable("fieldType", val);
+%>
+field <c:get select="$fieldType"/>
+--fieldName <c:get select="$eAttribute/@name"/>
+<c:setVariable var="eSuper" select="$eClass/ePackage"/>
+--class <c:include template="templates/package_name.jet" passVariables="eSuper"/>.<c:get select="$eClass/@name"/>
+<c:if test="$eAttribute/@transient = 'true'">--transient</c:if>
+<c:setVariable var="eAnnotated" select="$eAttribute"/>
+--comment "<c:include template="templates/comment.jet" passVariables="eAnnotated"/>"
+<c:if test="$eAttribute/@defaultValueLiteral">
+--value <c:get select="$eAttribute/@defaultValueLiteral"/>
+</c:if>
+<c:if test="($fieldType = 'number') or ($fieldType = 'date') or ($fieldType = 'other')">
+--type = <c:get select="$instanceTypeName"/>
+</c:if>

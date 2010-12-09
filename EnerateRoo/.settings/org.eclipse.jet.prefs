@@ -1,0 +1,6 @@
+#Wed Dec 08 16:58:57 GMT 2010
+eclipse.preferences.version=1
+org.eclipse.jet.compiledTemplatePackage=com.github.enerate.roo.compiled
+org.eclipse.jet.compiledTemplateSrcDir=jet2java
+org.eclipse.jet.projectPrefs=true
+org.eclipse.jet.useJava5=true

@@ -1,0 +1,9 @@
+field
+<c:if test="$eReference/@many = 'false'">reference</c:if>
+<c:if test="$eReference/@many = 'true'">set</c:if>
+--fieldName <c:get select="$eReference/@name"/>
+--type <c:get select="$eReference/eReferenceType/@name"/>
+<c:setVariable var="eSuper" select="$eClass/ePackage"/>
+--class <c:include template="templates/package_name.jet" passVariables="eSuper"/>.<c:get select="$eClass/@name"/>
+<c:setVariable var="eAnnotated" select="$eReference"/>
+--comment "<c:include template="templates/comment.jet" passVariables="eAnnotated"/>"

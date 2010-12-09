@@ -1,0 +1,21 @@
+<%@taglib prefix="ws" id="org.eclipse.jet.workspaceTags" %>
+<%@jet imports="org.eclipse.emf.ecore.*"%>
+<%-- Main entry point for com.github.enerate.roo --%>
+
+<%--
+  Let c:iterate tags set the XPath context object.
+  For 100% compatibility with JET 0.9.x or earlier, remove this statement
+ --%>
+<c:setVariable var="org.eclipse.jet.taglib.control.iterateSetsContext" select="true()"/>
+
+<%--
+TODO: traverse input model, performing calculations and storing
+the results as model annotations via c:set tag
+--%>
+
+<c:setVariable var="ePackage" select="/contents"/>
+<c:setVariable var="eClasses" select="$ePackage//EClass"/>
+
+<ws:project name="{$org.eclipse.jet.resource.project.name}">
+  <ws:file template="templates/script.jet" path="{$ePackage/@name}.roo"/>
+</ws:project>
