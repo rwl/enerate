@@ -54,39 +54,11 @@ public class _jet_reference implements JET2Template {
                 "select", //$NON-NLS-1$
             },
             new String[] {
-                "eSuper", //$NON-NLS-1$
-                "$eClass/ePackage", //$NON-NLS-1$
-            } );
-    private static final TagInfo _td_c_include_7_9 = new TagInfo("c:include", //$NON-NLS-1$
-            7, 9,
-            new String[] {
-                "template", //$NON-NLS-1$
-                "passVariables", //$NON-NLS-1$
-            },
-            new String[] {
-                "templates/package_name.jet", //$NON-NLS-1$
-                "eSuper", //$NON-NLS-1$
-            } );
-    private static final TagInfo _td_c_get_7_83 = new TagInfo("c:get", //$NON-NLS-1$
-            7, 83,
-            new String[] {
-                "select", //$NON-NLS-1$
-            },
-            new String[] {
-                "$eClass/@name", //$NON-NLS-1$
-            } );
-    private static final TagInfo _td_c_setVariable_8_1 = new TagInfo("c:setVariable", //$NON-NLS-1$
-            8, 1,
-            new String[] {
-                "var", //$NON-NLS-1$
-                "select", //$NON-NLS-1$
-            },
-            new String[] {
                 "eAnnotated", //$NON-NLS-1$
                 "$eReference", //$NON-NLS-1$
             } );
-    private static final TagInfo _td_c_include_9_12 = new TagInfo("c:include", //$NON-NLS-1$
-            9, 12,
+    private static final TagInfo _td_c_include_7_1 = new TagInfo("c:include", //$NON-NLS-1$
+            7, 1,
             new String[] {
                 "template", //$NON-NLS-1$
                 "passVariables", //$NON-NLS-1$
@@ -139,31 +111,10 @@ public class _jet_reference implements JET2Template {
         _jettag_c_setVariable_6_1.setTagInfo(_td_c_setVariable_6_1);
         _jettag_c_setVariable_6_1.doStart(context, out);
         _jettag_c_setVariable_6_1.doEnd();
-        out.write("--class ");  //$NON-NLS-1$        
-        RuntimeTagElement _jettag_c_include_7_9 = context.getTagFactory().createRuntimeTag(_jetns_c, "include", "c:include", _td_c_include_7_9); //$NON-NLS-1$ //$NON-NLS-2$
-        _jettag_c_include_7_9.setRuntimeParent(null);
-        _jettag_c_include_7_9.setTagInfo(_td_c_include_7_9);
-        _jettag_c_include_7_9.doStart(context, out);
-        _jettag_c_include_7_9.doEnd();
-        out.write(".");  //$NON-NLS-1$        
-        RuntimeTagElement _jettag_c_get_7_83 = context.getTagFactory().createRuntimeTag(_jetns_c, "get", "c:get", _td_c_get_7_83); //$NON-NLS-1$ //$NON-NLS-2$
-        _jettag_c_get_7_83.setRuntimeParent(null);
-        _jettag_c_get_7_83.setTagInfo(_td_c_get_7_83);
-        _jettag_c_get_7_83.doStart(context, out);
-        _jettag_c_get_7_83.doEnd();
-        out.write(NL);         
-        RuntimeTagElement _jettag_c_setVariable_8_1 = context.getTagFactory().createRuntimeTag(_jetns_c, "setVariable", "c:setVariable", _td_c_setVariable_8_1); //$NON-NLS-1$ //$NON-NLS-2$
-        _jettag_c_setVariable_8_1.setRuntimeParent(null);
-        _jettag_c_setVariable_8_1.setTagInfo(_td_c_setVariable_8_1);
-        _jettag_c_setVariable_8_1.doStart(context, out);
-        _jettag_c_setVariable_8_1.doEnd();
-        out.write("--comment \"");  //$NON-NLS-1$        
-        RuntimeTagElement _jettag_c_include_9_12 = context.getTagFactory().createRuntimeTag(_jetns_c, "include", "c:include", _td_c_include_9_12); //$NON-NLS-1$ //$NON-NLS-2$
-        _jettag_c_include_9_12.setRuntimeParent(null);
-        _jettag_c_include_9_12.setTagInfo(_td_c_include_9_12);
-        _jettag_c_include_9_12.doStart(context, out);
-        _jettag_c_include_9_12.doEnd();
-        out.write("\"");  //$NON-NLS-1$        
-        out.write(NL);         
+        RuntimeTagElement _jettag_c_include_7_1 = context.getTagFactory().createRuntimeTag(_jetns_c, "include", "c:include", _td_c_include_7_1); //$NON-NLS-1$ //$NON-NLS-2$
+        _jettag_c_include_7_1.setRuntimeParent(null);
+        _jettag_c_include_7_1.setTagInfo(_td_c_include_7_1);
+        _jettag_c_include_7_1.doStart(context, out);
+        _jettag_c_include_7_1.doEnd();
     }
 }

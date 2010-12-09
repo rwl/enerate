@@ -1,17 +1,24 @@
+<c:iterate select="$ePackage//EEnum" var="eEnum">
+<c:setVariable var="eSuper" select="$eEnum/ePackage"/>
+enum type --class ~.<c:include template="templates/package_name.jet" passVariables="eSuper"/>.<c:get select="$eEnum/@name"/>
+<c:iterate select="$eEnum/eLiterals" var="eLiteral">
+enum constant --name "<c:get select="$eLiteral/@literal"/>"
+</c:iterate>
+</c:iterate>
+
 <c:iterate select="$ePackage//EClass" var="eClass">
 <c:setVariable var="eSuper" select="$eClass/ePackage"/>
-entity
---class <c:include template="templates/package_name.jet" passVariables="eSuper"/>.<c:get select="$eClass/@name"/>
---testAutomatically
+entity --class ~.<c:include template="templates/package_name.jet" passVariables="eSuper"/>.<c:get select="$eClass/@name"/>
 <c:if test="count($eClass/eSuperTypes) > 0">
 <c:setVariable var="eSuper" select="$eClass/eSuperTypes[1]/ePackage"/>
---extends <c:include template="templates/package_name.jet" passVariables="eSuper"/>.<c:get select="$eClass/eSuperTypes[1]/@name"/>
+--extends ~.<c:include template="templates/package_name.jet" passVariables="eSuper"/>.<c:get select="$eClass/eSuperTypes[1]/@name"/>
 </c:if>
-<c:if test="$eClass/@abstract = 'true'">--abstract</c:if>
+<c:if test="$eClass/@abstract = 'true'">--abstract</c:if> --testAutomatically
 <c:iterate select="$eClass/eAttributes" var="eAttribute">
 <c:include template="templates/field.jet"/>
 </c:iterate>
 <c:iterate select="$eClass/eReferences" var="eReference">
 <c:include template="templates/reference.jet"/>
 </c:iterate>
+
 </c:iterate>
