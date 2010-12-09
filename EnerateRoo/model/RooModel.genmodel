@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/EnerateRoo/src"
+    modelPluginID="EnerateRoo" modelName="RooModel" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="6.0" copyrightFields="false" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore">
+  <foreignModel>RooModel.ecore</foreignModel>
+  <genPackages prefix="Roo" basePackage="com.github.enerate.model" disposableProviderFactory="true"
+      ecorePackage="RooModel.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="RooModel.ecore#//javaVersion">
+      <genEnumLiterals ecoreEnumLiteral="RooModel.ecore#//javaVersion/Java5"/>
+      <genEnumLiterals ecoreEnumLiteral="RooModel.ecore#//javaVersion/Java6"/>
+      <genEnumLiterals ecoreEnumLiteral="RooModel.ecore#//javaVersion/Java7"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="RooModel.ecore#//providerType">
+      <genEnumLiterals ecoreEnumLiteral="RooModel.ecore#//providerType/DATANUCLEUS"/>
+      <genEnumLiterals ecoreEnumLiteral="RooModel.ecore#//providerType/DATANUCLEUS_2"/>
+      <genEnumLiterals ecoreEnumLiteral="RooModel.ecore#//providerType/ECLIPSELINK"/>
+      <genEnumLiterals ecoreEnumLiteral="RooModel.ecore#//providerType/HIBERNATE"/>
+      <genEnumLiterals ecoreEnumLiteral="RooModel.ecore#//providerType/OPENJPA"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="RooModel.ecore#//databaseType">
+      <genEnumLiterals ecoreEnumLiteral="RooModel.ecore#//databaseType/DB2"/>
+      <genEnumLiterals ecoreEnumLiteral="RooModel.ecore#//databaseType/DB2400"/>
+      <genEnumLiterals ecoreEnumLiteral="RooModel.ecore#//databaseType/DERBY"/>
+      <genEnumLiterals ecoreEnumLiteral="RooModel.ecore#//databaseType/GOOGLE_APP_ENGINE"/>
+      <genEnumLiterals ecoreEnumLiteral="RooModel.ecore#//databaseType/H2_IN_MEMORY"/>
+      <genEnumLiterals ecoreEnumLiteral="RooModel.ecore#//databaseType/HYPERSONIC_IN_MEMORY"/>
+      <genEnumLiterals ecoreEnumLiteral="RooModel.ecore#//databaseType/HYPERSONIC_PERSISTENT"/>
+      <genEnumLiterals ecoreEnumLiteral="RooModel.ecore#//databaseType/MSSQL"/>
+      <genEnumLiterals ecoreEnumLiteral="RooModel.ecore#//databaseType/MYSQL"/>
+      <genEnumLiterals ecoreEnumLiteral="RooModel.ecore#//databaseType/ORACLE"/>
+      <genEnumLiterals ecoreEnumLiteral="RooModel.ecore#//databaseType/POSTGRES"/>
+      <genEnumLiterals ecoreEnumLiteral="RooModel.ecore#//databaseType/SYBASE"/>
+      <genEnumLiterals ecoreEnumLiteral="RooModel.ecore#//databaseType/VMFORCE"/>
+    </genEnums>
+    <genClasses ecoreClass="RooModel.ecore#//Project">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RooModel.ecore#//Project/model"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RooModel.ecore#//Project/topLevelPackage"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RooModel.ecore#//Project/projectName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RooModel.ecore#//Project/java"/>
+    </genClasses>
+    <genClasses ecoreClass="RooModel.ecore#//PersistenceSetup">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RooModel.ecore#//PersistenceSetup/provider"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RooModel.ecore#//PersistenceSetup/database"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RooModel.ecore#//PersistenceSetup/applicationId"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RooModel.ecore#//PersistenceSetup/jndiDataSource"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RooModel.ecore#//PersistenceSetup/hostName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RooModel.ecore#//PersistenceSetup/databaseName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RooModel.ecore#//PersistenceSetup/userName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RooModel.ecore#//PersistenceSetup/password"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RooModel.ecore#//PersistenceSetup/persistenceUnit"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
