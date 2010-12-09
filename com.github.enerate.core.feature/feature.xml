@@ -1,21 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="com.github.enerate.core.feature"
-      label="Core"
+      id="com.github.enerate.feature"
+      label="Enerate Feature"
       version="1.0.0.qualifier"
       provider-name="Richard Lincoln">
 
    <description>
-      Core plug-ins for Enerate.
+      JET2 transforms for Enerate.
    </description>
 
    <copyright>
-      Copyright (c) 2009 Richard Lincoln
+      Copyright (C) 2010 Richard Lincoln
    </copyright>
 
    <license url="http://www.eclipse.org/legal/epl-v10.html">
       Eclipse Public License - v1.0.
    </license>
+
+   <url>
+      <update label="Enerate" url="http://rwl.github.com/enerate"/>
+   </url>
 
    <requires>
       <import plugin="org.eclipse.core.resources"/>
@@ -34,6 +38,34 @@
 
    <plugin
          id="com.github.enerate.xpath"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="com.github.enerate.gae"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="com.github.enerate.python"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="com.github.enerate.traits"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="com.github.enerate.roo"
          download-size="0"
          install-size="0"
          version="0.0.0"

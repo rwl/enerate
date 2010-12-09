@@ -3,14 +3,8 @@
    <description name="Enerate" url="http://rwl.github.com/enerate">
       Generate code from ECore models using JET2.
    </description>
-   <feature url="features/com.github.enerate.gae.feature_1.0.1.200910291439.jar" id="com.github.enerate.gae.feature" version="1.0.1.200910291439">
-      <category name="com.github.enerate.generators"/>
+   <feature url="features/com.github.enerate.feature_1.0.0.qualifier.jar" id="com.github.enerate.feature" version="1.0.0.qualifier">
+      <category name="com.github.enerate.transforms"/>
    </feature>
-   <feature url="features/com.github.enerate.python.feature_1.0.1.200910291439.jar" id="com.github.enerate.python.feature" version="1.0.1.200910291439">
-      <category name="com.github.enerate.generators"/>
-   </feature>
-   <feature url="features/com.github.enerate.traits.feature_1.0.1.200910291439.jar" id="com.github.enerate.traits.feature" version="1.0.1.200910291439">
-      <category name="com.github.enerate.generators"/>
-   </feature>
-   <category-def name="com.github.enerate.generators" label="Enerate"/>
+   <category-def name="com.github.enerate.transforms" label="Enerate"/>
 </site>
