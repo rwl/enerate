@@ -203,7 +203,7 @@ public class _jet_script implements JET2Template {
                 "template", //$NON-NLS-1$
             },
             new String[] {
-                "templates/field.jet", //$NON-NLS-1$
+                "templates/attr.jet", //$NON-NLS-1$
             } );
     private static final TagInfo _td_c_if_23_1 = new TagInfo("c:if", //$NON-NLS-1$
             23, 1,

@@ -16,7 +16,7 @@ entity --class ~.<c:include template="templates/package_name.jet" passVariables=
 	test="$eClass/@abstract = 'true'"> --abstract</c:if><c:if
 	test="$eClass/@abstract = 'false'"> --testAutomatically</c:if>
 <c:iterate select="$eClass/eAttributes" var="eAttribute">
-<c:include template="templates/field.jet"/>
+<c:include template="templates/attr.jet"/>
 </c:iterate>
 
 </c:iterate>

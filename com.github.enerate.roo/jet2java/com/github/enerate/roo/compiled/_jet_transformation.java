@@ -12,20 +12,22 @@ public class _jet_transformation implements JET2TemplateLoader,
 
     private JET2TemplateLoader delegate = null;
 
-    private final static Map<String, Integer> pathToTemplateOrdinalMap = new HashMap<String,Integer>(6);
+    private final static Map<String, Integer> pathToTemplateOrdinalMap = new HashMap<String,Integer>(7);
     static {
-        pathToTemplateOrdinalMap.put("templates/comment.jet", //$NON-NLS-1$
+        pathToTemplateOrdinalMap.put("templates/attr.jet", //$NON-NLS-1$
                 Integer.valueOf(0));
-        pathToTemplateOrdinalMap.put("templates/field.jet", //$NON-NLS-1$
+        pathToTemplateOrdinalMap.put("templates/comment.jet", //$NON-NLS-1$
                 Integer.valueOf(1));
-        pathToTemplateOrdinalMap.put("templates/main.jet", //$NON-NLS-1$
+        pathToTemplateOrdinalMap.put("templates/field.jet", //$NON-NLS-1$
                 Integer.valueOf(2));
-        pathToTemplateOrdinalMap.put("templates/package_name.jet", //$NON-NLS-1$
+        pathToTemplateOrdinalMap.put("templates/main.jet", //$NON-NLS-1$
                 Integer.valueOf(3));
-        pathToTemplateOrdinalMap.put("templates/reference.jet", //$NON-NLS-1$
+        pathToTemplateOrdinalMap.put("templates/package_name.jet", //$NON-NLS-1$
                 Integer.valueOf(4));
-        pathToTemplateOrdinalMap.put("templates/script.jet", //$NON-NLS-1$
+        pathToTemplateOrdinalMap.put("templates/reference.jet", //$NON-NLS-1$
                 Integer.valueOf(5));
+        pathToTemplateOrdinalMap.put("templates/script.jet", //$NON-NLS-1$
+                Integer.valueOf(6));
     }
 
     /*
@@ -37,17 +39,19 @@ public class _jet_transformation implements JET2TemplateLoader,
         final Integer ordinal = pathToTemplateOrdinalMap.get(templatePath);
         if(ordinal != null) {
            switch (ordinal.intValue()) {
-            case 0: // templates/comment.jet
+            case 0: // templates/attr.jet
+                return new com.github.enerate.roo.compiled._jet_attr();
+            case 1: // templates/comment.jet
                 return new com.github.enerate.roo.compiled._jet_comment();
-            case 1: // templates/field.jet
+            case 2: // templates/field.jet
                 return new com.github.enerate.roo.compiled._jet_field();
-            case 2: // templates/main.jet
+            case 3: // templates/main.jet
                 return new com.github.enerate.roo.compiled._jet_main();
-            case 3: // templates/package_name.jet
+            case 4: // templates/package_name.jet
                 return new com.github.enerate.roo.compiled._jet_package_name();
-            case 4: // templates/reference.jet
+            case 5: // templates/reference.jet
                 return new com.github.enerate.roo.compiled._jet_reference();
-            case 5: // templates/script.jet
+            case 6: // templates/script.jet
                 return new com.github.enerate.roo.compiled._jet_script();
             default:
                 break;
