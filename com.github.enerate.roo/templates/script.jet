@@ -1,7 +1,6 @@
 <c:if test="count($ePackage//EEnum) > 0">/* Enumerations */</c:if>
 <c:iterate select="$ePackage//EEnum" var="eEnum">
-<c:setVariable var="eSuper" select="$eEnum/ePackage"/>
-enum type --class ~.<c:include template="templates/package_name.jet" passVariables="eSuper"/>.<c:get select="$eEnum/@name"/>
+enum type --class ~.client.shared.<c:get select="$eEnum/@name"/>
 <c:iterate select="$eEnum/eLiterals" var="eLiteral">
 enum constant --name <c:replaceStrings replace=' ' with="_"><c:get select="upper-case($eLiteral/@literal)"/></c:replaceStrings>
 </c:iterate>
@@ -10,8 +9,8 @@ enum constant --name <c:replaceStrings replace=' ' with="_"><c:get select="upper
 <c:if test="count($ePackage//EClass) > 0">/* Classes and Attributes */</c:if>
 <c:iterate select="$ePackage//EClass" var="eClass">
 <c:setVariable var="eSuper" select="$eClass/ePackage"/>
-entity --class ~.<c:include template="templates/package_name.jet" passVariables="eSuper"/>.<c:get select="$eClass/@name"/><c:if
-	test="count($eClass/eSuperTypes) > 0"><c:setVariable var="eSuper" select="$eClass/eSuperTypes[1]/ePackage"/> --extends ~.<c:include
+entity --class ~.server.domain.<c:include template="templates/package_name.jet" passVariables="eSuper"/>.<c:get select="$eClass/@name"/><c:if
+	test="count($eClass/eSuperTypes) > 0"><c:setVariable var="eSuper" select="$eClass/eSuperTypes[1]/ePackage"/> --extends ~.server.domain.<c:include
 	template="templates/package_name.jet" passVariables="eSuper"/>.<c:get select="$eClass/eSuperTypes[1]/@name"/></c:if><c:if
 	test="$eClass/@abstract = 'true'"> --abstract</c:if><c:if
 	test="$eClass/@abstract = 'false'"> --testAutomatically</c:if>

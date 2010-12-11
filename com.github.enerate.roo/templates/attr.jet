@@ -25,9 +25,7 @@ date --fieldName <c:get select="$eAttribute/@name"/> --type <c:get select="$type
 	test="$eAttribute/@defaultValueLiteral"> --value <c:get select="$eAttribute/@defaultValueLiteral"/></c:if></c:when>
 
 <c:when test="$eAttribute/eAttributeType/eLiterals">
-enum --fieldName <c:get select="$eAttribute/@name"/> --type <c:setVariable var="eSuper"
-	select="$eAttribute/eAttributeType/ePackage"/>~.<c:include template="templates/package_name.jet" passVariables="eSuper"/>.<c:get
-	select="$eAttribute/eAttributeType/@name"/></c:when>
+enum --fieldName <c:get select="$eAttribute/@name"/> --type ~.client.shared.<c:get select="$eAttribute/eAttributeType/@name"/></c:when>
 
 <c:when test="$eAttribute/@upperBound > 1">
 set --fieldName <c:get select="$eAttribute/@name"/> --element <c:get select="type"/> --sizeMin <c:get

@@ -1,9 +1,9 @@
 field <c:if
 	test="$eReference/@many = 'false'">reference</c:if><c:if
-	test="$eReference/@many = 'true'">set</c:if><c:setVariable var="eSuper" select="$eClass/ePackage"/> --class ~.<c:include
+	test="$eReference/@many = 'true'">set</c:if><c:setVariable var="eSuper" select="$eClass/ePackage"/> --class ~.server.domain.<c:include
 	template="templates/package_name.jet" passVariables="eSuper"/>.<c:get select="$eClass/@name"/> --fieldName <c:get select="$eReference/@name"/><c:if
 	test="$eReference/@many = 'false'"> --type </c:if><c:if
 	test="$eReference/@many = 'true'"> --element </c:if><c:setVariable var="eSuper"
-	select="$eReference/eReferenceType/ePackage"/>~.<c:include template="templates/package_name.jet" passVariables="eSuper"/>.<c:get
+	select="$eReference/eReferenceType/ePackage"/>~.server.domain.<c:include template="templates/package_name.jet" passVariables="eSuper"/>.<c:get
 	select="$eReference/eReferenceType/@name"/><c:setVariable var="eAnnotated" select="$eReference"/><c:include
 	template="templates/comment.jet" passVariables="eAnnotated"/>
