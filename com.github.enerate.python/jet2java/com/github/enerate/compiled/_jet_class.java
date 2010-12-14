@@ -7,10 +7,10 @@ import org.eclipse.jet.taglib.RuntimeTagElement;
 import org.eclipse.jet.taglib.TagInfo;
 import org.eclipse.emf.ecore.*;
 
-public class _jet_module implements JET2Template {
+public class _jet_class implements JET2Template {
     private static final String _jetns_c = "org.eclipse.jet.controlTags"; //$NON-NLS-1$
 
-    public _jet_module() {
+    public _jet_class() {
         super();
     }
 

@@ -52,7 +52,7 @@ public class _jet_package implements JET2Template {
                 "path", //$NON-NLS-1$
             },
             new String[] {
-                "templates/module.jet", //$NON-NLS-1$
+                "templates/class.jet", //$NON-NLS-1$
                 "{$eClass/@name}.py", //$NON-NLS-1$
             } );
     private static final TagInfo _td_c_iterate_13_3 = new TagInfo("c:iterate", //$NON-NLS-1$

@@ -14,6 +14,7 @@
 
         self._<c:get select="$eReference/@name"/> = value
         if self._<c:get select="$eReference/@name"/> is not None:
+            self._<c:get select="$eReference/@name"/>.<c:get select="$eReference/eOpposite/@name"/> = None
             self._<c:get select="$eReference/@name"/>._<c:get select="$eReference/eOpposite/@name"/> = self
 
     <c:get select="$eReference/@name"/> = property(get<c:get select="$eReference/@name"/>, set<c:get select="$eReference/@name"/>)
@@ -33,7 +34,8 @@
 
         self._<c:get select="$eReference/@name"/> = value
         if self._<c:get select="$eReference/@name"/> is not None:
-            self._<c:get select="$eReference/@name"/>._<c:get select="$eReference/eOpposite/@name"/>.append(self)
+            if self not in self._<c:get select="$eReference/@name"/>._<c:get select="$eReference/eOpposite/@name"/>:
+                self._<c:get select="$eReference/@name"/>._<c:get select="$eReference/eOpposite/@name"/>.append(self)
 
     <c:get select="$eReference/@name"/> = property(get<c:get select="$eReference/@name"/>, set<c:get select="$eReference/@name"/>)
 </c:when>
@@ -47,7 +49,7 @@
     def set<c:get select="$eReference/@name"/>(self, value):
         for x in self._<c:get select="$eReference/@name"/>:
             <%-- Unset the old oppopsite references. --%>
-            x._<c:get select="$eReference/eOpposite/@name"/> = None
+            x.<c:get select="$eReference/eOpposite/@name"/> = None
         for y in value:
             y._<c:get select="$eReference/eOpposite/@name"/> = self
         self._<c:get select="$eReference/@name"/> = value
@@ -56,13 +58,11 @@
 
     def add<c:get select="$eReference/@name"/>(self, *<c:get select="$eReference/@name"/>):
         for obj in <c:get select="$eReference/@name"/>:
-            obj._<c:get select="$eReference/eOpposite/@name"/> = self
-            self._<c:get select="$eReference/@name"/>.append(obj)
+            obj.<c:get select="$eReference/eOpposite/@name"/> = self
 
     def remove<c:get select="$eReference/@name"/>(self, *<c:get select="$eReference/@name"/>):
         for obj in <c:get select="$eReference/@name"/>:
-            obj._<c:get select="$eReference/eOpposite/@name"/> = None
-            self._<c:get select="$eReference/@name"/>.remove(obj)
+            obj.<c:get select="$eReference/eOpposite/@name"/> = None
 </c:when>
 <c:when test="$eReference/@many = 'true' and $eReference/eOpposite/@many = 'true'">
     <%-- Many-to-many (n..n) association. --%>

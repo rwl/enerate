@@ -6,7 +6,7 @@
 
   <%-- Create one module per class. --%>
   <c:iterate select="$ePackage/EClass" var="eClass">
-    <ws:file template="templates/module.jet" path="{$eClass/@name}.py"/>
+    <ws:file template="templates/class.jet" path="{$eClass/@name}.py"/>
   </c:iterate>
 
   <%-- Recursively call the package template with any subpackages. --%>

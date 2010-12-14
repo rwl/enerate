@@ -13,7 +13,15 @@ nsURI = "<c:get select="$ePackage/@nsURI"/>"
 <c:setVariable var="eSuper" select="$eClass/ePackage"/>
 from <c:include template="templates/package_name.jet" passVariables="eSuper"/>.<c:get select="$eClass/@name"/> import <c:get select="$eClass/@name"/>
 </c:iterate>
+<c:iterate select="$ePackage/EEnum" var="eDataType">
 
+<c:include template="templates/datatype.jet"/>
+</c:iterate>
+<c:iterate select="$ePackage/EDataType" var="eDataType">
+
+<c:include template="templates/datatype.jet"/>
+</c:iterate>
 <c:if test="not($ePackage/eSuperPackage)">
+
 <c:include template="templates/map.jet"/>
 </c:if>

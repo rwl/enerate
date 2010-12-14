@@ -1,0 +1,41 @@
+<%@jet imports="org.eclipse.emf.ecore.*"%>
+<%@jet imports="java.util.*"%>
+<%
+HashMap<String, String> typeMap = new HashMap<String, String>();
+typeMap.put("boolean", "bool");
+typeMap.put("java.lang.Boolean", "bool");
+typeMap.put("char", "str");
+typeMap.put("java.lang.Character", "str");
+typeMap.put("java.util.Date", "str");
+typeMap.put("double", "float");
+typeMap.put("java.lang.Double", "float");
+typeMap.put("float", "float");
+typeMap.put("java.lang.Float", "float");
+typeMap.put("int", "int");
+typeMap.put("java.lang.Integer", "int");
+typeMap.put("java.lang.Class", "object");
+typeMap.put("java.lang.Object", "object");
+typeMap.put("long", "long");
+typeMap.put("java.lang.Long", "long");
+typeMap.put("java.util.Map", "dict");
+typeMap.put("short", "int");
+typeMap.put("java.lang.Short", "int");
+typeMap.put("java.lang.String", "str");
+
+EDataType dt = (EDataType) context.getVariable("eDataType");
+String itn = dt.getInstanceTypeName();
+String val = "str";
+
+if (typeMap.containsKey(itn))
+    val = typeMap.get(itn);
+%>
+class <c:get select="$eDataType/@name"/>(<%= val %>):
+    <c:setVariable var="numComments" select="count($eDataType/eAnnotations[@source='http://www.eclipse.org/emf/2002/GenModel'])"/>
+    <c:if test="($numComments > 0) or ($eDataType/eLiterals)">
+    """<c:setVariable var="eAnnotated" select="$eDataType"/><c:include template="templates/comment.jet" passVariables="eAnnotated"/><c:if
+    test="$eDataType/eLiterals"><c:if test="$numComments > 0">
+
+    </c:if>Values are: <c:iterate select="$eDataType/eLiterals" var="eLiteral" delimiter=", "><c:get select="$eLiteral/@literal"/></c:iterate></c:if>
+    """
+    </c:if>
+    pass
