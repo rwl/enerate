@@ -1,0 +1,7 @@
+/* Enumerations */
+<c:iterate select="$ePackage//EEnum" var="eEnum">
+enum type --class ~.client.shared.<c:get select="$eEnum/@name"/>
+<c:iterate select="$eEnum/eLiterals" var="eLiteral">
+enum constant --name <c:replaceStrings replace=' ' with="_"><c:get select="upper-case($eLiteral/@literal)"/></c:replaceStrings>
+</c:iterate>
+</c:iterate>

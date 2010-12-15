@@ -1,0 +1,26 @@
+project --topLevelPackage com.example
+
+persistence setup --provider HIBERNATE --database HYPERSONIC_IN_MEMORY
+
+<c:if test="count($ePackage//EEnum) > 0">
+script --file <c:get select="$ePackage/@name"/>-enums.roo
+</c:if>
+<c:if test="count($ePackage//EClass[count(eSuperTypes) = 0]) > 0">
+script --file <c:get select="$ePackage/@name"/>-classes.roo
+</c:if>
+<c:if test="count($ePackage//EClass[count(eSuperTypes) > 0]) > 0">
+script --file <c:get select="$ePackage/@name"/>-subclasses.roo
+</c:if>
+<c:if test="count($ePackage//EAttribute) > 0">
+script --file <c:get select="$ePackage/@name"/>-attributes.roo
+</c:if>
+<c:if test="count($ePackage//EReference[@many='false']) > 0">
+script --file <c:get select="$ePackage/@name"/>-references.roo
+</c:if>
+<c:if test="count($ePackage//EReference[@many='true']) > 0">
+script --file <c:get select="$ePackage/@name"/>-sets.roo
+</c:if>
+
+gwt setup
+
+logging setup --level DEBUG

@@ -1,0 +1,7 @@
+/* Attributes */
+<c:iterate select="$ePackage//EClass[count(eAttributes) > 0]" var="eClass">
+
+  <c:iterate select="$eClass/eAttributes" var="eAttribute">
+    <c:include template="templates/attr.jet"/>
+  </c:iterate>
+</c:iterate>

@@ -1,0 +1,7 @@
+/* Sets */
+<c:iterate select="$ePackage//EClass[count(eReferences[@many='true']) > 0]" var="eClass">
+
+<c:iterate select="$eClass/eReferences[@many='true']" var="eReference">
+<c:include template="templates/ref.jet"/>
+</c:iterate>
+</c:iterate>
