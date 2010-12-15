@@ -8,12 +8,19 @@
  --%>
 <c:setVariable var="org.eclipse.jet.taglib.control.iterateSetsContext" select="true()"/>
 
+<c:setVariable var="ePackage" select="/contents"/>
+
 <%--
-TODO: traverse input model, performing calculations and storing
+Traverse input model, performing calculations and storing
 the results as model annotations via c:set tag
 --%>
 
-<c:setVariable var="ePackage" select="/contents"/>
+<c:include template="templates/annotate.jet"/>
+
+<%--
+Traverse annotated model, performing text generation actions
+such as ws:file, ws:folder and ws:project
+--%>
 
 <ws:project name="{$org.eclipse.jet.resource.project.name}">
 
@@ -43,3 +50,14 @@ the results as model annotations via c:set tag
   </c:if>
 
 </ws:project>
+
+<%-- For debug purposes, dump the annotated input model in
+   the root of the project containing the original input model.
+
+   Note that model formatting may not be identical, and that in
+   the case of non-XML input models, the dump may look quite different.
+
+<c:if test="isVariableDefined('org.eclipse.jet.resource.project.name')">
+    <ws:file template="templates/dump.jet" path="{$org.eclipse.jet.resource.project.name}/dump.xml"/>
+</c:if>
+--%>

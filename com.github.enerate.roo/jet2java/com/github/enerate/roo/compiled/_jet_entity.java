@@ -12,6 +12,8 @@ public class _jet_entity implements JET2Template {
     public _jet_entity() {
         super();
     }
+
+    private static final String NL = System.getProperty("line.separator"); //$NON-NLS-1$
     
     private static final TagInfo _td_c_setVariable_1_1 = new TagInfo("c:setVariable", //$NON-NLS-1$
             1, 1,
@@ -156,5 +158,6 @@ public class _jet_entity implements JET2Template {
             _jettag_c_if_5_54.handleBodyContent(out);
         }
         _jettag_c_if_5_54.doEnd();
+        out.write(NL);         
     }
 }

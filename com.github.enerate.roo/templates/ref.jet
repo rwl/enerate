@@ -14,12 +14,12 @@ set --fieldName <c:get select="$eReference/@name"/> --element <c:setVariable var
 <c:when test="$eReference/eOpposite/@many = 'true'"> --cardinality MANY_TO_MANY</c:when>
 <c:when test="$eReference/eOpposite/@many = 'false'"> --cardinality ONE_TO_MANY</c:when>
 </c:choose><c:if
-	test="$eReference/eOpposite"> --mappedBy <c:get select="$eReference/eOpposite/@name"/></c:if><c:if
+	test="($eReference/eOpposite) and not($eReference/@primary='true')"> --mappedBy <c:get select="$eReference/eOpposite/@name"/></c:if><c:if
 	test="$eReference/@lowerBound > 0"> --sizeMin <c:get select="$eReference/@lowerBound"/></c:if><c:if
 	test="$eReference/@upperBound > -1"> --sizeMax <c:get select="$eReference/@upperBound"/></c:if></c:when>
 
 </c:choose><c:if
-	test="$eReference/@lowerBound > 0"> --notNull</c:if><c:if
+	test="$eReference/@lowerBound > 0 and not($eReference/@primary='true')"> --notNull</c:if><c:if
 	test="$eReference/@upperBound = 0"> --nullRequired</c:if><c:setVariable
 	var="eSuper" select="$eClass/ePackage"/> --class ~.server.domain.<c:include template="templates/package_name.jet" passVariables="eSuper"/>.<c:get select="$eClass/@name"/><c:setVariable
 	var="eAnnotated" select="$eReference"/><c:include template="templates/comment.jet" passVariables="eAnnotated"/>

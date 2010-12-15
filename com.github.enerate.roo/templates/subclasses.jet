@@ -1,4 +1,5 @@
 /* Subclasses */
+
 <c:iterate select="$ePackage//EClass[count(eSuperTypes) > 0]" var="eClass">
 <c:include template="templates/entity.jet"/>
 </c:iterate>

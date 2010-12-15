@@ -797,5 +797,6 @@ public class _jet_attr implements JET2Template {
         _jettag_c_include_43_41.setTagInfo(_td_c_include_43_41);
         _jettag_c_include_43_41.doStart(context, out);
         _jettag_c_include_43_41.doEnd();
+        out.write(NL);         
     }
 }

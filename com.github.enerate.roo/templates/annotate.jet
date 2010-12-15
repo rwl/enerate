@@ -1,0 +1,13 @@
+<%-- Tag one side of each many-to-many reference as primary to avoid use of mappedBy on both sides of the relationship. --%>
+<c:iterate select="$ePackage//EReference[(@many='true') and (eOpposite/@many='true')]" var="eReference">
+<c:if test="not($eReference/eOpposite/@primary='true')">
+<c:set select="$eReference" name="primary">true</c:set>
+</c:if>
+</c:iterate>
+
+<%-- Tag one side of each one-to-one not null reference as primary to avoid use of notNull on both sides of the relationship. --%>
+<c:iterate select="$ePackage//EReference[(@many='false') and (@lowerBound>0) and (eOpposite/@many='false') and (eOpposite/@lowerBound>0)]" var="eReference">
+<c:if test="not($eReference/eOpposite/@primary='true')">
+<c:set select="$eReference" name="primary">true</c:set>
+</c:if>
+</c:iterate>
