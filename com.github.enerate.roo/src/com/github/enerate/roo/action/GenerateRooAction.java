@@ -9,7 +9,7 @@ public class GenerateRooAction extends GenerateCodeAction {
 	public GenerateRooAction() {
 		super();
 		this.transformId = "com.github.enerate.roo";
-		this.jobDesc = "Roo Script Generation.";
+		this.jobDesc = "Roo Script Generation";
 	}
 
 }

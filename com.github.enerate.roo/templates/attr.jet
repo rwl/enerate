@@ -1,15 +1,16 @@
+<%@taglib id="com.github.enerate.tag.tagLibrary" prefix="en"%>
 field <c:setVariable select="string($eAttribute/eAttributeType/@instanceTypeName)" var="type"/><c:choose>
 
 <c:when test="($type='boolean') or ($type='java.lang.Boolean')">
-boolean --fieldName <c:get select="$eAttribute/@name"/><c:if
+boolean --fieldName <en:getRoo select="$eAttribute/@name" avoid="sql,java" ignoreCase="false"/><c:if
 	test="$eAttribute/@defaultValueLiteral"> --value <c:get select="$eAttribute/@defaultValueLiteral"/></c:if></c:when>
 
 <c:when test="($type='java.lang.String') or ($type='char') or ($type='java.lang.Character')">
-string --fieldName <c:get select="$eAttribute/@name"/><c:if
+string --fieldName <en:getRoo select="$eAttribute/@name" avoid="sql,java" ignoreCase="false"/><c:if
 	test="$eAttribute/@defaultValueLiteral"> --value <c:get select="$eAttribute/@defaultValueLiteral"/></c:if></c:when>
 
 <c:when test="($type='float') or ($type='java.lang.Float') or ($type='double') or ($type='java.lang.Double') or ($type='int') or ($type='java.lang.Integer') or ($type='short') or ($type='java.lang.Short') or ($type='long') or ($type='java.lang.Long')">
-number --fieldName <c:get select="$eAttribute/@name"/><c:if
+number --fieldName <en:getRoo select="$eAttribute/@name" avoid="sql,java" ignoreCase="false"/><c:if
 	test="$eAttribute/@defaultValueLiteral"> --value <c:get select="$eAttribute/@defaultValueLiteral"/></c:if><c:choose>
 <%-- GWT does not currently support primitive types in an entity. --%>
 <c:when test="($type='float') or ($type='java.lang.Float')"> --type java.lang.Float</c:when>
@@ -21,23 +22,23 @@ number --fieldName <c:get select="$eAttribute/@name"/><c:if
 	test="$eAttribute/@iD = 'true'"> --unique</c:if></c:when>
 
 <c:when test="$type='java.util.Date'">
-date --fieldName <c:get select="$eAttribute/@name"/> --type <c:get select="$type"/><c:if
+date --fieldName <en:getRoo select="$eAttribute/@name" avoid="sql,java" ignoreCase="false"/> --type <c:get select="$type"/><c:if
 	test="$eAttribute/@defaultValueLiteral"> --value <c:get select="$eAttribute/@defaultValueLiteral"/></c:if></c:when>
 
 <c:when test="$eAttribute/eAttributeType/eLiterals">
-enum --fieldName <c:get select="$eAttribute/@name"/> --type ~.client.shared.<c:get select="$eAttribute/eAttributeType/@name"/></c:when>
+enum --fieldName <en:getRoo select="$eAttribute/@name" avoid="sql,java" ignoreCase="false"/> --type ~.client.shared.<en:getRoo select="$eAttribute/eAttributeType/@name" avoid="sql"/></c:when>
 
 <c:when test="$eAttribute/@upperBound > 1">
-set --fieldName <c:get select="$eAttribute/@name"/> --element <c:get select="type"/> --sizeMin <c:get
+set --fieldName <en:getRoo select="$eAttribute/@name" avoid="sql,java" ignoreCase="false"/> --element <c:get select="type"/> --sizeMin <c:get
 	select="$eAttribute/lowerBound"/> --sizeMax <c:get select="$eAttribute/upperBound"/></c:when>
 
 <c:otherwise>
-other --fieldName <c:get select="$eAttribute/@name"/> --type <c:get select="$type"/><c:if
+other --fieldName <en:getRoo select="$eAttribute/@name" avoid="sql,java" ignoreCase="false"/> --type <c:get select="$type"/><c:if
 	test="$eAttribute/@defaultValueLiteral"> --value <c:get select="$eAttribute/@defaultValueLiteral"/></c:if></c:otherwise>
 
 </c:choose><c:if
 	test="$eAttribute/@transient = 'true'"> --transient</c:if><c:if
 	test="$eAttribute/@lowerBound = 1"> --notNull</c:if><c:if
 	test="$eAttribute/@upperBound = 0"> --nullRequired</c:if><c:setVariable
-	var="eSuper" select="$eClass/ePackage"/> --class ~.server.domain.<c:include template="templates/package_name.jet" passVariables="eSuper"/>.<c:get select="$eClass/@name"/><c:setVariable
+	var="eSuper" select="$eClass/ePackage"/> --class ~.server.domain.<c:include template="templates/package_name.jet" passVariables="eSuper"/>.<en:getRoo select="$eClass/@name" avoid="sql,test"/><c:setVariable
 	var="eAnnotated" select="$eAttribute"/><c:include template="templates/comment.jet" passVariables="eAnnotated"/>

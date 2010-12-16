@@ -1,25 +1,26 @@
+<%@taglib id="com.github.enerate.tag.tagLibrary" prefix="en"%>
 field <c:choose>
 
 <c:when test="$eReference/@many = 'false'">
-reference --fieldName <c:get select="$eReference/@name"/> --type <c:setVariable var="eSuper"
-	select="$eReference/eReferenceType/ePackage"/>~.server.domain.<c:include template="templates/package_name.jet" passVariables="eSuper"/>.<c:get select="$eReference/eReferenceType/@name"/><c:choose>
+reference --fieldName <en:getRoo select="$eReference/@name" avoid="sql,java" ignoreCase="false"/> --type <c:setVariable var="eSuper"
+	select="$eReference/eReferenceType/ePackage"/>~.server.domain.<c:include template="templates/package_name.jet" passVariables="eSuper"/>.<en:getRoo select="$eReference/eReferenceType/@name" avoid="sql,test"/><c:choose>
 <c:when test="$eReference/eOpposite/@many = 'true'"> --cardinality MANY_TO_ONE</c:when>
 <c:when test="$eReference/eOpposite/@many = 'false'"> --cardinality ONE_TO_ONE</c:when>
 </c:choose>
 </c:when>
 
 <c:when test="$eReference/@many = 'true'">
-set --fieldName <c:get select="$eReference/@name"/> --element <c:setVariable var="eSuper"
-	select="$eReference/eReferenceType/ePackage"/>~.server.domain.<c:include template="templates/package_name.jet" passVariables="eSuper"/>.<c:get select="$eReference/eReferenceType/@name"/><c:choose>
+set --fieldName <en:getRoo select="$eReference/@name" avoid="sql,java" ignoreCase="false"/> --element <c:setVariable var="eSuper"
+	select="$eReference/eReferenceType/ePackage"/>~.server.domain.<c:include template="templates/package_name.jet" passVariables="eSuper"/>.<en:getRoo select="$eReference/eReferenceType/@name" avoid="sql,test"/><c:choose>
 <c:when test="$eReference/eOpposite/@many = 'true'"> --cardinality MANY_TO_MANY</c:when>
 <c:when test="$eReference/eOpposite/@many = 'false'"> --cardinality ONE_TO_MANY</c:when>
 </c:choose><c:if
-	test="($eReference/eOpposite) and not($eReference/@primary='true')"> --mappedBy <c:get select="$eReference/eOpposite/@name"/></c:if><c:if
+	test="($eReference/eOpposite) and not($eReference/@primary='true')"> --mappedBy <en:getRoo select="$eReference/eOpposite/@name" avoid="sql,java"/></c:if><c:if
 	test="$eReference/@lowerBound > 0"> --sizeMin <c:get select="$eReference/@lowerBound"/></c:if><c:if
 	test="$eReference/@upperBound > -1"> --sizeMax <c:get select="$eReference/@upperBound"/></c:if></c:when>
 
 </c:choose><c:if
 	test="$eReference/@lowerBound > 0 and not($eReference/@primary='true')"> --notNull</c:if><c:if
 	test="$eReference/@upperBound = 0"> --nullRequired</c:if><c:setVariable
-	var="eSuper" select="$eClass/ePackage"/> --class ~.server.domain.<c:include template="templates/package_name.jet" passVariables="eSuper"/>.<c:get select="$eClass/@name"/><c:setVariable
+	var="eSuper" select="$eClass/ePackage"/> --class ~.server.domain.<c:include template="templates/package_name.jet" passVariables="eSuper"/>.<en:getRoo select="$eClass/@name" avoid="sql,test"/><c:setVariable
 	var="eAnnotated" select="$eReference"/><c:include template="templates/comment.jet" passVariables="eAnnotated"/>

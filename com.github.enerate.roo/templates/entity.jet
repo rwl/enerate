@@ -1,6 +1,7 @@
+<%@taglib id="com.github.enerate.tag.tagLibrary" prefix="en"%>
 <c:setVariable var="eSuper" select="$eClass/ePackage"/>
-entity --class ~.server.domain.<c:include template="templates/package_name.jet" passVariables="eSuper"/>.<c:get select="$eClass/@name"/><c:if
+entity --class ~.server.domain.<c:include template="templates/package_name.jet" passVariables="eSuper"/>.<en:getRoo select="$eClass/@name" avoid="sql,test"/><c:if
 	test="count($eClass/eSuperTypes) > 0"><c:setVariable var="eSuper" select="$eClass/eSuperTypes[1]/ePackage"/> --extends ~.server.domain.<c:include
-	template="templates/package_name.jet" passVariables="eSuper"/>.<c:get select="$eClass/eSuperTypes[1]/@name"/></c:if><c:if
+	template="templates/package_name.jet" passVariables="eSuper"/>.<en:getRoo select="$eClass/eSuperTypes[1]/@name" avoid="sql,test"/></c:if><c:if
 	test="$eClass/@abstract = 'true'"> --abstract</c:if><c:if
 	test="$eClass/@abstract = 'false'"> --testAutomatically</c:if>

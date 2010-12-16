@@ -25,6 +25,40 @@
                   use="optional">
             </attribute>
          </functionTag>
+         <emptyTag
+               class="com.github.enerate.tag.GetRooTag"
+               name="getRoo"
+               whenContainingLineIsEmpty="preserve">
+            <attribute
+                  name="select"
+                  type="xpath"
+                  use="required">
+               <description>
+                  The XPath expression to evaluate.
+               </description>
+            </attribute>
+            <attribute
+                  name="default"
+                  type="string"
+                  use="optional">
+               <description>
+                  The value to write, if the XPath expression selects no objects.
+               </description>
+            </attribute>
+            <attribute
+                  name="ignoreCase"
+                  type="string"
+                  use="optional">
+            </attribute>
+            <attribute
+                  name="avoid"
+                  type="string"
+                  use="required">
+               <description>
+                  Comma delimited list of either: java, sql, test
+               </description>
+            </attribute>
+         </emptyTag>
       </tagLibrary>
    </extension>
 

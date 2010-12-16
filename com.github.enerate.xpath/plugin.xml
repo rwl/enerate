@@ -17,6 +17,24 @@
             minArgs="2"
             name="wrap">
       </function>
+      <function
+            implementation="com.github.enerate.xpath.JavaKeywordFunction"
+            maxArgs="1"
+            minArgs="1"
+            name="javaKeyword">
+      </function>
+      <function
+            implementation="com.github.enerate.xpath.SQLKeywordFunction"
+            maxArgs="1"
+            minArgs="1"
+            name="sqlKeyword">
+      </function>
+      <function
+            implementation="com.github.enerate.xpath.TestCaseFunction"
+            maxArgs="1"
+            minArgs="1"
+            name="testcase">
+      </function>
    </extension>
 
 </plugin>
