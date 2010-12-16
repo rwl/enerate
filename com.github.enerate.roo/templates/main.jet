@@ -30,11 +30,8 @@ such as ws:file, ws:folder and ws:project
     <ws:file template="templates/enums.jet" path="{$ePackage/@name}-enums.roo"/>
   </c:if>
 
-  <c:if test="count($ePackage//EClass[count(eSuperTypes) = 0]) > 0">
+  <c:if test="count($ePackage//EClass) > 0">
     <ws:file template="templates/classes.jet" path="{$ePackage/@name}-classes.roo"/>
-  </c:if>
-  <c:if test="count($ePackage//EClass[count(eSuperTypes) > 0]) > 0">
-    <ws:file template="templates/subclasses.jet" path="{$ePackage/@name}-subclasses.roo"/>
   </c:if>
 
   <c:if test="count($ePackage//EAttribute) > 0">

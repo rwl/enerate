@@ -12,7 +12,7 @@ public class _jet_transformation implements JET2TemplateLoader,
 
     private JET2TemplateLoader delegate = null;
 
-    private final static Map<String, Integer> pathToTemplateOrdinalMap = new HashMap<String,Integer>(14);
+    private final static Map<String, Integer> pathToTemplateOrdinalMap = new HashMap<String,Integer>(13);
     static {
         pathToTemplateOrdinalMap.put("templates/annotate.jet", //$NON-NLS-1$
                 Integer.valueOf(0));
@@ -40,8 +40,6 @@ public class _jet_transformation implements JET2TemplateLoader,
                 Integer.valueOf(11));
         pathToTemplateOrdinalMap.put("templates/sets.jet", //$NON-NLS-1$
                 Integer.valueOf(12));
-        pathToTemplateOrdinalMap.put("templates/subclasses.jet", //$NON-NLS-1$
-                Integer.valueOf(13));
     }
 
     /*
@@ -79,8 +77,6 @@ public class _jet_transformation implements JET2TemplateLoader,
                 return new com.github.enerate.roo.compiled._jet_root();
             case 12: // templates/sets.jet
                 return new com.github.enerate.roo.compiled._jet_sets();
-            case 13: // templates/subclasses.jet
-                return new com.github.enerate.roo.compiled._jet_subclasses();
             default:
                 break;
             }
