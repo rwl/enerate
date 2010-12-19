@@ -1,20 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <description name="Enerate" url="http://rwl.github.com/enerate/updates">
-      Generate code from ECore models using JET2.
+   <description name="Enerate" url="http://rwl.github.com/enerate">
+      JET2 transforms for generating Python and Java code from ECore models.
    </description>
-   <feature url="features/com.github.enerate.python.feature_1.0.1.200910291431.jar" id="com.github.enerate.python.feature" version="1.0.1.200910291431">
-      <category name="com.github.enerate"/>
+   <feature url="features/com.github.enerate.feature_1.1.0.201012191526.jar" id="com.github.enerate.feature" version="1.1.0.201012191526">
+      <category name="com.github.enerate.transforms"/>
    </feature>
-   <feature url="features/com.github.enerate.traits.feature_1.0.1.200910291431.jar" id="com.github.enerate.traits.feature" version="1.0.1.200910291431">
-      <category name="com.github.enerate"/>
-   </feature>
-   <feature url="features/com.github.enerate.gae.feature_1.0.1.200910291431.jar" id="com.github.enerate.gae.feature" version="1.0.1.200910291431">
-      <category name="com.github.enerate"/>
-   </feature>
-   <category-def name="com.github.enerate" label="Enerate">
-      <description>
-         Generate code from ECore using JET2.
-      </description>
-   </category-def>
+   <category-def name="com.github.enerate.transforms" label="Enerate"/>
 </site>
