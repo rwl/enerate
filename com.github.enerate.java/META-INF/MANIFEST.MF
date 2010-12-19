@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Enerate Java
+Bundle-SymbolicName: com.github.enerate.java;singleton:=true
+Bundle-Version: 1.0.0
+Require-Bundle: org.eclipse.jet,
+ org.eclipse.ui;bundle-version="3.6.1",
+ org.eclipse.emf.ecore;bundle-version="2.6.1",
+ com.github.enerate.core;bundle-version="1.0.0"
+Bundle-ClassPath: .,bin/
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-Vendor: Richard Lincoln

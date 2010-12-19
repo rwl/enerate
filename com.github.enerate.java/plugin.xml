@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+   <extension
+         id=""
+         name=""
+         point="org.eclipse.jet.transform">
+      <transform 
+            startTemplate="templates/main.jet" 
+            templateLoaderClass="com.github.enerate.java.compiled._jet_transformation" 
+            enableEmbeddedExpressions="true"
+            >
+         <description>Generate pure Java code from Ecore models</description>
+         <tagLibraries>
+            <importLibrary id="org.eclipse.jet.controlTags" usePrefix="c" autoImport="true"/>
+            <importLibrary id="org.eclipse.jet.javaTags" usePrefix="java" autoImport="true"/>
+            <importLibrary id="org.eclipse.jet.formatTags" usePrefix="f" autoImport="true"/>
+            <importLibrary id="org.eclipse.jet.workspaceTags" usePrefix="ws" autoImport="false"/>
+         </tagLibraries>
+      </transform>
+   </extension>
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            id="com.github.enerate.java.editor.GenerateJava"
+            nameFilter="*.ecore"
+            objectClass="org.eclipse.core.resources.IFile">
+         <action
+               class="com.github.enerate.java.action.GenerateJavaAction"
+               enablesFor="1"
+               icon="icons/enerate.png"
+               id="com.github.enerate.java.generate"
+               label="Generate Java Code"
+               menubarPath="com.github.enerate.menu/javaGroup">
+         </action>
+      </objectContribution>
+   </extension>
+</plugin>
