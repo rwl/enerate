@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/com.github.enerate.feature_1.1.0.qualifier.jar" id="com.github.enerate.feature" version="1.1.0.qualifier">
+      <category name="com.github.enerate.transforms"/>
+   </feature>
+   <category-def name="com.github.enerate.transforms" label="Enerate"/>
+</site>
