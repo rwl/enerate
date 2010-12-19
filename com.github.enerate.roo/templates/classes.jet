@@ -3,6 +3,8 @@
 <%@jet imports="org.eclipse.jet.xpath.*"%>
 /* Classes */
 <%!
+private int count;
+
 private void order(NodeSet queue, List<EClass> ordered) {
 	Iterator<EClass> iter = queue.iterator();
 	while (iter.hasNext()) {
@@ -16,8 +18,21 @@ private void order(NodeSet queue, List<EClass> ordered) {
 	    }
 	}
 
-	if (ordered.size() < queue.size())
+	if (ordered.size() == this.count) {
+		// No more classes added. Queue should be empty, but just in case.
+		iter = queue.iterator();
+		while (iter.hasNext()) {
+        	EClass c = iter.next();
+			if (!ordered.contains(c))
+	            ordered.add(c);
+		}
+	} else {
+		this.count = ordered.size();
 		order(queue, ordered);
+	}
+
+//	if (ordered.size() < queue.size())
+//		order(queue, ordered);
 }
 %>
 <c:setVariable var="eClasses" select="$ePackage//EClass"/>
@@ -25,6 +40,7 @@ private void order(NodeSet queue, List<EClass> ordered) {
 NodeSet eClasses = (NodeSet) context.getVariable("eClasses");
 ArrayList<EClass> ordered = new ArrayList<EClass>();
 
+this.count = ordered.size();
 order(eClasses, ordered);
 
 for (EClass c : ordered) {
