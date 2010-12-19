@@ -39,6 +39,6 @@ other --fieldName <en:getRoo select="$eAttribute/@name" avoid="sql,java" ignoreC
 </c:choose><c:if
 	test="$eAttribute/@transient = 'true'"> --transient</c:if><c:if
 	test="$eAttribute/@lowerBound = 1"> --notNull</c:if><c:if
-	test="$eAttribute/@upperBound = 0"> --nullRequired</c:if><c:setVariable
-	var="eSuper" select="$eClass/ePackage"/> --class ~.server.domain.<c:include template="templates/package_name.jet" passVariables="eSuper"/>.<en:getRoo select="$eClass/@name" avoid="sql,test"/><c:setVariable
+	test="$eAttribute/@upperBound = 0"> --nullRequired</c:if><%--<c:setVariable
+	var="eSuper" select="$eClass/ePackage"/> --class ~.server.domain.<c:include template="templates/package_name.jet" passVariables="eSuper"/>.<en:getRoo select="$eClass/@name" avoid="sql,test"/>--%><c:setVariable
 	var="eAnnotated" select="$eAttribute"/><c:include template="templates/comment.jet" passVariables="eAnnotated"/>

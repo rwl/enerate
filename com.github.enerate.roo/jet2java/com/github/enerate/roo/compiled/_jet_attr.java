@@ -378,38 +378,8 @@ public class _jet_attr implements JET2Template {
             new String[] {
                 "$eAttribute/@upperBound = 0", //$NON-NLS-1$
             } );
-    private static final TagInfo _td_c_setVariable_42_59 = new TagInfo("c:setVariable", //$NON-NLS-1$
-            42, 59,
-            new String[] {
-                "var", //$NON-NLS-1$
-                "select", //$NON-NLS-1$
-            },
-            new String[] {
-                "eSuper", //$NON-NLS-1$
-                "$eClass/ePackage", //$NON-NLS-1$
-            } );
-    private static final TagInfo _td_c_include_43_67 = new TagInfo("c:include", //$NON-NLS-1$
-            43, 67,
-            new String[] {
-                "template", //$NON-NLS-1$
-                "passVariables", //$NON-NLS-1$
-            },
-            new String[] {
-                "templates/package_name.jet", //$NON-NLS-1$
-                "eSuper", //$NON-NLS-1$
-            } );
-    private static final TagInfo _td_en_getRoo_43_141 = new TagInfo("en:getRoo", //$NON-NLS-1$
-            43, 141,
-            new String[] {
-                "select", //$NON-NLS-1$
-                "avoid", //$NON-NLS-1$
-            },
-            new String[] {
-                "$eClass/@name", //$NON-NLS-1$
-                "sql,test", //$NON-NLS-1$
-            } );
-    private static final TagInfo _td_c_setVariable_43_193 = new TagInfo("c:setVariable", //$NON-NLS-1$
-            43, 193,
+    private static final TagInfo _td_c_setVariable_43_197 = new TagInfo("c:setVariable", //$NON-NLS-1$
+            43, 197,
             new String[] {
                 "var", //$NON-NLS-1$
                 "select", //$NON-NLS-1$
@@ -803,28 +773,13 @@ public class _jet_attr implements JET2Template {
             _jettag_c_if_41_54.handleBodyContent(out);
         }
         _jettag_c_if_41_54.doEnd();
-        RuntimeTagElement _jettag_c_setVariable_42_59 = context.getTagFactory().createRuntimeTag(_jetns_c, "setVariable", "c:setVariable", _td_c_setVariable_42_59); //$NON-NLS-1$ //$NON-NLS-2$
-        _jettag_c_setVariable_42_59.setRuntimeParent(null);
-        _jettag_c_setVariable_42_59.setTagInfo(_td_c_setVariable_42_59);
-        _jettag_c_setVariable_42_59.doStart(context, out);
-        _jettag_c_setVariable_42_59.doEnd();
-        out.write(" --class ~.server.domain.");  //$NON-NLS-1$        
-        RuntimeTagElement _jettag_c_include_43_67 = context.getTagFactory().createRuntimeTag(_jetns_c, "include", "c:include", _td_c_include_43_67); //$NON-NLS-1$ //$NON-NLS-2$
-        _jettag_c_include_43_67.setRuntimeParent(null);
-        _jettag_c_include_43_67.setTagInfo(_td_c_include_43_67);
-        _jettag_c_include_43_67.doStart(context, out);
-        _jettag_c_include_43_67.doEnd();
-        out.write(".");  //$NON-NLS-1$        
-        RuntimeTagElement _jettag_en_getRoo_43_141 = context.getTagFactory().createRuntimeTag(_jetns_en, "getRoo", "en:getRoo", _td_en_getRoo_43_141); //$NON-NLS-1$ //$NON-NLS-2$
-        _jettag_en_getRoo_43_141.setRuntimeParent(null);
-        _jettag_en_getRoo_43_141.setTagInfo(_td_en_getRoo_43_141);
-        _jettag_en_getRoo_43_141.doStart(context, out);
-        _jettag_en_getRoo_43_141.doEnd();
-        RuntimeTagElement _jettag_c_setVariable_43_193 = context.getTagFactory().createRuntimeTag(_jetns_c, "setVariable", "c:setVariable", _td_c_setVariable_43_193); //$NON-NLS-1$ //$NON-NLS-2$
-        _jettag_c_setVariable_43_193.setRuntimeParent(null);
-        _jettag_c_setVariable_43_193.setTagInfo(_td_c_setVariable_43_193);
-        _jettag_c_setVariable_43_193.doStart(context, out);
-        _jettag_c_setVariable_43_193.doEnd();
+        //<c:setVariable
+        //	var="eSuper" select="$eClass/ePackage"/> --class ~.server.domain.<c:include template="templates/package_name.jet" passVariables="eSuper"/>.<en:getRoo select="$eClass/@name" avoid="sql,test"/>
+        RuntimeTagElement _jettag_c_setVariable_43_197 = context.getTagFactory().createRuntimeTag(_jetns_c, "setVariable", "c:setVariable", _td_c_setVariable_43_197); //$NON-NLS-1$ //$NON-NLS-2$
+        _jettag_c_setVariable_43_197.setRuntimeParent(null);
+        _jettag_c_setVariable_43_197.setTagInfo(_td_c_setVariable_43_197);
+        _jettag_c_setVariable_43_197.doStart(context, out);
+        _jettag_c_setVariable_43_197.doEnd();
         RuntimeTagElement _jettag_c_include_44_41 = context.getTagFactory().createRuntimeTag(_jetns_c, "include", "c:include", _td_c_include_44_41); //$NON-NLS-1$ //$NON-NLS-2$
         _jettag_c_include_44_41.setRuntimeParent(null);
         _jettag_c_include_44_41.setTagInfo(_td_c_include_44_41);
