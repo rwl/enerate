@@ -10,7 +10,7 @@
             templateLoaderClass="com.github.enerate.java.compiled._jet_transformation" 
             enableEmbeddedExpressions="true"
             >
-         <description>Generate pure Java code from Ecore models</description>
+         <description>Generate Java code from Ecore models</description>
          <tagLibraries>
             <importLibrary id="org.eclipse.jet.controlTags" usePrefix="c" autoImport="true"/>
             <importLibrary id="org.eclipse.jet.javaTags" usePrefix="java" autoImport="true"/>

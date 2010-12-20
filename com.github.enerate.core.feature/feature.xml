@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="com.github.enerate.feature"
-      label="Enerate Feature"
-      version="1.0.0.qualifier"
+      label="Enerate"
+      version="1.1.0.qualifier"
       provider-name="Richard Lincoln">
 
    <description>
@@ -27,6 +27,12 @@
       <import plugin="org.eclipse.jet"/>
       <import plugin="org.eclipse.jface"/>
       <import plugin="org.eclipse.ui"/>
+      <import plugin="org.eclipse.emf.ecore"/>
+      <import plugin="org.eclipse.emf.codegen.ecore"/>
+      <import plugin="com.github.enerate.core" version="1.0.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.ui" version="3.6.1" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.emf.ecore" version="2.6.1" match="greaterOrEqual"/>
+      <import plugin="com.github.enerate.tag" version="1.0.0" match="greaterOrEqual"/>
    </requires>
 
    <plugin
@@ -66,6 +72,20 @@
 
    <plugin
          id="com.github.enerate.roo"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="com.github.enerate.java"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="com.github.enerate.tag"
          download-size="0"
          install-size="0"
          version="0.0.0"
