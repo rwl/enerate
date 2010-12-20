@@ -33,11 +33,11 @@ such as ws:file, ws:folder and ws:project
   <c:if test="count($ePackage//EClass) > 0">
     <ws:file template="templates/classes.jet" path="{$ePackage/@name}-classes.roo"/>
   </c:if>
-<%--
+
   <c:if test="count($ePackage//EAttribute) > 0">
     <ws:file template="templates/attributes.jet" path="{$ePackage/@name}-attributes.roo"/>
   </c:if>
---%>
+
   <c:if test="count($ePackage//EReference[@many='false']) > 0">
     <ws:file template="templates/references.jet" path="{$ePackage/@name}-references.roo"/>
   </c:if>

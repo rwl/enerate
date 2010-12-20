@@ -92,24 +92,6 @@ public class _jet_entity implements JET2Template {
             new String[] {
                 "$eClass/@abstract = 'true'", //$NON-NLS-1$
             } );
-    private static final TagInfo _td_c_iterate_8_1 = new TagInfo("c:iterate", //$NON-NLS-1$
-            8, 1,
-            new String[] {
-                "select", //$NON-NLS-1$
-                "var", //$NON-NLS-1$
-            },
-            new String[] {
-                "$eClass/eAttributes", //$NON-NLS-1$
-                "eAttribute", //$NON-NLS-1$
-            } );
-    private static final TagInfo _td_c_include_9_1 = new TagInfo("c:include", //$NON-NLS-1$
-            9, 1,
-            new String[] {
-                "template", //$NON-NLS-1$
-            },
-            new String[] {
-                "templates/attr.jet", //$NON-NLS-1$
-            } );
 
     public void generate(final JET2Context context, final JET2Writer __out) {
         JET2Writer out = __out;
@@ -167,18 +149,8 @@ public class _jet_entity implements JET2Template {
         //<c:if
         //	test="$eClass/@abstract = 'false'"> --testAutomatically</c:if>
         out.write(NL);         
-        RuntimeTagElement _jettag_c_iterate_8_1 = context.getTagFactory().createRuntimeTag(_jetns_c, "iterate", "c:iterate", _td_c_iterate_8_1); //$NON-NLS-1$ //$NON-NLS-2$
-        _jettag_c_iterate_8_1.setRuntimeParent(null);
-        _jettag_c_iterate_8_1.setTagInfo(_td_c_iterate_8_1);
-        _jettag_c_iterate_8_1.doStart(context, out);
-        while (_jettag_c_iterate_8_1.okToProcessBody()) {
-            RuntimeTagElement _jettag_c_include_9_1 = context.getTagFactory().createRuntimeTag(_jetns_c, "include", "c:include", _td_c_include_9_1); //$NON-NLS-1$ //$NON-NLS-2$
-            _jettag_c_include_9_1.setRuntimeParent(_jettag_c_iterate_8_1);
-            _jettag_c_include_9_1.setTagInfo(_td_c_include_9_1);
-            _jettag_c_include_9_1.doStart(context, out);
-            _jettag_c_include_9_1.doEnd();
-            _jettag_c_iterate_8_1.handleBodyContent(out);
-        }
-        _jettag_c_iterate_8_1.doEnd();
+        //<c:iterate select="$eClass/eAttributes" var="eAttribute">
+        //<c:include template="templates/attr.jet"/>
+        //</c:iterate>
     }
 }

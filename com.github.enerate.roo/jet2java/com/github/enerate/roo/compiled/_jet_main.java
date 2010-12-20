@@ -99,6 +99,24 @@ public class _jet_main implements JET2Template {
                 "templates/classes.jet", //$NON-NLS-1$
                 "{$ePackage/@name}-classes.roo", //$NON-NLS-1$
             } );
+    private static final TagInfo _td_c_if_37_3 = new TagInfo("c:if", //$NON-NLS-1$
+            37, 3,
+            new String[] {
+                "test", //$NON-NLS-1$
+            },
+            new String[] {
+                "count($ePackage//EAttribute) > 0", //$NON-NLS-1$
+            } );
+    private static final TagInfo _td_ws_file_38_5 = new TagInfo("ws:file", //$NON-NLS-1$
+            38, 5,
+            new String[] {
+                "template", //$NON-NLS-1$
+                "path", //$NON-NLS-1$
+            },
+            new String[] {
+                "templates/attributes.jet", //$NON-NLS-1$
+                "{$ePackage/@name}-attributes.roo", //$NON-NLS-1$
+            } );
     private static final TagInfo _td_c_if_41_3 = new TagInfo("c:if", //$NON-NLS-1$
             41, 3,
             new String[] {
@@ -215,10 +233,23 @@ public class _jet_main implements JET2Template {
                 _jettag_c_if_33_3.handleBodyContent(out);
             }
             _jettag_c_if_33_3.doEnd();
-            //
-            //  <c:if test="count($ePackage//EAttribute) > 0">
-            //    <ws:file template="templates/attributes.jet" path="{$ePackage/@name}-attributes.roo"/>
-            //  </c:if>
+            out.write(NL);         
+            RuntimeTagElement _jettag_c_if_37_3 = context.getTagFactory().createRuntimeTag(_jetns_c, "if", "c:if", _td_c_if_37_3); //$NON-NLS-1$ //$NON-NLS-2$
+            _jettag_c_if_37_3.setRuntimeParent(_jettag_ws_project_25_1);
+            _jettag_c_if_37_3.setTagInfo(_td_c_if_37_3);
+            _jettag_c_if_37_3.doStart(context, out);
+            while (_jettag_c_if_37_3.okToProcessBody()) {
+                out.write("    ");  //$NON-NLS-1$        
+                RuntimeTagElement _jettag_ws_file_38_5 = context.getTagFactory().createRuntimeTag(_jetns_ws, "file", "ws:file", _td_ws_file_38_5); //$NON-NLS-1$ //$NON-NLS-2$
+                _jettag_ws_file_38_5.setRuntimeParent(_jettag_c_if_37_3);
+                _jettag_ws_file_38_5.setTagInfo(_td_ws_file_38_5);
+                _jettag_ws_file_38_5.doStart(context, out);
+                _jettag_ws_file_38_5.doEnd();
+                out.write(NL);         
+                _jettag_c_if_37_3.handleBodyContent(out);
+            }
+            _jettag_c_if_37_3.doEnd();
+            out.write(NL);         
             RuntimeTagElement _jettag_c_if_41_3 = context.getTagFactory().createRuntimeTag(_jetns_c, "if", "c:if", _td_c_if_41_3); //$NON-NLS-1$ //$NON-NLS-2$
             _jettag_c_if_41_3.setRuntimeParent(_jettag_ws_project_25_1);
             _jettag_c_if_41_3.setTagInfo(_td_c_if_41_3);
