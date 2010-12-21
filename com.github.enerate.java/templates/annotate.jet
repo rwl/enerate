@@ -7,3 +7,7 @@
 <c:iterate select="$ePackage//EClass" var="eClass">
   <c:set select="$eClass" name="fullyQualifiedName"><c:get select="$eClass/ePackage/@fullyQualifiedName"/>.<c:get select="$eClass/@name"/></c:set>
 </c:iterate>
+
+<c:iterate select="$ePackage//EEnum" var="eEnum">
+  <c:set select="$eEnum" name="fullyQualifiedName"><c:get select="$eEnum/ePackage/@fullyQualifiedName"/>.<c:get select="$eEnum/@name"/></c:set>
+</c:iterate>

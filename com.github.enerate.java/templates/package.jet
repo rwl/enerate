@@ -5,6 +5,14 @@
     <java:class name="{$eClass/@name}" template="templates/class.jet"/>
   </c:iterate>
 
+  <c:iterate select="$ePackage/EEnum" var="eEnum">
+    <java:class name="{$eEnum/@name}" template="templates/enum.jet"/>
+  </c:iterate>
+
+  <%-- <c:iterate select="$ePackage/EDataType" var="eDataType">
+    <java:class name="{$eDataType/@name}" template="templates/datatype.jet"/>
+  </c:iterate> --%>
+
   <%-- Recursively call the package template with any subpackages. --%>
   <c:iterate select="$ePackage/eSubpackages" var="ePackage">
     <c:include template="templates/package.jet"/>

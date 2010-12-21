@@ -44,8 +44,28 @@ public class _jet_package implements JET2Template {
                 "{$eClass/@name}", //$NON-NLS-1$
                 "templates/class.jet", //$NON-NLS-1$
             } );
-    private static final TagInfo _td_c_iterate_9_3 = new TagInfo("c:iterate", //$NON-NLS-1$
-            9, 3,
+    private static final TagInfo _td_c_iterate_8_3 = new TagInfo("c:iterate", //$NON-NLS-1$
+            8, 3,
+            new String[] {
+                "select", //$NON-NLS-1$
+                "var", //$NON-NLS-1$
+            },
+            new String[] {
+                "$ePackage/EEnum", //$NON-NLS-1$
+                "eEnum", //$NON-NLS-1$
+            } );
+    private static final TagInfo _td_java_class_9_5 = new TagInfo("java:class", //$NON-NLS-1$
+            9, 5,
+            new String[] {
+                "name", //$NON-NLS-1$
+                "template", //$NON-NLS-1$
+            },
+            new String[] {
+                "{$eEnum/@name}", //$NON-NLS-1$
+                "templates/enum.jet", //$NON-NLS-1$
+            } );
+    private static final TagInfo _td_c_iterate_17_3 = new TagInfo("c:iterate", //$NON-NLS-1$
+            17, 3,
             new String[] {
                 "select", //$NON-NLS-1$
                 "var", //$NON-NLS-1$
@@ -54,8 +74,8 @@ public class _jet_package implements JET2Template {
                 "$ePackage/eSubpackages", //$NON-NLS-1$
                 "ePackage", //$NON-NLS-1$
             } );
-    private static final TagInfo _td_c_include_10_5 = new TagInfo("c:include", //$NON-NLS-1$
-            10, 5,
+    private static final TagInfo _td_c_include_18_5 = new TagInfo("c:include", //$NON-NLS-1$
+            18, 5,
             new String[] {
                 "template", //$NON-NLS-1$
             },
@@ -88,20 +108,40 @@ public class _jet_package implements JET2Template {
             }
             _jettag_c_iterate_4_3.doEnd();
             out.write(NL);         
-            // Recursively call the package template with any subpackages. 
-            RuntimeTagElement _jettag_c_iterate_9_3 = context.getTagFactory().createRuntimeTag(_jetns_c, "iterate", "c:iterate", _td_c_iterate_9_3); //$NON-NLS-1$ //$NON-NLS-2$
-            _jettag_c_iterate_9_3.setRuntimeParent(_jettag_java_package_1_1);
-            _jettag_c_iterate_9_3.setTagInfo(_td_c_iterate_9_3);
-            _jettag_c_iterate_9_3.doStart(context, out);
-            while (_jettag_c_iterate_9_3.okToProcessBody()) {
-                RuntimeTagElement _jettag_c_include_10_5 = context.getTagFactory().createRuntimeTag(_jetns_c, "include", "c:include", _td_c_include_10_5); //$NON-NLS-1$ //$NON-NLS-2$
-                _jettag_c_include_10_5.setRuntimeParent(_jettag_c_iterate_9_3);
-                _jettag_c_include_10_5.setTagInfo(_td_c_include_10_5);
-                _jettag_c_include_10_5.doStart(context, out);
-                _jettag_c_include_10_5.doEnd();
-                _jettag_c_iterate_9_3.handleBodyContent(out);
+            RuntimeTagElement _jettag_c_iterate_8_3 = context.getTagFactory().createRuntimeTag(_jetns_c, "iterate", "c:iterate", _td_c_iterate_8_3); //$NON-NLS-1$ //$NON-NLS-2$
+            _jettag_c_iterate_8_3.setRuntimeParent(_jettag_java_package_1_1);
+            _jettag_c_iterate_8_3.setTagInfo(_td_c_iterate_8_3);
+            _jettag_c_iterate_8_3.doStart(context, out);
+            while (_jettag_c_iterate_8_3.okToProcessBody()) {
+                out.write("    ");  //$NON-NLS-1$        
+                RuntimeTagElement _jettag_java_class_9_5 = context.getTagFactory().createRuntimeTag(_jetns_java, "class", "java:class", _td_java_class_9_5); //$NON-NLS-1$ //$NON-NLS-2$
+                _jettag_java_class_9_5.setRuntimeParent(_jettag_c_iterate_8_3);
+                _jettag_java_class_9_5.setTagInfo(_td_java_class_9_5);
+                _jettag_java_class_9_5.doStart(context, out);
+                _jettag_java_class_9_5.doEnd();
+                out.write(NL);         
+                _jettag_c_iterate_8_3.handleBodyContent(out);
             }
-            _jettag_c_iterate_9_3.doEnd();
+            _jettag_c_iterate_8_3.doEnd();
+            out.write(NL);         
+            // <c:iterate select="$ePackage/EDataType" var="eDataType">
+            //    <java:class name="{$eDataType/@name}" template="templates/datatype.jet"/>
+            //  </c:iterate> 
+            out.write(NL);         
+            // Recursively call the package template with any subpackages. 
+            RuntimeTagElement _jettag_c_iterate_17_3 = context.getTagFactory().createRuntimeTag(_jetns_c, "iterate", "c:iterate", _td_c_iterate_17_3); //$NON-NLS-1$ //$NON-NLS-2$
+            _jettag_c_iterate_17_3.setRuntimeParent(_jettag_java_package_1_1);
+            _jettag_c_iterate_17_3.setTagInfo(_td_c_iterate_17_3);
+            _jettag_c_iterate_17_3.doStart(context, out);
+            while (_jettag_c_iterate_17_3.okToProcessBody()) {
+                RuntimeTagElement _jettag_c_include_18_5 = context.getTagFactory().createRuntimeTag(_jetns_c, "include", "c:include", _td_c_include_18_5); //$NON-NLS-1$ //$NON-NLS-2$
+                _jettag_c_include_18_5.setRuntimeParent(_jettag_c_iterate_17_3);
+                _jettag_c_include_18_5.setTagInfo(_td_c_include_18_5);
+                _jettag_c_include_18_5.doStart(context, out);
+                _jettag_c_include_18_5.doEnd();
+                _jettag_c_iterate_17_3.handleBodyContent(out);
+            }
+            _jettag_c_iterate_17_3.doEnd();
             _jettag_java_package_1_1.handleBodyContent(out);
         }
         _jettag_java_package_1_1.doEnd();

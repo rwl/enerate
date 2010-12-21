@@ -19,9 +19,11 @@ public class <c:get select="$eClass/@name"/><c:if test="count($eClass/eSuperType
 	protected <c:get select="$eClass/@name"/>() {
 		super();
 	}
+
 <c:iterate select="$eClass/eAttributes" var="eAttribute">
 <f:indent text="	"><c:include template="templates/attr-accessors.jet"/></f:indent>
-</c:iterate><c:iterate select="$eClass/eReferences" var="eReference">
+</c:iterate>
+<c:iterate select="$eClass/eReferences" var="eReference">
 <f:indent text="	"><c:include template="templates/ref-accessors.jet"/></f:indent>
 </c:iterate>
 }

@@ -1,0 +1,12 @@
+<c:include template="templates/license.jet"/>
+package <c:get select="$eEnum/ePackage/@fullyQualifiedName"/>;
+
+<c:if test="count($eEnum/eAnnotations[@source='http://www.eclipse.org/emf/2002/GenModel']) > 0"><c:setVariable var="eAnnotated" select="$eEnum"/>
+/**
+<f:indent text=" * "><java:format><c:include template="templates/comment.jet" passVariables="eAnnotated"/></java:format></f:indent>
+ */</c:if>
+public enum <c:get select="$eEnum/@name"/> {
+
+	<c:iterate select="$eEnum/eLiterals" var="eLiteral" delimiter=", "><c:replaceStrings replace=' ,/,-,º' with="_,_,_,deg"><c:get select="$eLiteral/@literal"/></c:replaceStrings></c:iterate>
+
+}

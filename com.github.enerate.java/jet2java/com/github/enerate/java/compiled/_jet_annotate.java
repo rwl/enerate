@@ -101,6 +101,42 @@ public class _jet_annotate implements JET2Template {
             new String[] {
                 "$eClass/@name", //$NON-NLS-1$
             } );
+    private static final TagInfo _td_c_iterate_11_1 = new TagInfo("c:iterate", //$NON-NLS-1$
+            11, 1,
+            new String[] {
+                "select", //$NON-NLS-1$
+                "var", //$NON-NLS-1$
+            },
+            new String[] {
+                "$ePackage//EEnum", //$NON-NLS-1$
+                "eEnum", //$NON-NLS-1$
+            } );
+    private static final TagInfo _td_c_set_12_3 = new TagInfo("c:set", //$NON-NLS-1$
+            12, 3,
+            new String[] {
+                "select", //$NON-NLS-1$
+                "name", //$NON-NLS-1$
+            },
+            new String[] {
+                "$eEnum", //$NON-NLS-1$
+                "fullyQualifiedName", //$NON-NLS-1$
+            } );
+    private static final TagInfo _td_c_get_12_52 = new TagInfo("c:get", //$NON-NLS-1$
+            12, 52,
+            new String[] {
+                "select", //$NON-NLS-1$
+            },
+            new String[] {
+                "$eEnum/ePackage/@fullyQualifiedName", //$NON-NLS-1$
+            } );
+    private static final TagInfo _td_c_get_12_106 = new TagInfo("c:get", //$NON-NLS-1$
+            12, 106,
+            new String[] {
+                "select", //$NON-NLS-1$
+            },
+            new String[] {
+                "$eEnum/@name", //$NON-NLS-1$
+            } );
 
     public void generate(final JET2Context context, final JET2Writer __out) {
         JET2Writer out = __out;
@@ -173,5 +209,38 @@ public class _jet_annotate implements JET2Template {
             _jettag_c_iterate_7_1.handleBodyContent(out);
         }
         _jettag_c_iterate_7_1.doEnd();
+        out.write(NL);         
+        RuntimeTagElement _jettag_c_iterate_11_1 = context.getTagFactory().createRuntimeTag(_jetns_c, "iterate", "c:iterate", _td_c_iterate_11_1); //$NON-NLS-1$ //$NON-NLS-2$
+        _jettag_c_iterate_11_1.setRuntimeParent(null);
+        _jettag_c_iterate_11_1.setTagInfo(_td_c_iterate_11_1);
+        _jettag_c_iterate_11_1.doStart(context, out);
+        while (_jettag_c_iterate_11_1.okToProcessBody()) {
+            out.write("  ");  //$NON-NLS-1$        
+            RuntimeTagElement _jettag_c_set_12_3 = context.getTagFactory().createRuntimeTag(_jetns_c, "set", "c:set", _td_c_set_12_3); //$NON-NLS-1$ //$NON-NLS-2$
+            _jettag_c_set_12_3.setRuntimeParent(_jettag_c_iterate_11_1);
+            _jettag_c_set_12_3.setTagInfo(_td_c_set_12_3);
+            _jettag_c_set_12_3.doStart(context, out);
+            JET2Writer _jettag_c_set_12_3_saved_out = out;
+            while (_jettag_c_set_12_3.okToProcessBody()) {
+                out = out.newNestedContentWriter();
+                RuntimeTagElement _jettag_c_get_12_52 = context.getTagFactory().createRuntimeTag(_jetns_c, "get", "c:get", _td_c_get_12_52); //$NON-NLS-1$ //$NON-NLS-2$
+                _jettag_c_get_12_52.setRuntimeParent(_jettag_c_set_12_3);
+                _jettag_c_get_12_52.setTagInfo(_td_c_get_12_52);
+                _jettag_c_get_12_52.doStart(context, out);
+                _jettag_c_get_12_52.doEnd();
+                out.write(".");  //$NON-NLS-1$        
+                RuntimeTagElement _jettag_c_get_12_106 = context.getTagFactory().createRuntimeTag(_jetns_c, "get", "c:get", _td_c_get_12_106); //$NON-NLS-1$ //$NON-NLS-2$
+                _jettag_c_get_12_106.setRuntimeParent(_jettag_c_set_12_3);
+                _jettag_c_get_12_106.setTagInfo(_td_c_get_12_106);
+                _jettag_c_get_12_106.doStart(context, out);
+                _jettag_c_get_12_106.doEnd();
+                _jettag_c_set_12_3.handleBodyContent(out);
+            }
+            out = _jettag_c_set_12_3_saved_out;
+            _jettag_c_set_12_3.doEnd();
+            out.write(NL);         
+            _jettag_c_iterate_11_1.handleBodyContent(out);
+        }
+        _jettag_c_iterate_11_1.doEnd();
     }
 }

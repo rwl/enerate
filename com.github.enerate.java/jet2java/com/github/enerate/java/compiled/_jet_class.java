@@ -159,8 +159,8 @@ public class _jet_class implements JET2Template {
             new String[] {
                 "$eClass/@name", //$NON-NLS-1$
             } );
-    private static final TagInfo _td_c_iterate_22_1 = new TagInfo("c:iterate", //$NON-NLS-1$
-            22, 1,
+    private static final TagInfo _td_c_iterate_23_1 = new TagInfo("c:iterate", //$NON-NLS-1$
+            23, 1,
             new String[] {
                 "select", //$NON-NLS-1$
                 "var", //$NON-NLS-1$
@@ -169,24 +169,24 @@ public class _jet_class implements JET2Template {
                 "$eClass/eAttributes", //$NON-NLS-1$
                 "eAttribute", //$NON-NLS-1$
             } );
-    private static final TagInfo _td_f_indent_23_1 = new TagInfo("f:indent", //$NON-NLS-1$
-            23, 1,
+    private static final TagInfo _td_f_indent_24_1 = new TagInfo("f:indent", //$NON-NLS-1$
+            24, 1,
             new String[] {
                 "text", //$NON-NLS-1$
             },
             new String[] {
                 "\t", //$NON-NLS-1$
             } );
-    private static final TagInfo _td_c_include_23_20 = new TagInfo("c:include", //$NON-NLS-1$
-            23, 20,
+    private static final TagInfo _td_c_include_24_20 = new TagInfo("c:include", //$NON-NLS-1$
+            24, 20,
             new String[] {
                 "template", //$NON-NLS-1$
             },
             new String[] {
                 "templates/attr-accessors.jet", //$NON-NLS-1$
             } );
-    private static final TagInfo _td_c_iterate_24_13 = new TagInfo("c:iterate", //$NON-NLS-1$
-            24, 13,
+    private static final TagInfo _td_c_iterate_26_1 = new TagInfo("c:iterate", //$NON-NLS-1$
+            26, 1,
             new String[] {
                 "select", //$NON-NLS-1$
                 "var", //$NON-NLS-1$
@@ -195,16 +195,16 @@ public class _jet_class implements JET2Template {
                 "$eClass/eReferences", //$NON-NLS-1$
                 "eReference", //$NON-NLS-1$
             } );
-    private static final TagInfo _td_f_indent_25_1 = new TagInfo("f:indent", //$NON-NLS-1$
-            25, 1,
+    private static final TagInfo _td_f_indent_27_1 = new TagInfo("f:indent", //$NON-NLS-1$
+            27, 1,
             new String[] {
                 "text", //$NON-NLS-1$
             },
             new String[] {
                 "\t", //$NON-NLS-1$
             } );
-    private static final TagInfo _td_c_include_25_20 = new TagInfo("c:include", //$NON-NLS-1$
-            25, 20,
+    private static final TagInfo _td_c_include_27_20 = new TagInfo("c:include", //$NON-NLS-1$
+            27, 20,
             new String[] {
                 "template", //$NON-NLS-1$
             },
@@ -357,57 +357,57 @@ public class _jet_class implements JET2Template {
         out.write(NL);         
         out.write("\t}");  //$NON-NLS-1$        
         out.write(NL);         
-        RuntimeTagElement _jettag_c_iterate_22_1 = context.getTagFactory().createRuntimeTag(_jetns_c, "iterate", "c:iterate", _td_c_iterate_22_1); //$NON-NLS-1$ //$NON-NLS-2$
-        _jettag_c_iterate_22_1.setRuntimeParent(null);
-        _jettag_c_iterate_22_1.setTagInfo(_td_c_iterate_22_1);
-        _jettag_c_iterate_22_1.doStart(context, out);
-        while (_jettag_c_iterate_22_1.okToProcessBody()) {
-            RuntimeTagElement _jettag_f_indent_23_1 = context.getTagFactory().createRuntimeTag(_jetns_f, "indent", "f:indent", _td_f_indent_23_1); //$NON-NLS-1$ //$NON-NLS-2$
-            _jettag_f_indent_23_1.setRuntimeParent(_jettag_c_iterate_22_1);
-            _jettag_f_indent_23_1.setTagInfo(_td_f_indent_23_1);
-            _jettag_f_indent_23_1.doStart(context, out);
-            JET2Writer _jettag_f_indent_23_1_saved_out = out;
-            while (_jettag_f_indent_23_1.okToProcessBody()) {
+        out.write(NL);         
+        RuntimeTagElement _jettag_c_iterate_23_1 = context.getTagFactory().createRuntimeTag(_jetns_c, "iterate", "c:iterate", _td_c_iterate_23_1); //$NON-NLS-1$ //$NON-NLS-2$
+        _jettag_c_iterate_23_1.setRuntimeParent(null);
+        _jettag_c_iterate_23_1.setTagInfo(_td_c_iterate_23_1);
+        _jettag_c_iterate_23_1.doStart(context, out);
+        while (_jettag_c_iterate_23_1.okToProcessBody()) {
+            RuntimeTagElement _jettag_f_indent_24_1 = context.getTagFactory().createRuntimeTag(_jetns_f, "indent", "f:indent", _td_f_indent_24_1); //$NON-NLS-1$ //$NON-NLS-2$
+            _jettag_f_indent_24_1.setRuntimeParent(_jettag_c_iterate_23_1);
+            _jettag_f_indent_24_1.setTagInfo(_td_f_indent_24_1);
+            _jettag_f_indent_24_1.doStart(context, out);
+            JET2Writer _jettag_f_indent_24_1_saved_out = out;
+            while (_jettag_f_indent_24_1.okToProcessBody()) {
                 out = out.newNestedContentWriter();
-                RuntimeTagElement _jettag_c_include_23_20 = context.getTagFactory().createRuntimeTag(_jetns_c, "include", "c:include", _td_c_include_23_20); //$NON-NLS-1$ //$NON-NLS-2$
-                _jettag_c_include_23_20.setRuntimeParent(_jettag_f_indent_23_1);
-                _jettag_c_include_23_20.setTagInfo(_td_c_include_23_20);
-                _jettag_c_include_23_20.doStart(context, out);
-                _jettag_c_include_23_20.doEnd();
-                _jettag_f_indent_23_1.handleBodyContent(out);
+                RuntimeTagElement _jettag_c_include_24_20 = context.getTagFactory().createRuntimeTag(_jetns_c, "include", "c:include", _td_c_include_24_20); //$NON-NLS-1$ //$NON-NLS-2$
+                _jettag_c_include_24_20.setRuntimeParent(_jettag_f_indent_24_1);
+                _jettag_c_include_24_20.setTagInfo(_td_c_include_24_20);
+                _jettag_c_include_24_20.doStart(context, out);
+                _jettag_c_include_24_20.doEnd();
+                _jettag_f_indent_24_1.handleBodyContent(out);
             }
-            out = _jettag_f_indent_23_1_saved_out;
-            _jettag_f_indent_23_1.doEnd();
+            out = _jettag_f_indent_24_1_saved_out;
+            _jettag_f_indent_24_1.doEnd();
             out.write(NL);         
-            _jettag_c_iterate_22_1.handleBodyContent(out);
+            _jettag_c_iterate_23_1.handleBodyContent(out);
         }
-        _jettag_c_iterate_22_1.doEnd();
-        RuntimeTagElement _jettag_c_iterate_24_13 = context.getTagFactory().createRuntimeTag(_jetns_c, "iterate", "c:iterate", _td_c_iterate_24_13); //$NON-NLS-1$ //$NON-NLS-2$
-        _jettag_c_iterate_24_13.setRuntimeParent(null);
-        _jettag_c_iterate_24_13.setTagInfo(_td_c_iterate_24_13);
-        _jettag_c_iterate_24_13.doStart(context, out);
-        while (_jettag_c_iterate_24_13.okToProcessBody()) {
-            out.write(NL);         
-            RuntimeTagElement _jettag_f_indent_25_1 = context.getTagFactory().createRuntimeTag(_jetns_f, "indent", "f:indent", _td_f_indent_25_1); //$NON-NLS-1$ //$NON-NLS-2$
-            _jettag_f_indent_25_1.setRuntimeParent(_jettag_c_iterate_24_13);
-            _jettag_f_indent_25_1.setTagInfo(_td_f_indent_25_1);
-            _jettag_f_indent_25_1.doStart(context, out);
-            JET2Writer _jettag_f_indent_25_1_saved_out = out;
-            while (_jettag_f_indent_25_1.okToProcessBody()) {
+        _jettag_c_iterate_23_1.doEnd();
+        RuntimeTagElement _jettag_c_iterate_26_1 = context.getTagFactory().createRuntimeTag(_jetns_c, "iterate", "c:iterate", _td_c_iterate_26_1); //$NON-NLS-1$ //$NON-NLS-2$
+        _jettag_c_iterate_26_1.setRuntimeParent(null);
+        _jettag_c_iterate_26_1.setTagInfo(_td_c_iterate_26_1);
+        _jettag_c_iterate_26_1.doStart(context, out);
+        while (_jettag_c_iterate_26_1.okToProcessBody()) {
+            RuntimeTagElement _jettag_f_indent_27_1 = context.getTagFactory().createRuntimeTag(_jetns_f, "indent", "f:indent", _td_f_indent_27_1); //$NON-NLS-1$ //$NON-NLS-2$
+            _jettag_f_indent_27_1.setRuntimeParent(_jettag_c_iterate_26_1);
+            _jettag_f_indent_27_1.setTagInfo(_td_f_indent_27_1);
+            _jettag_f_indent_27_1.doStart(context, out);
+            JET2Writer _jettag_f_indent_27_1_saved_out = out;
+            while (_jettag_f_indent_27_1.okToProcessBody()) {
                 out = out.newNestedContentWriter();
-                RuntimeTagElement _jettag_c_include_25_20 = context.getTagFactory().createRuntimeTag(_jetns_c, "include", "c:include", _td_c_include_25_20); //$NON-NLS-1$ //$NON-NLS-2$
-                _jettag_c_include_25_20.setRuntimeParent(_jettag_f_indent_25_1);
-                _jettag_c_include_25_20.setTagInfo(_td_c_include_25_20);
-                _jettag_c_include_25_20.doStart(context, out);
-                _jettag_c_include_25_20.doEnd();
-                _jettag_f_indent_25_1.handleBodyContent(out);
+                RuntimeTagElement _jettag_c_include_27_20 = context.getTagFactory().createRuntimeTag(_jetns_c, "include", "c:include", _td_c_include_27_20); //$NON-NLS-1$ //$NON-NLS-2$
+                _jettag_c_include_27_20.setRuntimeParent(_jettag_f_indent_27_1);
+                _jettag_c_include_27_20.setTagInfo(_td_c_include_27_20);
+                _jettag_c_include_27_20.doStart(context, out);
+                _jettag_c_include_27_20.doEnd();
+                _jettag_f_indent_27_1.handleBodyContent(out);
             }
-            out = _jettag_f_indent_25_1_saved_out;
-            _jettag_f_indent_25_1.doEnd();
+            out = _jettag_f_indent_27_1_saved_out;
+            _jettag_f_indent_27_1.doEnd();
             out.write(NL);         
-            _jettag_c_iterate_24_13.handleBodyContent(out);
+            _jettag_c_iterate_26_1.handleBodyContent(out);
         }
-        _jettag_c_iterate_24_13.doEnd();
+        _jettag_c_iterate_26_1.doEnd();
         out.write("}");  //$NON-NLS-1$        
         out.write(NL);         
     }
