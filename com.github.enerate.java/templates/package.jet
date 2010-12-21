@@ -1,4 +1,4 @@
-<java:package name="{$ePackage/@name}">
+<java:package name="{$ePackage/@fullyQualifiedName}">
 
   <%-- java:class and java:resource tags here will be relative to org.example --%>
   <c:iterate select="$ePackage/EClass" var="eClass">

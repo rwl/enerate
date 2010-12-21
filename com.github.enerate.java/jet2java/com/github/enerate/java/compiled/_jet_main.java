@@ -26,15 +26,21 @@ public class _jet_main implements JET2Template {
                 "org.eclipse.jet.taglib.control.iterateSetsContext", //$NON-NLS-1$
                 "true()", //$NON-NLS-1$
             } );
-    private static final TagInfo _td_c_setVariable_10_1 = new TagInfo("c:setVariable", //$NON-NLS-1$
-            10, 1,
+    private static final TagInfo _td_c_include_14_1 = new TagInfo("c:include", //$NON-NLS-1$
+            14, 1,
             new String[] {
-                "var", //$NON-NLS-1$
-                "select", //$NON-NLS-1$
+                "template", //$NON-NLS-1$
             },
             new String[] {
-                "ePackage", //$NON-NLS-1$
-                "/contents", //$NON-NLS-1$
+                "templates/annotate.jet", //$NON-NLS-1$
+            } );
+    private static final TagInfo _td_ws_project_20_1 = new TagInfo("ws:project", //$NON-NLS-1$
+            20, 1,
+            new String[] {
+                "name", //$NON-NLS-1$
+            },
+            new String[] {
+                "{$org.eclipse.jet.resource.project.name}", //$NON-NLS-1$
             } );
     private static final TagInfo _td_c_setVariable_22_1 = new TagInfo("c:setVariable", //$NON-NLS-1$
             22, 1,
@@ -43,19 +49,11 @@ public class _jet_main implements JET2Template {
                 "select", //$NON-NLS-1$
             },
             new String[] {
-                "eClasses", //$NON-NLS-1$
-                "$ePackage//EClass", //$NON-NLS-1$
+                "ePackage", //$NON-NLS-1$
+                "/contents", //$NON-NLS-1$
             } );
-    private static final TagInfo _td_ws_project_24_1 = new TagInfo("ws:project", //$NON-NLS-1$
-            24, 1,
-            new String[] {
-                "name", //$NON-NLS-1$
-            },
-            new String[] {
-                "{$org.eclipse.jet.resource.project.name}", //$NON-NLS-1$
-            } );
-    private static final TagInfo _td_c_include_26_1 = new TagInfo("c:include", //$NON-NLS-1$
-            26, 1,
+    private static final TagInfo _td_c_include_23_1 = new TagInfo("c:include", //$NON-NLS-1$
+            23, 1,
             new String[] {
                 "template", //$NON-NLS-1$
             },
@@ -77,45 +75,37 @@ public class _jet_main implements JET2Template {
         _jettag_c_setVariable_8_1.doStart(context, out);
         _jettag_c_setVariable_8_1.doEnd();
         out.write(NL);         
-        RuntimeTagElement _jettag_c_setVariable_10_1 = context.getTagFactory().createRuntimeTag(_jetns_c, "setVariable", "c:setVariable", _td_c_setVariable_10_1); //$NON-NLS-1$ //$NON-NLS-2$
-        _jettag_c_setVariable_10_1.setRuntimeParent(null);
-        _jettag_c_setVariable_10_1.setTagInfo(_td_c_setVariable_10_1);
-        _jettag_c_setVariable_10_1.doStart(context, out);
-        _jettag_c_setVariable_10_1.doEnd();
-        out.write(NL);         
         //
-        //TODO: traverse input model, performing calculations and storing
+        //Traverse input model, performing calculations and storing
         //the results as model annotations via c:set tag
-        out.write(NL);         
+        RuntimeTagElement _jettag_c_include_14_1 = context.getTagFactory().createRuntimeTag(_jetns_c, "include", "c:include", _td_c_include_14_1); //$NON-NLS-1$ //$NON-NLS-2$
+        _jettag_c_include_14_1.setRuntimeParent(null);
+        _jettag_c_include_14_1.setTagInfo(_td_c_include_14_1);
+        _jettag_c_include_14_1.doStart(context, out);
+        _jettag_c_include_14_1.doEnd();
         out.write(NL);         
         //
         //Traverse annotated model, performing text generation actions
         //such as ws:file, ws:folder and ws:project
-        RuntimeTagElement _jettag_c_setVariable_22_1 = context.getTagFactory().createRuntimeTag(_jetns_c, "setVariable", "c:setVariable", _td_c_setVariable_22_1); //$NON-NLS-1$ //$NON-NLS-2$
-        _jettag_c_setVariable_22_1.setRuntimeParent(null);
-        _jettag_c_setVariable_22_1.setTagInfo(_td_c_setVariable_22_1);
-        _jettag_c_setVariable_22_1.doStart(context, out);
-        _jettag_c_setVariable_22_1.doEnd();
-        out.write(NL);         
-        RuntimeTagElement _jettag_ws_project_24_1 = context.getTagFactory().createRuntimeTag(_jetns_ws, "project", "ws:project", _td_ws_project_24_1); //$NON-NLS-1$ //$NON-NLS-2$
-        _jettag_ws_project_24_1.setRuntimeParent(null);
-        _jettag_ws_project_24_1.setTagInfo(_td_ws_project_24_1);
-        _jettag_ws_project_24_1.doStart(context, out);
-        while (_jettag_ws_project_24_1.okToProcessBody()) {
+        RuntimeTagElement _jettag_ws_project_20_1 = context.getTagFactory().createRuntimeTag(_jetns_ws, "project", "ws:project", _td_ws_project_20_1); //$NON-NLS-1$ //$NON-NLS-2$
+        _jettag_ws_project_20_1.setRuntimeParent(null);
+        _jettag_ws_project_20_1.setTagInfo(_td_ws_project_20_1);
+        _jettag_ws_project_20_1.doStart(context, out);
+        while (_jettag_ws_project_20_1.okToProcessBody()) {
             out.write(NL);         
-            RuntimeTagElement _jettag_c_include_26_1 = context.getTagFactory().createRuntimeTag(_jetns_c, "include", "c:include", _td_c_include_26_1); //$NON-NLS-1$ //$NON-NLS-2$
-            _jettag_c_include_26_1.setRuntimeParent(_jettag_ws_project_24_1);
-            _jettag_c_include_26_1.setTagInfo(_td_c_include_26_1);
-            _jettag_c_include_26_1.doStart(context, out);
-            _jettag_c_include_26_1.doEnd();
+            RuntimeTagElement _jettag_c_setVariable_22_1 = context.getTagFactory().createRuntimeTag(_jetns_c, "setVariable", "c:setVariable", _td_c_setVariable_22_1); //$NON-NLS-1$ //$NON-NLS-2$
+            _jettag_c_setVariable_22_1.setRuntimeParent(_jettag_ws_project_20_1);
+            _jettag_c_setVariable_22_1.setTagInfo(_td_c_setVariable_22_1);
+            _jettag_c_setVariable_22_1.doStart(context, out);
+            _jettag_c_setVariable_22_1.doEnd();
+            RuntimeTagElement _jettag_c_include_23_1 = context.getTagFactory().createRuntimeTag(_jetns_c, "include", "c:include", _td_c_include_23_1); //$NON-NLS-1$ //$NON-NLS-2$
+            _jettag_c_include_23_1.setRuntimeParent(_jettag_ws_project_20_1);
+            _jettag_c_include_23_1.setTagInfo(_td_c_include_23_1);
+            _jettag_c_include_23_1.doStart(context, out);
+            _jettag_c_include_23_1.doEnd();
             out.write(NL);         
-            // <c:iterate select="$ePackage/eSubpackages" var="ePackage">
-            //  <c:include template="templates/package.jet"/>
-            //</c:iterate> 
-            out.write(NL);         
-            _jettag_ws_project_24_1.handleBodyContent(out);
+            _jettag_ws_project_20_1.handleBodyContent(out);
         }
-        _jettag_ws_project_24_1.doEnd();
-        out.write(NL);         
+        _jettag_ws_project_20_1.doEnd();
     }
 }

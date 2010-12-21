@@ -22,7 +22,7 @@ public class _jet_package implements JET2Template {
                 "name", //$NON-NLS-1$
             },
             new String[] {
-                "{$ePackage/@name}", //$NON-NLS-1$
+                "{$ePackage/@fullyQualifiedName}", //$NON-NLS-1$
             } );
     private static final TagInfo _td_c_iterate_4_3 = new TagInfo("c:iterate", //$NON-NLS-1$
             4, 3,

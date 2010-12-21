@@ -1,12 +1,27 @@
 <%-- the class template --%>
-/* Copyright (C) 2010 Richard Lincoln */
-<java:format>
-package org.example;
-
+<c:include template="templates/license.jet"/>
+package <c:get select="$eClass/ePackage/@fullyQualifiedName"/>;
 <%-- setup location for automatical import statement insertion --%>
-<java:importsLocation package="{$eClass/ePackage/@name}"/>
+<java:importsLocation package="$eClass/ePackage/@fullyQualifiedName"/>
 
-<java:import>java.util.List</java:import> <c:get select="$eClass/eSuperTypes[1]/@name"/>
+<c:if test="count($eClass/eAnnotations[@source='http://www.eclipse.org/emf/2002/GenModel']) > 0">
+/**
+ * <c:setVariable var="eAnnotated" select="$eClass"/><c:include template="templates/comment.jet" passVariables="eAnnotated"/>
+ */
+</c:if>
+public class <c:get select="$eClass/@name"/><c:if test="count($eClass/eSuperTypes) > 0"> extends <java:import><c:get select="$eClass/eSuperTypes[1]/@fullyQualifiedName"/></java:import></c:if> {
+<c:iterate select="$eClass/eAttributes" var="eAttribute">
+<f:indent text="	"><c:include template="templates/attr.jet"/></f:indent>
+</c:iterate><c:iterate select="$eClass/eReferences" var="eReference">
+<f:indent text="	"><c:include template="templates/ref.jet"/></f:indent>
+</c:iterate>
 
-
-</java:format>
+	protected <c:get select="$eClass/@name"/>() {
+		super();
+	}
+<c:iterate select="$eClass/eAttributes" var="eAttribute">
+<f:indent text="	"><c:include template="templates/attr-accessors.jet"/></f:indent>
+</c:iterate><c:iterate select="$eClass/eReferences" var="eReference">
+<f:indent text="	"><c:include template="templates/ref-accessors.jet"/></f:indent>
+</c:iterate>
+}

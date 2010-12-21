@@ -7,27 +7,19 @@
  --%>
 <c:setVariable var="org.eclipse.jet.taglib.control.iterateSetsContext" select="true()"/>
 
-<c:setVariable var="ePackage" select="/contents"/>
-
 <%--
-TODO: traverse input model, performing calculations and storing
+Traverse input model, performing calculations and storing
 the results as model annotations via c:set tag
 --%>
-
+<c:include template="templates/annotate.jet"/>
 
 <%--
 Traverse annotated model, performing text generation actions
 such as ws:file, ws:folder and ws:project
 --%>
-<c:setVariable var="eClasses" select="$ePackage//EClass"/>
-
 <ws:project name="{$org.eclipse.jet.resource.project.name}">
 
+<c:setVariable var="ePackage" select="/contents"/>
 <c:include template="templates/package.jet"/>
 
-<%-- <c:iterate select="$ePackage/eSubpackages" var="ePackage">
-  <c:include template="templates/package.jet"/>
-</c:iterate> --%>
-
 </ws:project>
-

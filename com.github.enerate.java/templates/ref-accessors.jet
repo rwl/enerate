@@ -1,0 +1,23 @@
+/**
+ * Returns the value of the '<b><em><c:get select="$eReference/@name"/></b></em>' reference.<c:if
+ test="count($eClass/eAnnotations[@source='http://www.eclipse.org/emf/2002/GenModel']) > 0"><c:setVariable var="eAnnotated" select="$eReference"/>
+ * <java:format><c:include template="templates/comment.jet" passVariables="eAnnotated"/></java:format></c:if>
+ *
+ * @return the value of the '<em><c:get select="$eReference/@name"/></em>' reference.
+ */
+public <c:if test="$eReference/@many = 'true'"><java:import>java.util.List</java:import><<c:get select="$eReference/eReferenceType/@name"/>></c:if><c:if
+	test="$eReference/@many = 'false'"><c:get select="$eReference/eReferenceType/@name"/></c:if> get<c:get
+	select="uppercaseFirst($eReference/@name)"/>() {
+	return <c:get select="$eReference/@name"/>;
+}
+
+/**
+ * Sets the value of the '<b><em><c:get select="$eReference/@name"/></b></em>' references.
+ *
+ * @param value the new the value of the '<em><c:get select="$eReference/@name"/></em>' reference.
+ */
+public void set<c:get select="uppercaseFirst($eReference/@name)"/>(<c:if
+	test="$eReference/@many = 'true'"><java:import>java.util.List</java:import><<c:get select="$eReference/eReferenceType/@name"/>></c:if><c:if
+	test="$eReference/@many = 'false'"><c:get select="$eReference/eReferenceType/@name"/></c:if> value) {
+	<c:get select="$eReference/@name"/> = value;
+}

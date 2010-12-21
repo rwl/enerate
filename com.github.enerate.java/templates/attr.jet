@@ -1,0 +1,1 @@
+private <c:get select="$eAttribute/eAttributeType/@instanceTypeName"/> <c:get select="$eAttribute/@name"/>;

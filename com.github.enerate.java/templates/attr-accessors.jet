@@ -1,0 +1,22 @@
+/**
+ * Returns the value of the '<em><b><c:get select="$eAttribute/@name"/></b></em>' attribute.<c:if
+ test="count($eClass/eAnnotations[@source='http://www.eclipse.org/emf/2002/GenModel']) > 0"><c:setVariable var="eAnnotated" select="$eAttribute"/>
+ * <java:format><c:include template="templates/comment.jet" passVariables="eAnnotated"/></java:format></c:if>
+ *
+ * @return the value of the '<em><c:get select="$eAttribute/@name"/></em>' attribute.
+ */
+<c:setVariable select="string($eAttribute/eAttributeType/@instanceTypeName)" var="type"/>
+public <java:import><c:get select="$type"/></java:import> <c:choose><c:when
+	test="($type='boolean') or ($type='java.lang.Boolean')">is</c:when><c:otherwise>get</c:otherwise></c:choose><c:get
+	select="uppercaseFirst($eAttribute/@name)"/>() {
+	return <c:get select="$eAttribute/@name"/>;
+}
+
+/**
+ * Sets the value of the '<b><em><c:get select="$eAttribute/@name"/></b></em>' attribute.
+ *
+ * @param value the new the value of the '<em><c:get select="$eAttribute/@name"/></em>' attribute.
+ */
+public void set<c:get select="uppercaseFirst($eAttribute/@name)"/>(<java:import><c:get select="$type"/></java:import> value) {
+	<c:get select="$eAttribute/@name"/> = value;
+}
