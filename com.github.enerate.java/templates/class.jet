@@ -1,9 +1,10 @@
 <%-- the class template --%>
+/* Copyright (C) 2010 Richard Lincoln */
 <java:format>
 package org.example;
 
 <%-- setup location for automatical import statement insertion --%>
-<java:importsLocation package="org.example"/>
+<java:importsLocation package="{$eClass/ePackage/@name}"/>
 
 <java:import>java.util.List</java:import> <c:get select="$eClass/eSuperTypes[1]/@name"/>
 

@@ -1,0 +1,12 @@
+<java:package name="{$ePackage/@name}">
+
+  <%-- java:class and java:resource tags here will be relative to org.example --%>
+  <c:iterate select="$ePackage/EClass" var="eClass">
+    <java:class name="{$eClass/@name}" template="templates/class.jet"/>
+  </c:iterate>
+
+  <%-- Recursively call the package template with any subpackages. --%>
+  <c:iterate select="$ePackage/eSubpackages" var="ePackage">
+    <c:include template="templates/package.jet"/>
+  </c:iterate>
+</java:package>

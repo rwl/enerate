@@ -7,6 +7,8 @@
  --%>
 <c:setVariable var="org.eclipse.jet.taglib.control.iterateSetsContext" select="true()"/>
 
+<c:setVariable var="ePackage" select="/contents"/>
+
 <%--
 TODO: traverse input model, performing calculations and storing
 the results as model annotations via c:set tag
@@ -20,11 +22,12 @@ such as ws:file, ws:folder and ws:project
 <c:setVariable var="eClasses" select="$ePackage//EClass"/>
 
 <ws:project name="{$org.eclipse.jet.resource.project.name}">
-  <java:package name="org.example" srcFolder="src">
-  <%-- java:class and java:resource tags here will be relative to org.example --%>
-  <c:iterate select="$ePackage/EClass" var="eClass">
-    <java:class name="$eClass/@name" template="class.jet"/>
-  </c:iterate>
-  </java:package>
+
+<c:include template="templates/package.jet"/>
+
+<%-- <c:iterate select="$ePackage/eSubpackages" var="ePackage">
+  <c:include template="templates/package.jet"/>
+</c:iterate> --%>
+
 </ws:project>
 
