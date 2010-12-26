@@ -9,14 +9,16 @@ package <c:get select="$eClass/ePackage/@fullyQualifiedName"/>;
  * <c:setVariable var="eAnnotated" select="$eClass"/><c:include template="templates/comment.jet" passVariables="eAnnotated"/>
  */
 </c:if>
-public class <c:get select="$eClass/@name"/><c:if test="count($eClass/eSuperTypes) > 0"> extends <java:import><c:get select="$eClass/eSuperTypes[1]/@fullyQualifiedName"/></java:import></c:if> {
+public<c:if test="$eClass/@abstract = 'true'"> abstract</c:if> class <c:get select="$eClass/@name"/><c:if test="count($eClass/eSuperTypes) > 0"> extends <java:import><c:get select="$eClass/eSuperTypes[1]/@fullyQualifiedName"/></java:import></c:if> {
 <c:iterate select="$eClass/eAttributes" var="eAttribute">
+
 <f:indent text="	"><c:include template="templates/attr.jet"/></f:indent>
-</c:iterate><c:iterate select="$eClass/eReferences" var="eReference">
+</c:iterate>
+<c:iterate select="$eClass/eReferences" var="eReference">
 <f:indent text="	"><c:include template="templates/ref.jet"/></f:indent>
 </c:iterate>
 
-	protected <c:get select="$eClass/@name"/>() {
+	public <c:get select="$eClass/@name"/>() {
 		super();
 	}
 
