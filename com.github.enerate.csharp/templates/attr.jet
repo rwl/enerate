@@ -1,0 +1,6 @@
+private <c:choose>
+<c:when test="$eAttribute/eAttributeType/@instanceTypeName">
+<c:get select=" className($eAttribute/eAttributeType/@instanceTypeName)"/></c:when>
+<c:otherwise><%-- Enum --%>
+<c:get select="$eAttribute/eAttributeType/@fullyQualifiedName"/></c:otherwise>
+</c:choose> _<c:get select="$eAttribute/@name"/>;

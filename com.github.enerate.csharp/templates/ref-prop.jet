@@ -1,0 +1,13 @@
+public <c:if test="$eReference/@many = 'true'">List<<c:get select="$eReference/eReferenceType/@fullyQualifiedName"/>></c:if><c:if
+	test="$eReference/@many = 'false'"><c:get select="$eReference/eReferenceType/@fullyQualifiedName"/></c:if> <c:get
+	select="$eReference/@name"/>
+{
+	get
+	{
+		return this._<c:get select="$eReference/@name"/>;
+	}
+	set
+	{
+		this._<c:get select="$eReference/@name"/> = value;
+	}
+}

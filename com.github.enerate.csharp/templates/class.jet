@@ -7,11 +7,30 @@ namespace <c:get select="$eClass/ePackage/@fullyQualifiedName"/>
 <f:indent text="	">
 <c:if test="$eClass/@abstract = 'true'">abstract </c:if>public class <c:get select="$eClass/@name"/><c:if test="count($eClass/eSuperTypes) > 0"> : <c:get select="$eClass/eSuperTypes[1]/@fullyQualifiedName"/></c:if>
 {
-<f:indent text="	" depth="2">
-<c:get select="$eClass/@name"/>()
+<f:indent text="	">
+<c:iterate select="$eClass/eAttributes" var="eAttribute">
+
+<c:include template="templates/attr.jet"/>
+</c:iterate>
+<c:iterate select="$eClass/eReferences" var="eReference">
+
+<c:include template="templates/ref.jet"/>
+</c:iterate>
+
+public <c:get select="$eClass/@name"/>()
 {
 }
+<c:iterate select="$eClass/eAttributes" var="eAttribute">
+
+<c:include template="templates/attr-prop.jet"/>
+</c:iterate>
+<c:iterate select="$eClass/eReferences" var="eReference">
+
+<c:include template="templates/ref-prop.jet"/>
+</c:iterate>
+
 </f:indent>
+
 }
 </f:indent>
 }
