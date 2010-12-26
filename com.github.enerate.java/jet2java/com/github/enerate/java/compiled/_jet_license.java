@@ -42,11 +42,11 @@ public class _jet_license implements JET2Template {
         out.write(NL);         
         out.write(" * You should have received a copy of the GNU Lesser General Public");  //$NON-NLS-1$        
         out.write(NL);         
-        out.write(" * License along with this library; if not, write to the Free Software");  //$NON-NLS-1$        
+        out.write(" * License along with this library; if not, write to the Free");  //$NON-NLS-1$        
         out.write(NL);         
-        out.write(" * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,");  //$NON-NLS-1$        
+        out.write(" * Software Foundation, Inc., 51 Franklin Street, Fifth Floor,");  //$NON-NLS-1$        
         out.write(NL);         
-        out.write(" * MA 02110-1301, USA");  //$NON-NLS-1$        
+        out.write(" * Boston, MA 02110-1301, USA");  //$NON-NLS-1$        
         out.write(NL);         
         out.write(" *");  //$NON-NLS-1$        
         out.write(NL);         

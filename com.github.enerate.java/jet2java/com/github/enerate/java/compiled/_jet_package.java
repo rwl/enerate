@@ -64,24 +64,6 @@ public class _jet_package implements JET2Template {
                 "{$eEnum/@name}", //$NON-NLS-1$
                 "templates/enum.jet", //$NON-NLS-1$
             } );
-    private static final TagInfo _td_c_iterate_19_1 = new TagInfo("c:iterate", //$NON-NLS-1$
-            19, 1,
-            new String[] {
-                "select", //$NON-NLS-1$
-                "var", //$NON-NLS-1$
-            },
-            new String[] {
-                "$ePackage/eSubpackages", //$NON-NLS-1$
-                "ePackage", //$NON-NLS-1$
-            } );
-    private static final TagInfo _td_c_include_20_3 = new TagInfo("c:include", //$NON-NLS-1$
-            20, 3,
-            new String[] {
-                "template", //$NON-NLS-1$
-            },
-            new String[] {
-                "templates/package.jet", //$NON-NLS-1$
-            } );
 
     public void generate(final JET2Context context, final JET2Writer __out) {
         JET2Writer out = __out;
@@ -132,20 +114,10 @@ public class _jet_package implements JET2Template {
         }
         _jettag_java_package_1_1.doEnd();
         out.write(NL);         
-        // Recursively call the package template with any subpackages. 
-        RuntimeTagElement _jettag_c_iterate_19_1 = context.getTagFactory().createRuntimeTag(_jetns_c, "iterate", "c:iterate", _td_c_iterate_19_1); //$NON-NLS-1$ //$NON-NLS-2$
-        _jettag_c_iterate_19_1.setRuntimeParent(null);
-        _jettag_c_iterate_19_1.setTagInfo(_td_c_iterate_19_1);
-        _jettag_c_iterate_19_1.doStart(context, out);
-        while (_jettag_c_iterate_19_1.okToProcessBody()) {
-            RuntimeTagElement _jettag_c_include_20_3 = context.getTagFactory().createRuntimeTag(_jetns_c, "include", "c:include", _td_c_include_20_3); //$NON-NLS-1$ //$NON-NLS-2$
-            _jettag_c_include_20_3.setRuntimeParent(_jettag_c_iterate_19_1);
-            _jettag_c_include_20_3.setTagInfo(_td_c_include_20_3);
-            _jettag_c_include_20_3.doStart(context, out);
-            _jettag_c_include_20_3.doEnd();
-            _jettag_c_iterate_19_1.handleBodyContent(out);
-        }
-        _jettag_c_iterate_19_1.doEnd();
-        out.write(" --%>");  //$NON-NLS-1$        
+        // Recursively call the package template with any subpackages.
+        //<c:iterate select="$ePackage/eSubpackages" var="ePackage">
+        //  <c:include template="templates/package.jet"/>
+        //</c:iterate>
+        // 
     }
 }
