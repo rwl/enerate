@@ -1,0 +1,2 @@
+<c:iterate select="$eAnnotated/eAnnotations" var="eAnnotation"><c:if test="string($eAnnotation/@source) = 'http://www.eclipse.org/emf/2002/GenModel'"><c:iterate select="$eAnnotation/details" var="detailsEntry">
+<c:replaceStrings replace='\\n' with=" "><c:get select="$detailsEntry/@value"/></c:replaceStrings></c:iterate></c:if></c:iterate>

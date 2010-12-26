@@ -12,7 +12,7 @@ public class _jet_transformation implements JET2TemplateLoader,
 
     private JET2TemplateLoader delegate = null;
 
-    private final static Map<String, Integer> pathToTemplateOrdinalMap = new HashMap<String,Integer>(9);
+    private final static Map<String, Integer> pathToTemplateOrdinalMap = new HashMap<String,Integer>(11);
     static {
         pathToTemplateOrdinalMap.put("templates/annotate.jet", //$NON-NLS-1$
                 Integer.valueOf(0));
@@ -22,16 +22,20 @@ public class _jet_transformation implements JET2TemplateLoader,
                 Integer.valueOf(2));
         pathToTemplateOrdinalMap.put("templates/class.jet", //$NON-NLS-1$
                 Integer.valueOf(3));
-        pathToTemplateOrdinalMap.put("templates/license.jet", //$NON-NLS-1$
+        pathToTemplateOrdinalMap.put("templates/comment.jet", //$NON-NLS-1$
                 Integer.valueOf(4));
-        pathToTemplateOrdinalMap.put("templates/main.jet", //$NON-NLS-1$
+        pathToTemplateOrdinalMap.put("templates/enum.jet", //$NON-NLS-1$
                 Integer.valueOf(5));
-        pathToTemplateOrdinalMap.put("templates/package_name.jet", //$NON-NLS-1$
+        pathToTemplateOrdinalMap.put("templates/license.jet", //$NON-NLS-1$
                 Integer.valueOf(6));
-        pathToTemplateOrdinalMap.put("templates/ref-prop.jet", //$NON-NLS-1$
+        pathToTemplateOrdinalMap.put("templates/main.jet", //$NON-NLS-1$
                 Integer.valueOf(7));
-        pathToTemplateOrdinalMap.put("templates/ref.jet", //$NON-NLS-1$
+        pathToTemplateOrdinalMap.put("templates/package_name.jet", //$NON-NLS-1$
                 Integer.valueOf(8));
+        pathToTemplateOrdinalMap.put("templates/ref-prop.jet", //$NON-NLS-1$
+                Integer.valueOf(9));
+        pathToTemplateOrdinalMap.put("templates/ref.jet", //$NON-NLS-1$
+                Integer.valueOf(10));
     }
 
     /*
@@ -51,15 +55,19 @@ public class _jet_transformation implements JET2TemplateLoader,
                 return new com.github.enerate.csharp.compiled._jet_attr();
             case 3: // templates/class.jet
                 return new com.github.enerate.csharp.compiled._jet_class();
-            case 4: // templates/license.jet
+            case 4: // templates/comment.jet
+                return new com.github.enerate.csharp.compiled._jet_comment();
+            case 5: // templates/enum.jet
+                return new com.github.enerate.csharp.compiled._jet_enum();
+            case 6: // templates/license.jet
                 return new com.github.enerate.csharp.compiled._jet_license();
-            case 5: // templates/main.jet
+            case 7: // templates/main.jet
                 return new com.github.enerate.csharp.compiled._jet_main();
-            case 6: // templates/package_name.jet
+            case 8: // templates/package_name.jet
                 return new com.github.enerate.csharp.compiled._jet_package_name();
-            case 7: // templates/ref-prop.jet
+            case 9: // templates/ref-prop.jet
                 return new com.github.enerate.csharp.compiled._jet_refprop();
-            case 8: // templates/ref.jet
+            case 10: // templates/ref.jet
                 return new com.github.enerate.csharp.compiled._jet_ref();
             default:
                 break;
