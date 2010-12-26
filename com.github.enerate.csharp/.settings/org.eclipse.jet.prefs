@@ -1,0 +1,6 @@
+#Sun Dec 26 19:01:15 GMT 2010
+eclipse.preferences.version=1
+org.eclipse.jet.compiledTemplatePackage=com.github.enerate.csharp.compiled
+org.eclipse.jet.compiledTemplateSrcDir=jet2java
+org.eclipse.jet.projectPrefs=true
+org.eclipse.jet.useJava5=true

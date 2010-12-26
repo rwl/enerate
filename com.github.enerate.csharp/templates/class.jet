@@ -1,0 +1,17 @@
+<c:include template="templates/license.jet"/>
+
+using System;
+
+namespace <c:get select="$eClass/ePackage/@fullyQualifiedName"/>
+{
+<f:indent text="	">
+<c:if test="$eClass/@abstract = 'true'">abstract </c:if>public class <c:get select="$eClass/@name"/><c:if test="count($eClass/eSuperTypes) > 0"> : <c:get select="$eClass/eSuperTypes[1]/@fullyQualifiedName"/></c:if>
+{
+<f:indent text="	" depth="2">
+<c:get select="$eClass/@name"/>()
+{
+}
+</f:indent>
+}
+</f:indent>
+}
