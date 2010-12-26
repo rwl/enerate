@@ -28,7 +28,7 @@ public class _jet_attr implements JET2Template {
                 "test", //$NON-NLS-1$
             },
             new String[] {
-                "$eAttribute/eAttributeType/eLiterals", //$NON-NLS-1$
+                "$eAttribute/eAttributeType/@instanceTypeName", //$NON-NLS-1$
             } );
     private static final TagInfo _td_java_import_3_1 = new TagInfo("java:import", //$NON-NLS-1$
             3, 1,
@@ -42,7 +42,7 @@ public class _jet_attr implements JET2Template {
                 "select", //$NON-NLS-1$
             },
             new String[] {
-                "$eAttribute/eAttributeType/@fullyQualifiedName", //$NON-NLS-1$
+                "$eAttribute/eAttributeType/@instanceTypeName", //$NON-NLS-1$
             } );
     private static final TagInfo _td_c_otherwise_4_1 = new TagInfo("c:otherwise", //$NON-NLS-1$
             4, 1,
@@ -62,7 +62,7 @@ public class _jet_attr implements JET2Template {
                 "select", //$NON-NLS-1$
             },
             new String[] {
-                "$eAttribute/eAttributeType/@instanceTypeName", //$NON-NLS-1$
+                "$eAttribute/eAttributeType/@fullyQualifiedName", //$NON-NLS-1$
             } );
     private static final TagInfo _td_c_get_6_13 = new TagInfo("c:get", //$NON-NLS-1$
             6, 13,
@@ -91,7 +91,6 @@ public class _jet_attr implements JET2Template {
             JET2Writer _jettag_c_when_2_1_saved_out = out;
             while (_jettag_c_when_2_1.okToProcessBody()) {
                 out = out.newNestedContentWriter();
-                // Enum 
                 RuntimeTagElement _jettag_java_import_3_1 = context.getTagFactory().createRuntimeTag(_jetns_java, "import", "java:import", _td_java_import_3_1); //$NON-NLS-1$ //$NON-NLS-2$
                 _jettag_java_import_3_1.setRuntimeParent(_jettag_c_when_2_1);
                 _jettag_java_import_3_1.setTagInfo(_td_java_import_3_1);
@@ -120,6 +119,7 @@ public class _jet_attr implements JET2Template {
             JET2Writer _jettag_c_otherwise_4_1_saved_out = out;
             while (_jettag_c_otherwise_4_1.okToProcessBody()) {
                 out = out.newNestedContentWriter();
+                // Enum 
                 RuntimeTagElement _jettag_java_import_5_1 = context.getTagFactory().createRuntimeTag(_jetns_java, "import", "java:import", _td_java_import_5_1); //$NON-NLS-1$ //$NON-NLS-2$
                 _jettag_java_import_5_1.setRuntimeParent(_jettag_c_otherwise_4_1);
                 _jettag_java_import_5_1.setTagInfo(_td_java_import_5_1);

@@ -5,10 +5,10 @@
  *
  * @return the value of the '<em><c:get select="$eReference/@name"/></em>' reference.
  */
-public <c:if test="$eReference/@many = 'true'"><java:import>java.util.List</java:import><<c:get select="$eReference/eReferenceType/@name"/>></c:if><c:if
-	test="$eReference/@many = 'false'"><c:get select="$eReference/eReferenceType/@name"/></c:if> get<c:get
+public <c:if test="$eReference/@many = 'true'"><java:import>java.util.List</java:import><<java:import><c:get select="$eReference/eReferenceType/@fullyQualifiedName"/></java:import>></c:if><c:if
+	test="$eReference/@many = 'false'"><java:import><c:get select="$eReference/eReferenceType/@fullyQualifiedName"/></java:import></c:if> get<c:get
 	select="uppercaseFirst($eReference/@name)"/>() {
-	return <c:get select="$eReference/@name"/>;
+	return this.<c:get select="$eReference/@name"/>;
 }
 
 /**
@@ -17,7 +17,7 @@ public <c:if test="$eReference/@many = 'true'"><java:import>java.util.List</java
  * @param value the new the value of the '<em><c:get select="$eReference/@name"/></em>' reference.
  */
 public void set<c:get select="uppercaseFirst($eReference/@name)"/>(<c:if
-	test="$eReference/@many = 'true'"><java:import>java.util.List</java:import><<c:get select="$eReference/eReferenceType/@name"/>></c:if><c:if
-	test="$eReference/@many = 'false'"><c:get select="$eReference/eReferenceType/@name"/></c:if> value) {
-	<c:get select="$eReference/@name"/> = value;
+	test="$eReference/@many = 'true'"><java:import>java.util.List</java:import><<java:import><c:get select="$eReference/eReferenceType/@fullyQualifiedName"/></java:import>></c:if><c:if
+	test="$eReference/@many = 'false'"><java:import><c:get select="$eReference/eReferenceType/@fullyQualifiedName"/></java:import></c:if> value) {
+	this.<c:get select="$eReference/@name"/> = value;
 }

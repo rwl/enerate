@@ -80,40 +80,52 @@ public class _jet_refaccessors implements JET2Template {
             },
             new String[] {
             } );
-    private static final TagInfo _td_c_get_8_90 = new TagInfo("c:get", //$NON-NLS-1$
+    private static final TagInfo _td_java_import_8_90 = new TagInfo("java:import", //$NON-NLS-1$
             8, 90,
+            new String[] {
+            },
+            new String[] {
+            } );
+    private static final TagInfo _td_c_get_8_103 = new TagInfo("c:get", //$NON-NLS-1$
+            8, 103,
             new String[] {
                 "select", //$NON-NLS-1$
             },
             new String[] {
-                "$eReference/eReferenceType/@name", //$NON-NLS-1$
+                "$eReference/eReferenceType/@fullyQualifiedName", //$NON-NLS-1$
             } );
-    private static final TagInfo _td_c_if_8_148 = new TagInfo("c:if", //$NON-NLS-1$
-            8, 148,
+    private static final TagInfo _td_c_if_8_189 = new TagInfo("c:if", //$NON-NLS-1$
+            8, 189,
             new String[] {
                 "test", //$NON-NLS-1$
             },
             new String[] {
                 "$eReference/@many = 'false'", //$NON-NLS-1$
             } );
-    private static final TagInfo _td_c_get_9_37 = new TagInfo("c:get", //$NON-NLS-1$
+    private static final TagInfo _td_java_import_9_37 = new TagInfo("java:import", //$NON-NLS-1$
             9, 37,
+            new String[] {
+            },
+            new String[] {
+            } );
+    private static final TagInfo _td_c_get_9_50 = new TagInfo("c:get", //$NON-NLS-1$
+            9, 50,
             new String[] {
                 "select", //$NON-NLS-1$
             },
             new String[] {
-                "$eReference/eReferenceType/@name", //$NON-NLS-1$
+                "$eReference/eReferenceType/@fullyQualifiedName", //$NON-NLS-1$
             } );
-    private static final TagInfo _td_c_get_9_98 = new TagInfo("c:get", //$NON-NLS-1$
-            9, 98,
+    private static final TagInfo _td_c_get_9_139 = new TagInfo("c:get", //$NON-NLS-1$
+            9, 139,
             new String[] {
                 "select", //$NON-NLS-1$
             },
             new String[] {
                 "uppercaseFirst($eReference/@name)", //$NON-NLS-1$
             } );
-    private static final TagInfo _td_c_get_11_9 = new TagInfo("c:get", //$NON-NLS-1$
-            11, 9,
+    private static final TagInfo _td_c_get_11_14 = new TagInfo("c:get", //$NON-NLS-1$
+            11, 14,
             new String[] {
                 "select", //$NON-NLS-1$
             },
@@ -158,32 +170,44 @@ public class _jet_refaccessors implements JET2Template {
             },
             new String[] {
             } );
-    private static final TagInfo _td_c_get_20_78 = new TagInfo("c:get", //$NON-NLS-1$
+    private static final TagInfo _td_java_import_20_78 = new TagInfo("java:import", //$NON-NLS-1$
             20, 78,
+            new String[] {
+            },
+            new String[] {
+            } );
+    private static final TagInfo _td_c_get_20_91 = new TagInfo("c:get", //$NON-NLS-1$
+            20, 91,
             new String[] {
                 "select", //$NON-NLS-1$
             },
             new String[] {
-                "$eReference/eReferenceType/@name", //$NON-NLS-1$
+                "$eReference/eReferenceType/@fullyQualifiedName", //$NON-NLS-1$
             } );
-    private static final TagInfo _td_c_if_20_136 = new TagInfo("c:if", //$NON-NLS-1$
-            20, 136,
+    private static final TagInfo _td_c_if_20_177 = new TagInfo("c:if", //$NON-NLS-1$
+            20, 177,
             new String[] {
                 "test", //$NON-NLS-1$
             },
             new String[] {
                 "$eReference/@many = 'false'", //$NON-NLS-1$
             } );
-    private static final TagInfo _td_c_get_21_37 = new TagInfo("c:get", //$NON-NLS-1$
+    private static final TagInfo _td_java_import_21_37 = new TagInfo("java:import", //$NON-NLS-1$
             21, 37,
+            new String[] {
+            },
+            new String[] {
+            } );
+    private static final TagInfo _td_c_get_21_50 = new TagInfo("c:get", //$NON-NLS-1$
+            21, 50,
             new String[] {
                 "select", //$NON-NLS-1$
             },
             new String[] {
-                "$eReference/eReferenceType/@name", //$NON-NLS-1$
+                "$eReference/eReferenceType/@fullyQualifiedName", //$NON-NLS-1$
             } );
-    private static final TagInfo _td_c_get_22_2 = new TagInfo("c:get", //$NON-NLS-1$
-            22, 2,
+    private static final TagInfo _td_c_get_22_7 = new TagInfo("c:get", //$NON-NLS-1$
+            22, 7,
             new String[] {
                 "select", //$NON-NLS-1$
             },
@@ -264,42 +288,64 @@ public class _jet_refaccessors implements JET2Template {
             out = _jettag_java_import_8_48_saved_out;
             _jettag_java_import_8_48.doEnd();
             out.write("<");  //$NON-NLS-1$        
-            RuntimeTagElement _jettag_c_get_8_90 = context.getTagFactory().createRuntimeTag(_jetns_c, "get", "c:get", _td_c_get_8_90); //$NON-NLS-1$ //$NON-NLS-2$
-            _jettag_c_get_8_90.setRuntimeParent(_jettag_c_if_8_8);
-            _jettag_c_get_8_90.setTagInfo(_td_c_get_8_90);
-            _jettag_c_get_8_90.doStart(context, out);
-            _jettag_c_get_8_90.doEnd();
+            RuntimeTagElement _jettag_java_import_8_90 = context.getTagFactory().createRuntimeTag(_jetns_java, "import", "java:import", _td_java_import_8_90); //$NON-NLS-1$ //$NON-NLS-2$
+            _jettag_java_import_8_90.setRuntimeParent(_jettag_c_if_8_8);
+            _jettag_java_import_8_90.setTagInfo(_td_java_import_8_90);
+            _jettag_java_import_8_90.doStart(context, out);
+            JET2Writer _jettag_java_import_8_90_saved_out = out;
+            while (_jettag_java_import_8_90.okToProcessBody()) {
+                out = out.newNestedContentWriter();
+                RuntimeTagElement _jettag_c_get_8_103 = context.getTagFactory().createRuntimeTag(_jetns_c, "get", "c:get", _td_c_get_8_103); //$NON-NLS-1$ //$NON-NLS-2$
+                _jettag_c_get_8_103.setRuntimeParent(_jettag_java_import_8_90);
+                _jettag_c_get_8_103.setTagInfo(_td_c_get_8_103);
+                _jettag_c_get_8_103.doStart(context, out);
+                _jettag_c_get_8_103.doEnd();
+                _jettag_java_import_8_90.handleBodyContent(out);
+            }
+            out = _jettag_java_import_8_90_saved_out;
+            _jettag_java_import_8_90.doEnd();
             out.write(">");  //$NON-NLS-1$        
             _jettag_c_if_8_8.handleBodyContent(out);
         }
         _jettag_c_if_8_8.doEnd();
-        RuntimeTagElement _jettag_c_if_8_148 = context.getTagFactory().createRuntimeTag(_jetns_c, "if", "c:if", _td_c_if_8_148); //$NON-NLS-1$ //$NON-NLS-2$
-        _jettag_c_if_8_148.setRuntimeParent(null);
-        _jettag_c_if_8_148.setTagInfo(_td_c_if_8_148);
-        _jettag_c_if_8_148.doStart(context, out);
-        while (_jettag_c_if_8_148.okToProcessBody()) {
-            RuntimeTagElement _jettag_c_get_9_37 = context.getTagFactory().createRuntimeTag(_jetns_c, "get", "c:get", _td_c_get_9_37); //$NON-NLS-1$ //$NON-NLS-2$
-            _jettag_c_get_9_37.setRuntimeParent(_jettag_c_if_8_148);
-            _jettag_c_get_9_37.setTagInfo(_td_c_get_9_37);
-            _jettag_c_get_9_37.doStart(context, out);
-            _jettag_c_get_9_37.doEnd();
-            _jettag_c_if_8_148.handleBodyContent(out);
+        RuntimeTagElement _jettag_c_if_8_189 = context.getTagFactory().createRuntimeTag(_jetns_c, "if", "c:if", _td_c_if_8_189); //$NON-NLS-1$ //$NON-NLS-2$
+        _jettag_c_if_8_189.setRuntimeParent(null);
+        _jettag_c_if_8_189.setTagInfo(_td_c_if_8_189);
+        _jettag_c_if_8_189.doStart(context, out);
+        while (_jettag_c_if_8_189.okToProcessBody()) {
+            RuntimeTagElement _jettag_java_import_9_37 = context.getTagFactory().createRuntimeTag(_jetns_java, "import", "java:import", _td_java_import_9_37); //$NON-NLS-1$ //$NON-NLS-2$
+            _jettag_java_import_9_37.setRuntimeParent(_jettag_c_if_8_189);
+            _jettag_java_import_9_37.setTagInfo(_td_java_import_9_37);
+            _jettag_java_import_9_37.doStart(context, out);
+            JET2Writer _jettag_java_import_9_37_saved_out = out;
+            while (_jettag_java_import_9_37.okToProcessBody()) {
+                out = out.newNestedContentWriter();
+                RuntimeTagElement _jettag_c_get_9_50 = context.getTagFactory().createRuntimeTag(_jetns_c, "get", "c:get", _td_c_get_9_50); //$NON-NLS-1$ //$NON-NLS-2$
+                _jettag_c_get_9_50.setRuntimeParent(_jettag_java_import_9_37);
+                _jettag_c_get_9_50.setTagInfo(_td_c_get_9_50);
+                _jettag_c_get_9_50.doStart(context, out);
+                _jettag_c_get_9_50.doEnd();
+                _jettag_java_import_9_37.handleBodyContent(out);
+            }
+            out = _jettag_java_import_9_37_saved_out;
+            _jettag_java_import_9_37.doEnd();
+            _jettag_c_if_8_189.handleBodyContent(out);
         }
-        _jettag_c_if_8_148.doEnd();
+        _jettag_c_if_8_189.doEnd();
         out.write(" get");  //$NON-NLS-1$        
-        RuntimeTagElement _jettag_c_get_9_98 = context.getTagFactory().createRuntimeTag(_jetns_c, "get", "c:get", _td_c_get_9_98); //$NON-NLS-1$ //$NON-NLS-2$
-        _jettag_c_get_9_98.setRuntimeParent(null);
-        _jettag_c_get_9_98.setTagInfo(_td_c_get_9_98);
-        _jettag_c_get_9_98.doStart(context, out);
-        _jettag_c_get_9_98.doEnd();
+        RuntimeTagElement _jettag_c_get_9_139 = context.getTagFactory().createRuntimeTag(_jetns_c, "get", "c:get", _td_c_get_9_139); //$NON-NLS-1$ //$NON-NLS-2$
+        _jettag_c_get_9_139.setRuntimeParent(null);
+        _jettag_c_get_9_139.setTagInfo(_td_c_get_9_139);
+        _jettag_c_get_9_139.doStart(context, out);
+        _jettag_c_get_9_139.doEnd();
         out.write("() {");  //$NON-NLS-1$        
         out.write(NL);         
-        out.write("\treturn ");  //$NON-NLS-1$        
-        RuntimeTagElement _jettag_c_get_11_9 = context.getTagFactory().createRuntimeTag(_jetns_c, "get", "c:get", _td_c_get_11_9); //$NON-NLS-1$ //$NON-NLS-2$
-        _jettag_c_get_11_9.setRuntimeParent(null);
-        _jettag_c_get_11_9.setTagInfo(_td_c_get_11_9);
-        _jettag_c_get_11_9.doStart(context, out);
-        _jettag_c_get_11_9.doEnd();
+        out.write("\treturn this.");  //$NON-NLS-1$        
+        RuntimeTagElement _jettag_c_get_11_14 = context.getTagFactory().createRuntimeTag(_jetns_c, "get", "c:get", _td_c_get_11_14); //$NON-NLS-1$ //$NON-NLS-2$
+        _jettag_c_get_11_14.setRuntimeParent(null);
+        _jettag_c_get_11_14.setTagInfo(_td_c_get_11_14);
+        _jettag_c_get_11_14.doStart(context, out);
+        _jettag_c_get_11_14.doEnd();
         out.write(";");  //$NON-NLS-1$        
         out.write(NL);         
         out.write("}");  //$NON-NLS-1$        
@@ -352,36 +398,58 @@ public class _jet_refaccessors implements JET2Template {
             out = _jettag_java_import_20_36_saved_out;
             _jettag_java_import_20_36.doEnd();
             out.write("<");  //$NON-NLS-1$        
-            RuntimeTagElement _jettag_c_get_20_78 = context.getTagFactory().createRuntimeTag(_jetns_c, "get", "c:get", _td_c_get_20_78); //$NON-NLS-1$ //$NON-NLS-2$
-            _jettag_c_get_20_78.setRuntimeParent(_jettag_c_if_19_68);
-            _jettag_c_get_20_78.setTagInfo(_td_c_get_20_78);
-            _jettag_c_get_20_78.doStart(context, out);
-            _jettag_c_get_20_78.doEnd();
+            RuntimeTagElement _jettag_java_import_20_78 = context.getTagFactory().createRuntimeTag(_jetns_java, "import", "java:import", _td_java_import_20_78); //$NON-NLS-1$ //$NON-NLS-2$
+            _jettag_java_import_20_78.setRuntimeParent(_jettag_c_if_19_68);
+            _jettag_java_import_20_78.setTagInfo(_td_java_import_20_78);
+            _jettag_java_import_20_78.doStart(context, out);
+            JET2Writer _jettag_java_import_20_78_saved_out = out;
+            while (_jettag_java_import_20_78.okToProcessBody()) {
+                out = out.newNestedContentWriter();
+                RuntimeTagElement _jettag_c_get_20_91 = context.getTagFactory().createRuntimeTag(_jetns_c, "get", "c:get", _td_c_get_20_91); //$NON-NLS-1$ //$NON-NLS-2$
+                _jettag_c_get_20_91.setRuntimeParent(_jettag_java_import_20_78);
+                _jettag_c_get_20_91.setTagInfo(_td_c_get_20_91);
+                _jettag_c_get_20_91.doStart(context, out);
+                _jettag_c_get_20_91.doEnd();
+                _jettag_java_import_20_78.handleBodyContent(out);
+            }
+            out = _jettag_java_import_20_78_saved_out;
+            _jettag_java_import_20_78.doEnd();
             out.write(">");  //$NON-NLS-1$        
             _jettag_c_if_19_68.handleBodyContent(out);
         }
         _jettag_c_if_19_68.doEnd();
-        RuntimeTagElement _jettag_c_if_20_136 = context.getTagFactory().createRuntimeTag(_jetns_c, "if", "c:if", _td_c_if_20_136); //$NON-NLS-1$ //$NON-NLS-2$
-        _jettag_c_if_20_136.setRuntimeParent(null);
-        _jettag_c_if_20_136.setTagInfo(_td_c_if_20_136);
-        _jettag_c_if_20_136.doStart(context, out);
-        while (_jettag_c_if_20_136.okToProcessBody()) {
-            RuntimeTagElement _jettag_c_get_21_37 = context.getTagFactory().createRuntimeTag(_jetns_c, "get", "c:get", _td_c_get_21_37); //$NON-NLS-1$ //$NON-NLS-2$
-            _jettag_c_get_21_37.setRuntimeParent(_jettag_c_if_20_136);
-            _jettag_c_get_21_37.setTagInfo(_td_c_get_21_37);
-            _jettag_c_get_21_37.doStart(context, out);
-            _jettag_c_get_21_37.doEnd();
-            _jettag_c_if_20_136.handleBodyContent(out);
+        RuntimeTagElement _jettag_c_if_20_177 = context.getTagFactory().createRuntimeTag(_jetns_c, "if", "c:if", _td_c_if_20_177); //$NON-NLS-1$ //$NON-NLS-2$
+        _jettag_c_if_20_177.setRuntimeParent(null);
+        _jettag_c_if_20_177.setTagInfo(_td_c_if_20_177);
+        _jettag_c_if_20_177.doStart(context, out);
+        while (_jettag_c_if_20_177.okToProcessBody()) {
+            RuntimeTagElement _jettag_java_import_21_37 = context.getTagFactory().createRuntimeTag(_jetns_java, "import", "java:import", _td_java_import_21_37); //$NON-NLS-1$ //$NON-NLS-2$
+            _jettag_java_import_21_37.setRuntimeParent(_jettag_c_if_20_177);
+            _jettag_java_import_21_37.setTagInfo(_td_java_import_21_37);
+            _jettag_java_import_21_37.doStart(context, out);
+            JET2Writer _jettag_java_import_21_37_saved_out = out;
+            while (_jettag_java_import_21_37.okToProcessBody()) {
+                out = out.newNestedContentWriter();
+                RuntimeTagElement _jettag_c_get_21_50 = context.getTagFactory().createRuntimeTag(_jetns_c, "get", "c:get", _td_c_get_21_50); //$NON-NLS-1$ //$NON-NLS-2$
+                _jettag_c_get_21_50.setRuntimeParent(_jettag_java_import_21_37);
+                _jettag_c_get_21_50.setTagInfo(_td_c_get_21_50);
+                _jettag_c_get_21_50.doStart(context, out);
+                _jettag_c_get_21_50.doEnd();
+                _jettag_java_import_21_37.handleBodyContent(out);
+            }
+            out = _jettag_java_import_21_37_saved_out;
+            _jettag_java_import_21_37.doEnd();
+            _jettag_c_if_20_177.handleBodyContent(out);
         }
-        _jettag_c_if_20_136.doEnd();
+        _jettag_c_if_20_177.doEnd();
         out.write(" value) {");  //$NON-NLS-1$        
         out.write(NL);         
-        out.write("\t");  //$NON-NLS-1$        
-        RuntimeTagElement _jettag_c_get_22_2 = context.getTagFactory().createRuntimeTag(_jetns_c, "get", "c:get", _td_c_get_22_2); //$NON-NLS-1$ //$NON-NLS-2$
-        _jettag_c_get_22_2.setRuntimeParent(null);
-        _jettag_c_get_22_2.setTagInfo(_td_c_get_22_2);
-        _jettag_c_get_22_2.doStart(context, out);
-        _jettag_c_get_22_2.doEnd();
+        out.write("\tthis.");  //$NON-NLS-1$        
+        RuntimeTagElement _jettag_c_get_22_7 = context.getTagFactory().createRuntimeTag(_jetns_c, "get", "c:get", _td_c_get_22_7); //$NON-NLS-1$ //$NON-NLS-2$
+        _jettag_c_get_22_7.setRuntimeParent(null);
+        _jettag_c_get_22_7.setTagInfo(_td_c_get_22_7);
+        _jettag_c_get_22_7.doStart(context, out);
+        _jettag_c_get_22_7.doEnd();
         out.write(" = value;");  //$NON-NLS-1$        
         out.write(NL);         
         out.write("}");  //$NON-NLS-1$        

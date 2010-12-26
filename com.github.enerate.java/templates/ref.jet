@@ -1,2 +1,2 @@
-private <c:if test="$eReference/@many = 'true'">List<<c:get select="$eReference/eReferenceType/@name"/>></c:if><c:if
-	test="$eReference/@many = 'false'"><c:get select="$eReference/eReferenceType/@name"/></c:if> <c:get select="$eReference/@name"/>;
+private <c:if test="$eReference/@many = 'true'">List<<java:import><c:get select="$eReference/eReferenceType/@fullyQualifiedName"/></java:import>></c:if><c:if
+	test="$eReference/@many = 'false'"><java:import><c:get select="$eReference/eReferenceType/@fullyQualifiedName"/></java:import></c:if> <c:get select="$eReference/@name"/>;

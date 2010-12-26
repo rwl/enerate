@@ -12,7 +12,7 @@ public class _jet_transformation implements JET2TemplateLoader,
 
     private JET2TemplateLoader delegate = null;
 
-    private final static Map<String, Integer> pathToTemplateOrdinalMap = new HashMap<String,Integer>(11);
+    private final static Map<String, Integer> pathToTemplateOrdinalMap = new HashMap<String,Integer>(12);
     static {
         pathToTemplateOrdinalMap.put("templates/annotate.jet", //$NON-NLS-1$
                 Integer.valueOf(0));
@@ -22,20 +22,22 @@ public class _jet_transformation implements JET2TemplateLoader,
                 Integer.valueOf(2));
         pathToTemplateOrdinalMap.put("templates/class.jet", //$NON-NLS-1$
                 Integer.valueOf(3));
-        pathToTemplateOrdinalMap.put("templates/enum.jet", //$NON-NLS-1$
+        pathToTemplateOrdinalMap.put("templates/comment.jet", //$NON-NLS-1$
                 Integer.valueOf(4));
-        pathToTemplateOrdinalMap.put("templates/license.jet", //$NON-NLS-1$
+        pathToTemplateOrdinalMap.put("templates/enum.jet", //$NON-NLS-1$
                 Integer.valueOf(5));
-        pathToTemplateOrdinalMap.put("templates/main.jet", //$NON-NLS-1$
+        pathToTemplateOrdinalMap.put("templates/license.jet", //$NON-NLS-1$
                 Integer.valueOf(6));
-        pathToTemplateOrdinalMap.put("templates/package.jet", //$NON-NLS-1$
+        pathToTemplateOrdinalMap.put("templates/main.jet", //$NON-NLS-1$
                 Integer.valueOf(7));
-        pathToTemplateOrdinalMap.put("templates/package_name.jet", //$NON-NLS-1$
+        pathToTemplateOrdinalMap.put("templates/package.jet", //$NON-NLS-1$
                 Integer.valueOf(8));
-        pathToTemplateOrdinalMap.put("templates/ref-accessors.jet", //$NON-NLS-1$
+        pathToTemplateOrdinalMap.put("templates/package_name.jet", //$NON-NLS-1$
                 Integer.valueOf(9));
-        pathToTemplateOrdinalMap.put("templates/ref.jet", //$NON-NLS-1$
+        pathToTemplateOrdinalMap.put("templates/ref-accessors.jet", //$NON-NLS-1$
                 Integer.valueOf(10));
+        pathToTemplateOrdinalMap.put("templates/ref.jet", //$NON-NLS-1$
+                Integer.valueOf(11));
     }
 
     /*
@@ -55,19 +57,21 @@ public class _jet_transformation implements JET2TemplateLoader,
                 return new com.github.enerate.java.compiled._jet_attr();
             case 3: // templates/class.jet
                 return new com.github.enerate.java.compiled._jet_class();
-            case 4: // templates/enum.jet
+            case 4: // templates/comment.jet
+                return new com.github.enerate.java.compiled._jet_comment();
+            case 5: // templates/enum.jet
                 return new com.github.enerate.java.compiled._jet_enum();
-            case 5: // templates/license.jet
+            case 6: // templates/license.jet
                 return new com.github.enerate.java.compiled._jet_license();
-            case 6: // templates/main.jet
+            case 7: // templates/main.jet
                 return new com.github.enerate.java.compiled._jet_main();
-            case 7: // templates/package.jet
+            case 8: // templates/package.jet
                 return new com.github.enerate.java.compiled._jet_package();
-            case 8: // templates/package_name.jet
+            case 9: // templates/package_name.jet
                 return new com.github.enerate.java.compiled._jet_package_name();
-            case 9: // templates/ref-accessors.jet
+            case 10: // templates/ref-accessors.jet
                 return new com.github.enerate.java.compiled._jet_refaccessors();
-            case 10: // templates/ref.jet
+            case 11: // templates/ref.jet
                 return new com.github.enerate.java.compiled._jet_ref();
             default:
                 break;

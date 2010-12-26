@@ -1,6 +1,6 @@
 private <c:choose>
-<c:when test="$eAttribute/eAttributeType/eLiterals"><%-- Enum --%>
-<java:import><c:get select="$eAttribute/eAttributeType/@fullyQualifiedName"/></java:import></c:when>
-<c:otherwise>
-<java:import><c:get select="$eAttribute/eAttributeType/@instanceTypeName"/></java:import></c:otherwise>
+<c:when test="$eAttribute/eAttributeType/@instanceTypeName">
+<java:import><c:get select="$eAttribute/eAttributeType/@instanceTypeName"/></java:import></c:when>
+<c:otherwise><%-- Enum --%>
+<java:import><c:get select="$eAttribute/eAttributeType/@fullyQualifiedName"/></java:import></c:otherwise>
 </c:choose> <c:get select="$eAttribute/@name"/>;
