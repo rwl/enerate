@@ -22,7 +22,7 @@ public class _jet_annotate implements JET2Template {
                 "var", //$NON-NLS-1$
             },
             new String[] {
-                "/EPackage", //$NON-NLS-1$
+                "//EPackage", //$NON-NLS-1$
                 "ePackage", //$NON-NLS-1$
             } );
     private static final TagInfo _td_c_setVariable_2_3 = new TagInfo("c:setVariable", //$NON-NLS-1$

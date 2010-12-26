@@ -42,18 +42,18 @@ public class _jet_main implements JET2Template {
             new String[] {
                 "{$org.eclipse.jet.resource.project.name}", //$NON-NLS-1$
             } );
-    private static final TagInfo _td_c_setVariable_22_1 = new TagInfo("c:setVariable", //$NON-NLS-1$
-            22, 1,
+    private static final TagInfo _td_c_iterate_27_1 = new TagInfo("c:iterate", //$NON-NLS-1$
+            27, 1,
             new String[] {
-                "var", //$NON-NLS-1$
                 "select", //$NON-NLS-1$
+                "var", //$NON-NLS-1$
             },
             new String[] {
+                "//EPackage", //$NON-NLS-1$
                 "ePackage", //$NON-NLS-1$
-                "/contents", //$NON-NLS-1$
             } );
-    private static final TagInfo _td_c_include_23_1 = new TagInfo("c:include", //$NON-NLS-1$
-            23, 1,
+    private static final TagInfo _td_c_include_28_3 = new TagInfo("c:include", //$NON-NLS-1$
+            28, 3,
             new String[] {
                 "template", //$NON-NLS-1$
             },
@@ -93,16 +93,23 @@ public class _jet_main implements JET2Template {
         _jettag_ws_project_20_1.doStart(context, out);
         while (_jettag_ws_project_20_1.okToProcessBody()) {
             out.write(NL);         
-            RuntimeTagElement _jettag_c_setVariable_22_1 = context.getTagFactory().createRuntimeTag(_jetns_c, "setVariable", "c:setVariable", _td_c_setVariable_22_1); //$NON-NLS-1$ //$NON-NLS-2$
-            _jettag_c_setVariable_22_1.setRuntimeParent(_jettag_ws_project_20_1);
-            _jettag_c_setVariable_22_1.setTagInfo(_td_c_setVariable_22_1);
-            _jettag_c_setVariable_22_1.doStart(context, out);
-            _jettag_c_setVariable_22_1.doEnd();
-            RuntimeTagElement _jettag_c_include_23_1 = context.getTagFactory().createRuntimeTag(_jetns_c, "include", "c:include", _td_c_include_23_1); //$NON-NLS-1$ //$NON-NLS-2$
-            _jettag_c_include_23_1.setRuntimeParent(_jettag_ws_project_20_1);
-            _jettag_c_include_23_1.setTagInfo(_td_c_include_23_1);
-            _jettag_c_include_23_1.doStart(context, out);
-            _jettag_c_include_23_1.doEnd();
+            //
+            //<c:setVariable var="ePackage" select="/contents"/>
+            //<c:include template="templates/package.jet"/>
+            out.write(NL);         
+            RuntimeTagElement _jettag_c_iterate_27_1 = context.getTagFactory().createRuntimeTag(_jetns_c, "iterate", "c:iterate", _td_c_iterate_27_1); //$NON-NLS-1$ //$NON-NLS-2$
+            _jettag_c_iterate_27_1.setRuntimeParent(_jettag_ws_project_20_1);
+            _jettag_c_iterate_27_1.setTagInfo(_td_c_iterate_27_1);
+            _jettag_c_iterate_27_1.doStart(context, out);
+            while (_jettag_c_iterate_27_1.okToProcessBody()) {
+                RuntimeTagElement _jettag_c_include_28_3 = context.getTagFactory().createRuntimeTag(_jetns_c, "include", "c:include", _td_c_include_28_3); //$NON-NLS-1$ //$NON-NLS-2$
+                _jettag_c_include_28_3.setRuntimeParent(_jettag_c_iterate_27_1);
+                _jettag_c_include_28_3.setTagInfo(_td_c_include_28_3);
+                _jettag_c_include_28_3.doStart(context, out);
+                _jettag_c_include_28_3.doEnd();
+                _jettag_c_iterate_27_1.handleBodyContent(out);
+            }
+            _jettag_c_iterate_27_1.doEnd();
             out.write(NL);         
             _jettag_ws_project_20_1.handleBodyContent(out);
         }

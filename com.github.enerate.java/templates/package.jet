@@ -13,8 +13,10 @@
     <java:class name="{$eDataType/@name}" template="templates/datatype.jet"/>
   </c:iterate> --%>
 
-  <%-- Recursively call the package template with any subpackages. --%>
-  <c:iterate select="$ePackage/eSubpackages" var="ePackage">
-    <c:include template="templates/package.jet"/>
-  </c:iterate>
 </java:package>
+
+<%-- Recursively call the package template with any subpackages. --%>
+<c:iterate select="$ePackage/eSubpackages" var="ePackage">
+  <c:include template="templates/package.jet"/>
+</c:iterate>
+ --%>

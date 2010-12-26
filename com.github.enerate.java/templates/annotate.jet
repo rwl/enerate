@@ -1,4 +1,4 @@
-<c:iterate select="/EPackage" var="ePackage">
+<c:iterate select="//EPackage" var="ePackage">
   <c:setVariable var="eSuper" select="$ePackage"/>
   <c:set select="$ePackage" name="fullyQualifiedName"><c:include template="templates/package_name.jet" passVariables="eSuper"/></c:set>
 </c:iterate>

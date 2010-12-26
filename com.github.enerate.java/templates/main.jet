@@ -19,7 +19,13 @@ such as ws:file, ws:folder and ws:project
 --%>
 <ws:project name="{$org.eclipse.jet.resource.project.name}">
 
+<%--
 <c:setVariable var="ePackage" select="/contents"/>
 <c:include template="templates/package.jet"/>
+--%>
+
+<c:iterate select="//EPackage" var="ePackage">
+  <c:include template="templates/package.jet"/>
+</c:iterate>
 
 </ws:project>
