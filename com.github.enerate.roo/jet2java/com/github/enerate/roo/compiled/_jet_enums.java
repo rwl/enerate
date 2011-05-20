@@ -53,7 +53,7 @@ public class _jet_enums implements JET2Template {
                 "with", //$NON-NLS-1$
             },
             new String[] {
-                " ,/,-,º", //$NON-NLS-1$
+                " ,/,-,ï¿½", //$NON-NLS-1$
                 "_,_per_,_minus_,o", //$NON-NLS-1$
             } );
     private static final TagInfo _td_en_getRoo_7_83 = new TagInfo("en:getRoo", //$NON-NLS-1$

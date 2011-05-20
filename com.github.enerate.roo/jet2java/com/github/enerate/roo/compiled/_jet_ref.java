@@ -35,15 +35,13 @@ public class _jet_ref implements JET2Template {
             new String[] {
                 "select", //$NON-NLS-1$
                 "avoid", //$NON-NLS-1$
-                "ignoreCase", //$NON-NLS-1$
             },
             new String[] {
                 "$eReference/@name", //$NON-NLS-1$
                 "sql,java", //$NON-NLS-1$
-                "false", //$NON-NLS-1$
             } );
-    private static final TagInfo _td_c_setVariable_5_106 = new TagInfo("c:setVariable", //$NON-NLS-1$
-            5, 106,
+    private static final TagInfo _td_c_setVariable_5_87 = new TagInfo("c:setVariable", //$NON-NLS-1$
+            5, 87,
             new String[] {
                 "var", //$NON-NLS-1$
                 "select", //$NON-NLS-1$
@@ -107,15 +105,13 @@ public class _jet_ref implements JET2Template {
             new String[] {
                 "select", //$NON-NLS-1$
                 "avoid", //$NON-NLS-1$
-                "ignoreCase", //$NON-NLS-1$
             },
             new String[] {
                 "$eReference/@name", //$NON-NLS-1$
                 "sql,java", //$NON-NLS-1$
-                "false", //$NON-NLS-1$
             } );
-    private static final TagInfo _td_c_setVariable_13_103 = new TagInfo("c:setVariable", //$NON-NLS-1$
-            13, 103,
+    private static final TagInfo _td_c_setVariable_13_81 = new TagInfo("c:setVariable", //$NON-NLS-1$
+            13, 81,
             new String[] {
                 "var", //$NON-NLS-1$
                 "select", //$NON-NLS-1$
@@ -309,11 +305,11 @@ public class _jet_ref implements JET2Template {
                 _jettag_en_getRoo_5_23.doStart(context, out);
                 _jettag_en_getRoo_5_23.doEnd();
                 out.write(" --type ");  //$NON-NLS-1$        
-                RuntimeTagElement _jettag_c_setVariable_5_106 = context.getTagFactory().createRuntimeTag(_jetns_c, "setVariable", "c:setVariable", _td_c_setVariable_5_106); //$NON-NLS-1$ //$NON-NLS-2$
-                _jettag_c_setVariable_5_106.setRuntimeParent(_jettag_c_when_4_1);
-                _jettag_c_setVariable_5_106.setTagInfo(_td_c_setVariable_5_106);
-                _jettag_c_setVariable_5_106.doStart(context, out);
-                _jettag_c_setVariable_5_106.doEnd();
+                RuntimeTagElement _jettag_c_setVariable_5_87 = context.getTagFactory().createRuntimeTag(_jetns_c, "setVariable", "c:setVariable", _td_c_setVariable_5_87); //$NON-NLS-1$ //$NON-NLS-2$
+                _jettag_c_setVariable_5_87.setRuntimeParent(_jettag_c_when_4_1);
+                _jettag_c_setVariable_5_87.setTagInfo(_td_c_setVariable_5_87);
+                _jettag_c_setVariable_5_87.doStart(context, out);
+                _jettag_c_setVariable_5_87.doEnd();
                 out.write("~.server.domain.");  //$NON-NLS-1$        
                 RuntimeTagElement _jettag_c_include_6_64 = context.getTagFactory().createRuntimeTag(_jetns_c, "include", "c:include", _td_c_include_6_64); //$NON-NLS-1$ //$NON-NLS-2$
                 _jettag_c_include_6_64.setRuntimeParent(_jettag_c_when_4_1);
@@ -382,12 +378,12 @@ public class _jet_ref implements JET2Template {
                 _jettag_en_getRoo_13_17.setTagInfo(_td_en_getRoo_13_17);
                 _jettag_en_getRoo_13_17.doStart(context, out);
                 _jettag_en_getRoo_13_17.doEnd();
-                out.write(" --element ");  //$NON-NLS-1$        
-                RuntimeTagElement _jettag_c_setVariable_13_103 = context.getTagFactory().createRuntimeTag(_jetns_c, "setVariable", "c:setVariable", _td_c_setVariable_13_103); //$NON-NLS-1$ //$NON-NLS-2$
-                _jettag_c_setVariable_13_103.setRuntimeParent(_jettag_c_when_12_1);
-                _jettag_c_setVariable_13_103.setTagInfo(_td_c_setVariable_13_103);
-                _jettag_c_setVariable_13_103.doStart(context, out);
-                _jettag_c_setVariable_13_103.doEnd();
+                out.write(" --type ");  //$NON-NLS-1$        
+                RuntimeTagElement _jettag_c_setVariable_13_81 = context.getTagFactory().createRuntimeTag(_jetns_c, "setVariable", "c:setVariable", _td_c_setVariable_13_81); //$NON-NLS-1$ //$NON-NLS-2$
+                _jettag_c_setVariable_13_81.setRuntimeParent(_jettag_c_when_12_1);
+                _jettag_c_setVariable_13_81.setTagInfo(_td_c_setVariable_13_81);
+                _jettag_c_setVariable_13_81.doStart(context, out);
+                _jettag_c_setVariable_13_81.doEnd();
                 out.write("~.server.domain.");  //$NON-NLS-1$        
                 RuntimeTagElement _jettag_c_include_14_64 = context.getTagFactory().createRuntimeTag(_jetns_c, "include", "c:include", _td_c_include_14_64); //$NON-NLS-1$ //$NON-NLS-2$
                 _jettag_c_include_14_64.setRuntimeParent(_jettag_c_when_12_1);

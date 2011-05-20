@@ -2,7 +2,7 @@
 field <c:choose>
 
 <c:when test="$eReference/@many = 'false'">
-reference --fieldName <en:getRoo select="$eReference/@name" avoid="sql,java" ignoreCase="false"/> --type <c:setVariable var="eSuper"
+reference --fieldName <en:getRoo select="$eReference/@name" avoid="sql,java"/> --type <c:setVariable var="eSuper"
 	select="$eReference/eReferenceType/ePackage"/>~.server.domain.<c:include template="templates/package_name.jet" passVariables="eSuper"/>.<en:getRoo select="$eReference/eReferenceType/@name" avoid="sql,test"/><c:choose>
 <c:when test="$eReference/eOpposite/@many = 'true'"> --cardinality MANY_TO_ONE</c:when>
 <c:when test="$eReference/eOpposite/@many = 'false'"> --cardinality ONE_TO_ONE</c:when>
@@ -10,7 +10,7 @@ reference --fieldName <en:getRoo select="$eReference/@name" avoid="sql,java" ign
 </c:when>
 
 <c:when test="$eReference/@many = 'true'">
-set --fieldName <en:getRoo select="$eReference/@name" avoid="sql,java" ignoreCase="false"/> --element <c:setVariable var="eSuper"
+set --fieldName <en:getRoo select="$eReference/@name" avoid="sql,java"/> --type <c:setVariable var="eSuper"
 	select="$eReference/eReferenceType/ePackage"/>~.server.domain.<c:include template="templates/package_name.jet" passVariables="eSuper"/>.<en:getRoo select="$eReference/eReferenceType/@name" avoid="sql,test"/><c:choose>
 <c:when test="$eReference/eOpposite/@many = 'true'"> --cardinality MANY_TO_MANY</c:when>
 <c:when test="$eReference/eOpposite/@many = 'false'"> --cardinality ONE_TO_MANY</c:when>
