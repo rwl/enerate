@@ -111,7 +111,7 @@ public class _jet_enum implements JET2Template {
                 "with", //$NON-NLS-1$
             },
             new String[] {
-                " ,/,-,º", //$NON-NLS-1$
+                " ,/,-,ï¿½", //$NON-NLS-1$
                 "_,_,_,deg", //$NON-NLS-1$
             } );
     private static final TagInfo _td_c_get_14_54 = new TagInfo("c:get", //$NON-NLS-1$
