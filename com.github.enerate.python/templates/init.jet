@@ -6,13 +6,18 @@
 """
 </c:if>
 
-nsPrefix = "<c:get select="$ePackage/@nsPrefix"/>"
-nsURI = "<c:get select="$ePackage/@nsURI"/>"
-
 <c:iterate select="$ePackage/EClass" var="eClass">
 <c:setVariable var="eSuper" select="$eClass/ePackage"/>
 from <c:include template="templates/package_name.jet" passVariables="eSuper"/>.<c:get select="$eClass/@name"/> import <c:get select="$eClass/@name"/>
 </c:iterate>
+
+nsURI = "<c:get select="$ePackage/@nsURI"/>"
+nsPrefix = "<c:get select="$ePackage/@nsPrefix"/>"
+<c:if test="count($ePackage/eAnnotations[@source='http://www.pycim.com/PyCIM']/details[@key='mapPackage' and @value='true']) > 0">
+
+<c:include template="templates/map.jet"/>
+</c:if>
+
 <c:iterate select="$ePackage/EEnum" var="eDataType">
 
 <c:include template="templates/datatype.jet"/>
@@ -21,7 +26,3 @@ from <c:include template="templates/package_name.jet" passVariables="eSuper"/>.<
 
 <c:include template="templates/datatype.jet"/>
 </c:iterate>
-<c:if test="not($ePackage/eSuperPackage)">
-
-<c:include template="templates/map.jet"/>
-</c:if>
