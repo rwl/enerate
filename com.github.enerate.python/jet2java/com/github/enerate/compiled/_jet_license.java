@@ -14,35 +14,43 @@ public class _jet_license implements JET2Template {
 
     public void generate(final JET2Context context, final JET2Writer __out) {
         JET2Writer out = __out;
-        out.write("# Copyright (C) 2010 Richard Lincoln");  //$NON-NLS-1$        
+        out.write("# Copyright (C) 2010-2011 Richard Lincoln");  //$NON-NLS-1$        
         out.write(NL);         
         out.write("#");  //$NON-NLS-1$        
         out.write(NL);         
-        out.write("# This library is free software; you can redistribute it and/or");  //$NON-NLS-1$        
+        out.write("# Permission is hereby granted, free of charge, to any person obtaining a copy");  //$NON-NLS-1$        
         out.write(NL);         
-        out.write("# modify it under the terms of the GNU Lesser General Public");  //$NON-NLS-1$        
+        out.write("# of this software and associated documentation files (the \"Software\"), to");  //$NON-NLS-1$        
         out.write(NL);         
-        out.write("# License as published by the Free Software Foundation; either");  //$NON-NLS-1$        
+        out.write("# deal in the Software without restriction, including without limitation the");  //$NON-NLS-1$        
         out.write(NL);         
-        out.write("# version 2.1 of the License, or (at your option) any later version.");  //$NON-NLS-1$        
+        out.write("# rights to use, copy, modify, merge, publish, distribute, sublicense, and/or");  //$NON-NLS-1$        
         out.write(NL);         
-        out.write("#");  //$NON-NLS-1$        
+        out.write("# sell copies of the Software, and to permit persons to whom the Software is");  //$NON-NLS-1$        
         out.write(NL);         
-        out.write("# This library is distributed in the hope that it will be useful,");  //$NON-NLS-1$        
-        out.write(NL);         
-        out.write("# but WITHOUT ANY WARRANTY; without even the implied warranty of");  //$NON-NLS-1$        
-        out.write(NL);         
-        out.write("# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU");  //$NON-NLS-1$        
-        out.write(NL);         
-        out.write("# Lesser General Public License for more details.");  //$NON-NLS-1$        
+        out.write("# furnished to do so, subject to the following conditions:");  //$NON-NLS-1$        
         out.write(NL);         
         out.write("#");  //$NON-NLS-1$        
         out.write(NL);         
-        out.write("# You should have received a copy of the GNU Lesser General Public");  //$NON-NLS-1$        
+        out.write("# The above copyright notice and this permission notice shall be included in");  //$NON-NLS-1$        
         out.write(NL);         
-        out.write("# License along with this library; if not, write to the Free Software");  //$NON-NLS-1$        
+        out.write("# all copies or substantial portions of the Software.");  //$NON-NLS-1$        
         out.write(NL);         
-        out.write("# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA, USA");  //$NON-NLS-1$        
+        out.write("#");  //$NON-NLS-1$        
+        out.write(NL);         
+        out.write("# THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR");  //$NON-NLS-1$        
+        out.write(NL);         
+        out.write("# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,");  //$NON-NLS-1$        
+        out.write(NL);         
+        out.write("# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE");  //$NON-NLS-1$        
+        out.write(NL);         
+        out.write("# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER");  //$NON-NLS-1$        
+        out.write(NL);         
+        out.write("# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING");  //$NON-NLS-1$        
+        out.write(NL);         
+        out.write("# FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS");  //$NON-NLS-1$        
+        out.write(NL);         
+        out.write("# IN THE SOFTWARE.");  //$NON-NLS-1$        
         out.write(NL);         
     }
 }

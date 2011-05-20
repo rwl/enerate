@@ -21,14 +21,6 @@ public class _jet_operation implements JET2Template {
             },
             new String[] {
             } );
-    private static final TagInfo _td_c_get_2_11 = new TagInfo("c:get", //$NON-NLS-1$
-            2, 11,
-            new String[] {
-                "select", //$NON-NLS-1$
-            },
-            new String[] {
-                "$eOperation/@name", //$NON-NLS-1$
-            } );
     private static final TagInfo _td_c_initialCode_3_5 = new TagInfo("c:initialCode", //$NON-NLS-1$
             3, 5,
             new String[] {
@@ -147,42 +139,6 @@ public class _jet_operation implements JET2Template {
             new String[] {
                 "$eParameter/@name", //$NON-NLS-1$
             } );
-    private static final TagInfo _td_c_if_17_13 = new TagInfo("c:if", //$NON-NLS-1$
-            17, 13,
-            new String[] {
-                "test", //$NON-NLS-1$
-            },
-            new String[] {
-                "count($eOperation/eAnnotations) > 0", //$NON-NLS-1$
-            } );
-    private static final TagInfo _td_c_setVariable_17_62 = new TagInfo("c:setVariable", //$NON-NLS-1$
-            17, 62,
-            new String[] {
-                "var", //$NON-NLS-1$
-                "select", //$NON-NLS-1$
-            },
-            new String[] {
-                "eAnnotated", //$NON-NLS-1$
-                "$eOperation", //$NON-NLS-1$
-            } );
-    private static final TagInfo _td_c_include_18_9 = new TagInfo("c:include", //$NON-NLS-1$
-            18, 9,
-            new String[] {
-                "template", //$NON-NLS-1$
-                "passVariables", //$NON-NLS-1$
-            },
-            new String[] {
-                "templates/comment.jet", //$NON-NLS-1$
-                "eAnnotated", //$NON-NLS-1$
-            } );
-    private static final TagInfo _td_c_get_24_11 = new TagInfo("c:get", //$NON-NLS-1$
-            24, 11,
-            new String[] {
-                "select", //$NON-NLS-1$
-            },
-            new String[] {
-                "$eOperation/@name", //$NON-NLS-1$
-            } );
 
     public void generate(final JET2Context context, final JET2Writer __out) {
         JET2Writer out = __out;
@@ -191,13 +147,7 @@ public class _jet_operation implements JET2Template {
         _jettag_c_userRegion_1_1.setTagInfo(_td_c_userRegion_1_1);
         _jettag_c_userRegion_1_1.doStart(context, out);
         while (_jettag_c_userRegion_1_1.okToProcessBody()) {
-            out.write("    # <<< ");  //$NON-NLS-1$        
-            RuntimeTagElement _jettag_c_get_2_11 = context.getTagFactory().createRuntimeTag(_jetns_c, "get", "c:get", _td_c_get_2_11); //$NON-NLS-1$ //$NON-NLS-2$
-            _jettag_c_get_2_11.setRuntimeParent(_jettag_c_userRegion_1_1);
-            _jettag_c_get_2_11.setTagInfo(_td_c_get_2_11);
-            _jettag_c_get_2_11.doStart(context, out);
-            _jettag_c_get_2_11.doEnd();
-            out.write(NL);         
+            //    # <<< <c:get select="$eOperation/@name"/>
             RuntimeTagElement _jettag_c_initialCode_3_5 = context.getTagFactory().createRuntimeTag(_jetns_c, "initialCode", "c:initialCode", _td_c_initialCode_3_5); //$NON-NLS-1$ //$NON-NLS-2$
             _jettag_c_initialCode_3_5.setRuntimeParent(_jettag_c_userRegion_1_1);
             _jettag_c_initialCode_3_5.setTagInfo(_td_c_initialCode_3_5);
@@ -344,43 +294,17 @@ public class _jet_operation implements JET2Template {
                 _jettag_c_iterate_12_12.doEnd();
                 out.write("):");  //$NON-NLS-1$        
                 out.write(NL);         
-                out.write("        \"\"\" ");  //$NON-NLS-1$        
-                RuntimeTagElement _jettag_c_if_17_13 = context.getTagFactory().createRuntimeTag(_jetns_c, "if", "c:if", _td_c_if_17_13); //$NON-NLS-1$ //$NON-NLS-2$
-                _jettag_c_if_17_13.setRuntimeParent(_jettag_c_initialCode_3_5);
-                _jettag_c_if_17_13.setTagInfo(_td_c_if_17_13);
-                _jettag_c_if_17_13.doStart(context, out);
-                while (_jettag_c_if_17_13.okToProcessBody()) {
-                    RuntimeTagElement _jettag_c_setVariable_17_62 = context.getTagFactory().createRuntimeTag(_jetns_c, "setVariable", "c:setVariable", _td_c_setVariable_17_62); //$NON-NLS-1$ //$NON-NLS-2$
-                    _jettag_c_setVariable_17_62.setRuntimeParent(_jettag_c_if_17_13);
-                    _jettag_c_setVariable_17_62.setTagInfo(_td_c_setVariable_17_62);
-                    _jettag_c_setVariable_17_62.doStart(context, out);
-                    _jettag_c_setVariable_17_62.doEnd();
-                    RuntimeTagElement _jettag_c_include_18_9 = context.getTagFactory().createRuntimeTag(_jetns_c, "include", "c:include", _td_c_include_18_9); //$NON-NLS-1$ //$NON-NLS-2$
-                    _jettag_c_include_18_9.setRuntimeParent(_jettag_c_if_17_13);
-                    _jettag_c_include_18_9.setTagInfo(_td_c_include_18_9);
-                    _jettag_c_include_18_9.doStart(context, out);
-                    _jettag_c_include_18_9.doEnd();
-                    out.write(NL);         
-                    out.write("            ");  //$NON-NLS-1$        
-                    _jettag_c_if_17_13.handleBodyContent(out);
-                }
-                _jettag_c_if_17_13.doEnd();
-                out.write("@generated");  //$NON-NLS-1$        
-                out.write(NL);         
-                out.write("        \"\"\"");  //$NON-NLS-1$        
-                out.write(NL);         
+                //        """ <c:if test="count($eOperation/eAnnotations) > 0"><c:setVariable var="eAnnotated" select="$eOperation"/>
+                //        <c:include template="templates/comment.jet" passVariables="eAnnotated"/>
+                //
+                //            </c:if>@generated
+                //        """
                 out.write("        pass");  //$NON-NLS-1$        
                 out.write(NL);         
                 _jettag_c_initialCode_3_5.handleBodyContent(out);
             }
             _jettag_c_initialCode_3_5.doEnd();
-            out.write("    # >>> ");  //$NON-NLS-1$        
-            RuntimeTagElement _jettag_c_get_24_11 = context.getTagFactory().createRuntimeTag(_jetns_c, "get", "c:get", _td_c_get_24_11); //$NON-NLS-1$ //$NON-NLS-2$
-            _jettag_c_get_24_11.setRuntimeParent(_jettag_c_userRegion_1_1);
-            _jettag_c_get_24_11.setTagInfo(_td_c_get_24_11);
-            _jettag_c_get_24_11.doStart(context, out);
-            _jettag_c_get_24_11.doEnd();
-            out.write(NL);         
+            //    # >>> <c:get select="$eOperation/@name"/>
             _jettag_c_userRegion_1_1.handleBodyContent(out);
         }
         _jettag_c_userRegion_1_1.doEnd();
