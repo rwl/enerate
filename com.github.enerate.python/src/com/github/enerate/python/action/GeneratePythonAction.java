@@ -9,7 +9,7 @@ public class GeneratePythonAction extends GenerateCodeAction {
 	public GeneratePythonAction() {
 		super();
 		this.transformId = "com.github.enerate.python";
-		this.jobDesc = "Python Code Generation.";
+		this.jobDesc = "Python Code Generation: ";
 	}
 
 }

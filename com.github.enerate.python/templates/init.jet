@@ -13,7 +13,7 @@ from <c:include template="templates/package_name.jet" passVariables="eSuper"/>.<
 
 nsURI = "<c:get select="$ePackage/@nsURI"/>"
 nsPrefix = "<c:get select="$ePackage/@nsPrefix"/>"
-<c:if test="count($ePackage/eAnnotations[@source='http://www.pycim.com/PyCIM']/details[@key='mapPackage' and @value='true']) > 0">
+<c:if test="count($ePackage/eAnnotations[@source='http://rwl.github.com/enerate']/details[@key='mapPackage' and @value='true']) > 0">
 
 <c:include template="templates/map.jet"/>
 </c:if>

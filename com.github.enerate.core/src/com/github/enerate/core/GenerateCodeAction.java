@@ -49,31 +49,35 @@ public abstract class GenerateCodeAction extends ActionDelegate implements IActi
 	@Override
 	public void run(IAction action) {
 
-		if (ecoreFiles.size() != 1) {
+		if (ecoreFiles.size() == 0) {
 			Shell shell = new Shell();
-			MessageDialog.openInformation(shell, "Enerate", "Please select one ECore file.");
+			MessageDialog.openInformation(shell, "Enerate", "Please select one or more ECore files.");
 			return;
 		}
 
-		final IFile ecoreFile = ecoreFiles.get(0);
+		final HashMap<String, String> variables = new HashMap<String, String>();;
+		IProject project;
+		Job job;
+		IStatus status;
 
-		IProject project = ecoreFile.getProject();
-		final HashMap<String, String> variables = new HashMap<String, String>();
-		variables.put("org.eclipse.jet.resource.project.name", project.getName()); // theNameOfTheProjectContainingTheEMFResource
+		for (final IFile ecoreFile : ecoreFiles) {
+			project = ecoreFile.getProject();
+			variables.put("org.eclipse.jet.resource.project.name", project.getName());
 
-		Job job = new Job(jobDesc) {
-			protected IStatus run(final IProgressMonitor monitor) {
-				JET2Platform.runTransformOnResource(transformId, ecoreFile, variables, monitor);
-				return Status.OK_STATUS;
-			}
-		};
-		job.setUser(true); // shows dialog window
-		job.schedule();
-		IStatus status = job.getResult();
+			job = new Job(jobDesc + ecoreFile.getName()) {
+				protected IStatus run(final IProgressMonitor monitor) {
+					return JET2Platform.runTransformOnResource(transformId, ecoreFile, variables, monitor);
+				}
+			};
 
-		if (status != null)
-			if (!status.isOK())
-				System.err.println(status.getMessage());
+			job.setUser(true); // shows dialog window
+			job.schedule();
+			status = job.getResult();
+
+			if (status != null)
+				if (!status.isOK())
+					System.err.println(status.getMessage());
+		}
 	}
 
 	/**

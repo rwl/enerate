@@ -27,7 +27,7 @@
             objectClass="org.eclipse.core.resources.IFile">
          <action
                class="com.github.enerate.csharp.action.GenerateCSharpAction"
-               enablesFor="1"
+               enablesFor="+"
                icon="icons/enerate.png"
                id="com.github.enerate.csharp.generate"
                label="Generate C# Code"

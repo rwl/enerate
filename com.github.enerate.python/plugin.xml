@@ -25,7 +25,7 @@
            objectClass="org.eclipse.core.resources.IFile">
         <action
               class="com.github.enerate.python.action.GeneratePythonAction"
-              enablesFor="1"
+              enablesFor="+"
               icon="icons/enerate.png"
               id="com.github.enerate.python.generate"
               label="Generate Python Code"

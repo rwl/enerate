@@ -120,7 +120,7 @@ public class _jet_init implements JET2Template {
                 "test", //$NON-NLS-1$
             },
             new String[] {
-                "count($ePackage/eAnnotations[@source='http://www.pycim.com/PyCIM']/details[@key='mapPackage' and @value='true']) > 0", //$NON-NLS-1$
+                "count($ePackage/eAnnotations[@source='http://rwl.github.com/enerate']/details[@key='mapPackage' and @value='true']) > 0", //$NON-NLS-1$
             } );
     private static final TagInfo _td_c_include_18_1 = new TagInfo("c:include", //$NON-NLS-1$
             18, 1,
